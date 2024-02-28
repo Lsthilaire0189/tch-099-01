@@ -1,1 +1,37 @@
 <!-- La page pour qu'un chef ajoute une recette, ajout d'image, texte nom, description, recette, filtres a mettres, la barre au dessu pour accès rapide -->
+<!--Main menu, d'ici on voit le titre de notre site et on peut créer un compte, se connecter, ou directement parcourir les recettes -->
+<!doctype html>
+<html>
+    <head>
+        <title>ajouterRecette.html</title>
+        <!--Lien pour la feuille css-->
+    </head>
+
+    <body>
+        <main>
+            <header>
+                <!--Futur bouton en css-->
+                <a href="./menu.html"><img src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
+                <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
+                <a href="./menu.html" class="btnDeconnection">Déconnection</a>
+            </header>
+            <section>
+                <section>
+                    Entrez le plus d'information possible à propos de la recette dans le but de faciliter sa recherche!
+                </section>
+                <!--Futur bouton en css-->
+                <form>
+                    <label for="nom">Nom du plat:</label>
+                    <input type="text" name="nom" id="nom">
+                    <label for="description">Description du plat:</label>
+                    <input type="text" name="" id="description">
+                    <label for="recette">Recette:</label>
+                    <input type="text" name="" id="recette">
+                    <!--Image du plat a drag and drop, futur problème, a modifier en CSS, voir: https://www.w3schools.com/html/html5_draganddrop.asp-->
+                    <label for="image">Image du plat:</label>
+                    <img draggable="true">
+                </form>
+            </section>
+        </main>
+    </body>
+</html>
