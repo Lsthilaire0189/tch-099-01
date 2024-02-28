@@ -1,1 +1,48 @@
-<!-- Ici, on a toutes le recettes qui s'affichent, les filtres a appliqués, la bare au dessu pour accès rapide -- >
+<!-- Ici, on a toutes le recettes qui s'affichent, les filtres a appliqués, la bare au dessu pour accès rapide -->
+<!doctype html>
+<html>
+    <head>
+        <title>listeRecettes.html</title>
+        <!--Lien pour la feuille css-->
+    </head>
+    <body>
+        <main>
+            <header>
+                <!--Future bouton en css-->
+                <a href="./login.html" class="btnLogin">Connexion</a>
+                <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
+            </header>
+            <section>
+                <aside>
+                    <h1>Filtres de recherches</h1>
+                    <label for="pays">Pays d'origine:</label>
+                    <select name="Pays" id="pays">
+                        <option value="">Veuillez sélectionner un pays</option>
+                        <option value="grec">Grec</option>
+                        <option value="algerien">Algérien</option>
+                        <option value="irlandais">Irlandais</option>
+                        <option value="etatsUnis">États-Unis</option>
+                        <option value="francais">Français</option>
+                        <option value="espagnole"">Espagnole</option>
+                        <option value="mexicain"">Mexicain</option>
+                        <option value="chinois"">Chinois</option>
+                      </select>
+                      <label for="regimes">Régimes alimentaires:</label>
+                    <select name="Regimes" id="regimes">
+                        <option value="">Veuillez sélectionner un régime</option>
+                        <option value="vegetarien">Végétarien</option>
+                        <option value="sansGluten">Sans glutenne</option>
+                        <option value="proteines">Protéiné</option>
+                        <option value="vegan">Vegan</option>
+                      </select>
+                </aside>
+                <ul>
+                    <li><a href="./recette.html?no=1">Soupe aux tomates</a>Chef Thom<img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png"</li>
+                    <li><a href="./recette.html?no=2">Sauté de crevettes</a>Chef Paul<img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png"</li>
+                    <li><a href="./recette.html?no=3">Toast au pommes</a>Chef Pierre<img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png"</li>
+                    <li><a href="./recette.html?no=4">Burger Américain</a>Chef Fred<img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png"</li>
+                </ul>
+            </section>
+        </main>
+    </body>
+</html>
