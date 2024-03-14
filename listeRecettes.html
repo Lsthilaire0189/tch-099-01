@@ -3,19 +3,19 @@
 <html>
     <head>
         <title>listeRecettes.html</title>
-        <!--Lien pour la feuille css-->
+        <link rel="stylesheet" href="./style.css">
     </head>
     <body>
         <main>
-            <header>
+            <header class="entete">
                 <!--Futur bouton en css-->
-                <a href="./menu.html"><img src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
+                <a href="./menu.html"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
                 <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
-                <a href="./login.html" class="btnLogin">Connection</a>
+                <a id="btnDeco" href="./menu.html" class="btnDeconnection">Déconnection</a>
 
             </header>
-            <section>
-                <aside>
+            <section class="listeImages">
+                <aside class="filtres">
                     <h1>Filtres de recherches</h1>
                     <label for="pays">Pays d'origine:</label>
                     <select name="Pays" id="pays">

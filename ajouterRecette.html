@@ -4,32 +4,35 @@
 <html>
     <head>
         <title>ajouterRecette.html</title>
-        <!--Lien pour la feuille css-->
+        <link rel="stylesheet" href="./style.css">
     </head>
 
     <body>
         <main>
-            <header>
-                <!--Futur bouton en css-->
-                <a href="./menu.html"><img src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
+            <header class="entete" id="enteteAjouter">
+                <a href="./menu.html"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
                 <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
-                <a href="./menu.html" class="btnDeconnection">Déconnection</a>
+                <a id="btnDeco" href="./menu.html" class="btnDeconnection">Déconnection</a>
             </header>
             <section>
-                <section>
+                <section  class="sectionAjouter">
                     Entrez le plus d'information possible à propos de la recette dans le but de faciliter sa recherche!
                 </section>
-                <!--Futur bouton en css-->
-                <form>
+                <form class="formAjouter" id="form1">
                     <label for="nom">Nom du plat:</label>
                     <input type="text" name="nom" id="nom">
                     <label for="description">Description du plat:</label>
-                    <input type="text" name="" id="description">
+                    <textarea type="textarea" name="" id="description"></textarea>
                     <label for="recette">Recette:</label>
-                    <input type="text" name="" id="recette">
+                    <textarea type="text" name="" id="recette"></textarea>
                     <!--Image du plat a drag and drop, futur problème, a modifier en CSS, voir: https://www.w3schools.com/html/html5_draganddrop.asp-->
-                    <label for="image">Image du plat:</label>
+                    <label for="image">Image du plat (lien):</label>
                     <img draggable="true">
+                    <textarea type="text" name="" id="img"></textarea>
+                    <section class="sectionBtn">
+                        <button id="btnSend" type="submit" form="form1" value="Submit">Soumettre</button>
+                        <button id="btnReset" type="reset" form="form1" value="Submit">Annuler</button>
+                    </section>
                 </form>
             </section>
         </main>
