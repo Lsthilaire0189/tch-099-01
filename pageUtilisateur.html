@@ -3,27 +3,28 @@
 <html>
     <head>
         <title>pageUtilisateur.html</title>
-        <!--Lien pour la feuille css-->
+        <link rel="stylesheet" href="./style.css">
     </head>
 
     <body>
         <main>
-            <header>
-                <!--Futur bouton en css-->
-                <a href="./menu.html"><img src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
+            <header class="entete">
+                <a href="./menu.html"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
                 <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
-                <a href="./menu.html" class="btnDeconnection">Déconnection</a>
+                <a id="btnDeco" href="./menu.html" class="btnDeconnection">Déconnection</a>
             </header>
-            <section>
-                <section>
+            <section class="btnChoix">
+                <section class="bvnLog">
                     <!--Trouver un moyen avec la connection-->
                     Bonjour nom! Que souhaitez vous faire aujourd'hui!
                 </section>
-                <!--Futur bouton en css-->
-                <a href="./ajouterRecette.html" class="btnMenu">Ajouter une recette a votre livre</a>
-                <a href="./ajouterRecette.html" class="btnMenu">Modifier vos recettes déja existante!</a>
-                <a href="./listeRecettes.html" class="btnMenu">Parcourir les recettes!</a>
+                <section class="btnLog">
+                    <a href="./ajouterRecette.html" class="btnMenu">Ajouter une recette a votre livre</a>
+                    <a href="./ajouterRecette.html" class="btnMenu">Modifier vos recettes déja existante!</a>
+                    <a href="./listeRecettes.html" class="btnMenu">Parcourir les recettes!</a>
+                </section>
             </section>
         </main>
+        <footer class="footerUser"></footer>
     </body>
 </html>

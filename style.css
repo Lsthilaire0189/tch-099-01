@@ -254,5 +254,45 @@
     padding: 20px;
     bottom: 0;
     position: sticky;
-    
+}
+
+/* pageUtilisateur.html */
+.bvnLog{
+    font-size: 1.5rem;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: rgb(2, 115, 152);
+    margin-top: 10px;
+    color: aliceblue;
+    text-align: center;
+}
+.btnChoix{
+    display: flex;
+    flex-direction: column;
+}
+.btnChoix a{
+    padding:20px;
+    max-height: 30px;
+    max-width: 400px;
+    min-width: 400px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: 2px solid aliceblue;
+    margin-bottom: 30px;
+    color: aliceblue;
+    font-size: 1.2rem;
+    font-family: Helvetica, Arial, sans-serif;
+    margin-top: 10px;
+}
+.btnChoix .btnLog{
+    margin-top: 50px;
+    background-color: azure;
+    border: solid 3px rgb(0, 61, 126);
+    border-radius: 5px;
+}
+.footerUser{
+    background-color: rgb(2, 115, 152);
+    padding: 30px;
+    margin-top: 25%;
+    position: sticky;
+    bottom: 0;
 }
