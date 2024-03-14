@@ -115,6 +115,7 @@
 .footerMenu{
     height: 50px;
     background-color: rgb(2, 115, 152);
+    margin-bottom: 0;
 }
 
 /* AjouterRecette.html */
@@ -152,8 +153,13 @@
     border-radius: 5px;
     margin-bottom: 20px;
 }
-.formAjouter #recette{
+.formAjouter #ingredients{
     height: 200px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.formAjouter #recette{
+    height: 300px;
     border-radius: 5px;
     margin-bottom: 20px;
 }
@@ -177,11 +183,76 @@
 }
 
 /* ListeRecettes.html */
-.listeImages{
+.listeImagesFiltres{
     display: flex;
     flex-direction: row;
 }
-.filtres{
+.listeFiltres{
     display: flex;
     flex-direction: column;
+    background-color: azure;
+    border:solid 3px rgb(0, 61, 126);
+    padding: 20px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    min-height: 1000px;
+    position: sticky;
+}
+.listeFiltres h1{
+    font-size: 1.5rem;
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: 100px;
+    margin-top: 200px;
+}
+.listeFiltres section{
+    display: flex;
+    flex-direction: column;
+}
+.listeFiltres label{
+    font-size: 1.5rem;
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: 5px;
+}
+.listeFiltres select{
+    height: 25px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+.listeImagesFiltres ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.listeImagesFiltres ul li{
+    background-color: rgb(2, 115, 152);
+    margin-top: 30px;
+    margin-left: 10px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    color:aliceblue;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    max-height: 300px;
+}
+.listeImagesFiltres ul li img{
+    object-fit: contain;
+    max-width: 250px;
+    border: solid 2px black;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.listeImagesFiltres ul li a{
+    color:aliceblue;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+.footerParcourir{
+    background-color: rgb(2, 115, 152);
+    padding: 20px;
+    bottom: 0;
+    position: sticky;
+    
 }
