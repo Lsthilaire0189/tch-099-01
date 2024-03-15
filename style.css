@@ -296,3 +296,90 @@
     position: sticky;
     bottom: 0;
 }
+.loginForm{
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 60px;
+    padding-top : 1rem;
+    padding-bottom : 1rem;
+    padding-left : 1rem;
+    padding-right : 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 20rem;
+}
+
+.loginFieldset {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    border:none
+}
+
+.loginBody{
+    background-color: azure;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header{
+    background-color: rgb(2, 115, 152);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    color: white;
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+    order: 2;
+}
+
+.loginBanner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(2, 115, 152);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+}
+
+.input{
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 1.5rem;
+    border-radius: 10px;
+}
+
+.lbl{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.loginBtn{
+    width: 100%;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: rgb(2, 115, 152);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btnHome, #btnHome {
+    display: inline-block;
+    margin-left: 1rem; 
+    order: 1;
+}
+
+.fakeBtn.login, .fakeBtn.creerCompte{
+    margin-right: 2rem;
+    border: 1px solid black;
+    padding: .5rem;
+    background-color: rgb(23, 143, 235);
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    order: 3;
+}
