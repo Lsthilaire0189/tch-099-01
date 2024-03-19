@@ -1,7 +1,7 @@
 /* Style pour les entêtes de toute les pages */
 .entete{
     background-color: rgb(2, 115, 152);
-    padding:2%;
+    padding: 2%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -382,4 +382,30 @@
     font-weight: 600;
     text-decoration: none;
     order: 3;
+}
+/* recette.html */
+
+.image_recette {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.recette{
+    text-align: center;
+    max-width: 600px; 
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc; 
+    background-color: #f9f9f9; 
+    overflow-wrap: break-word;
+}
+.recette ul {
+    margin: 0;
+    padding: 0;
+}
+
+.recette li {
+    list-style-position: inside; /* Center bullet points with text */
 }
