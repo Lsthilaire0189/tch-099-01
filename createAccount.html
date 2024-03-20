@@ -9,30 +9,30 @@
 </head>
 
 <body class="loginBody">
-    <div class="loginBanner">
-        <a href="./menu.html" class="btnHome"></a><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png"
-            alt="Bouton home" style="width:42px;height:42px;"></a>
-        <section class="loginHeader">Création d'un compte ChefChatter</section>
-        <a href="./loginPage.html" class="fakeBtn login">Page Login</a>
-        
-    </div>
-    <form class="loginForm" action="loginPage.php" method="post">
-        <fieldset class="loginFieldset">
-            <label for="prenom" class="lbl prenom">Prénom</label>
-            <input type="text" id="prenom" name="prenom" class="input prenom"required>
-            <label for="nomFamille" class="lbl nomFamille">Nom de famille</label>
-            <input type="text" id="nomFamille" name="nomFamille" class="input nomFamille"required>
-            <label for="dateNaissance" class="lbl dateNaissance">Date de naissance</label>
-            <input type="date" id="dateNaissance" name="dateNaissance" class="input dateNaissance"required>
-            <label for="email" class="lbl email">Adresse courriel</label>
-            <input type="email" id="email" name="email" class="input email"required>
-            <label for="username" class="lbl User">Nom d'utilisateur</label>
-            <input type="text" id="username" name="username" class="input User"required>
-            <label for="password" class="lbl Mdp">Mot de passe</label>
-            <input type="password" id="password" name="password" class="input Mdp" required>
-        </fieldset>
-        <button type="submit" class="loginBtn">Créer vôtre compte</button>
-    </form>
+    <header class="entete" id="enteteAjouter">
+        <a href="./menu.html"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
+        <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
+        <a id="btnDeco" href="./menu.html" class="btnDeconnection">Déconnection</a>
+    </header>
+    <setion class="positionForm">
+        <form class="loginForm" action="loginPage.php" method="post">
+            <fieldset class="loginFieldset">
+                <label for="prenom" class="lbl prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" class="input prenom"required>
+                <label for="nomFamille" class="lbl nomFamille">Nom de famille</label>
+                <input type="text" id="nomFamille" name="nomFamille" class="input nomFamille"required>
+                <label for="dateNaissance" class="lbl dateNaissance">Date de naissance</label>
+                <input type="date" id="dateNaissance" name="dateNaissance" class="input dateNaissance"required>
+                <label for="email" class="lbl email">Adresse courriel</label>
+                <input type="email" id="email" name="email" class="input email"required>
+                <label for="username" class="lbl User">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" class="input User"required>
+                <label for="password" class="lbl Mdp">Mot de passe</label>
+                <input type="password" id="password" name="password" class="input Mdp" required>
+            </fieldset>
+            <button type="submit" class="loginBtn">Créer vôtre compte</button>
+        </form>
+    </setion>
 </body>
-
+<footer class="footerParcourir"></footer>
 </html>
