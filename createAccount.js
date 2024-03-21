@@ -1,24 +1,26 @@
-
 const message = document.createElement("p");
 const body = document.querySelector(".loginBody");
-
+console.log("test test test");
 document.querySelector("#createSubmit").addEventListener("click", async () => {
-    const nom = document.getElementById("nom").value;
+    console.log("test test test 132");
+    const nom = document.getElementById("nomFamille").value;
     const prenom = document.getElementById("prenom").value;
-    const dateNaissance = document.getElementById("dateDeNaissance").value;
+    const dateNaissance = document.getElementById("dateNaissance").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const username = document.getElementById("username").value;
+    
 
     if (!nom || !prenom || !dateNaissance || !email || !password || !username) {
       message.textContent = "Erreur dans le formulaire : information manquante";
       body.appendChild(message);
+      console.log("test test test 1");
       return;
     }
 
     const compte = { nom, prenom, dateNaissance, email, password, username };
     try {
-      const response = await fetch("http://localhost/api/compte", {
+      const response = await fetch("http://localhost/api/ajouterCompte", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,6 +29,7 @@ document.querySelector("#createSubmit").addEventListener("click", async () => {
       });
 
       if (!response.ok) {
+        console.log("test test test 2");
         throw new Error("Failed to send data");
       }
 
@@ -36,6 +39,7 @@ document.querySelector("#createSubmit").addEventListener("click", async () => {
     } catch (error) {
       message.textContent = "Erreur lors de l'envoi des données";
       body.appendChild(message);
+      console.log("test test test");
       return;
     }
   });

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="loginBody">
+    <header class="entete" id="enteteAjouter">
+        <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
+        <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
+        <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnection</a>
+    </header>
+    <section class="positionForm">
+        <form class="loginForm" action="loginPage.php" method="post">
+            <fieldset class="loginFieldset">
+                <label for="username" class="lbl User">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" class="input User"required>
+                <label for="password" class="lbl Mdp">Mot de passe</label>
+                <input type="password" id="password" name="password" class="input Mdp" required>
+            </fieldset>
+            <button type="submit" class="loginBtn">Login</button>
+        </form>
+    </section>
+</body>
+<footer class="footerParcourir"></footer>
+</html>
