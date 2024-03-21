@@ -1,4 +1,8 @@
-document.querySelector("#submit").addEventListener("click", async () => {
+
+const message = document.createElement("p");
+const body = document.querySelector(".loginBody");
+
+document.querySelector("#createSubmit").addEventListener("click", async () => {
     const nom = document.getElementById("nom").value;
     const prenom = document.getElementById("prenom").value;
     const dateNaissance = document.getElementById("dateDeNaissance").value;
