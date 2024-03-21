@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>menu.html</title>
+        <title>index.php</title>
         <link rel="stylesheet" href="./style.css">
     </head>
 

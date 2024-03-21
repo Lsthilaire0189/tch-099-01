@@ -6,13 +6,14 @@ require_once __DIR__ . '/router.php';
 // ##################################################
 // ##################################################
 
-$DBuser = 'root';
-$DBpass = $_ENV['MYSQL_ROOT_PASSWORD'];
- $pdo =null;
+$DBuser = 'equipe500';
+$DBpass = '+Sdum3RzzBJGQYvo';
+$pdo = null;
 
 try {
-    $database = 'mysql:host=database:3306;dbname=dbpokemon';
+    $database = 'mysql:host=localhost:3306;dbname=equipe500';
     $pdo = new PDO($database, $DBuser, $DBpass);
+    echo "Success: A proper connection to MySQL was made! The docker database is great.";
 } catch (PDOException $e) {
     echo "Error: Unable to connect to MySQL. Error:\n $e";
 }
@@ -46,24 +47,24 @@ get('/api/pokemons/$id', function ($id) {
 
 });
 
-post('/api/pokemons', function () {
-  global $pdo;
-
-  $json = file_get_contents('php://input');
-  $data = json_decode($json, true);
-  $requete = $pdo->prepare("INSERT INTO pokemon (`name`, `type1`, `type2`, `URL`, `height_m`, `weight_kg`, `generation`) values (:name, :type1, :type2, :image, :taille, :poids, :generation)");
-  $requete->execute([
-    'name' => $data['name'],
-    'type1' => $data['types'][0],
-    'type2' => $data['types'][1] ??null,
-    'image' => $data['image'],
-    'taille' => $data['taille'],
-    'poids' => $data['poids'],
-    'generation' => $data['generation'],
-  ]);
-
-  echo json_encode(['message' => "Pokemon " . $data['name'] . " ajouté au Pokedex"]);
-
+post('/api/ajouterCompte', function use ($pdo){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $email = $data['email'],
+    $username = $data['username'],
+    $password = $data['password'],
+    $prenom = $data['prenom'],
+    $nomDeFamille = $data['nomFamille'],
+    $dateDeNaissance = $data['dateNaissance'],
+    if(empty($email), empty($username), empty($password), empty($prenom), empty($nomDeFamille), empty($dateDeNaissance)){
+        echo '<span class="messResult">Erreur, veuillez remplir tous les champs.</span>';
+    }
+    else{
+        $requete = $pdo->prepare("INSERT INTO EQ1_Comptes(`email`, `username`, `password`,
+        `prenom`, `nomDeFamille`, `dateDeNaissance`) values (?,?,?,?,?,?)");
+        $requete->execute([$email, $username, $password, $prenom, $nomDeFamille, $dateDeNaissance]);
+        echo '<span class="messResult">Compte ajouté avec succès!</span>';
+    }
 });
 
 // Static GET
