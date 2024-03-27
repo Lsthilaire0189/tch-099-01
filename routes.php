@@ -13,9 +13,9 @@ $pdo = null;
 try {
     $database = 'mysql:host=localhost:3306;dbname=equipe500';
     $pdo = new PDO($database, $DBuser, $DBpass);
-    echo "Success: A proper connection to MySQL was made! The docker database is great.";
+    
 } catch (PDOException $e) {
-    echo "Error: Unable to connect to MySQL. Error:\n $e";
+   
 }
 
 get('/api/pokemons', function () {
@@ -47,24 +47,29 @@ get('/api/pokemons/$id', function ($id) {
 
 });
 
-post('projet1/api/ajouterCompte', function use ($pdo){
+get('projet1/api/ajouterCompte','index.php');
+
+post('/projet1/api/ajouterCompte', function (){
+    global $pdo;
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
-    $email = $data['email'],
-    $username = $data['username'],
-    $password = $data['password'],
-    $prenom = $data['prenom'],
-    $nomDeFamille = $data['nomFamille'],
-    $dateDeNaissance = $data['dateNaissance'],
-    if(empty($email), empty($username), empty($password), empty($prenom), empty($nomDeFamille), empty($dateDeNaissance)){
-        echo '<span class="messResult">Erreur, veuillez remplir tous les champs.</span>';
+    $email = $data['email']??null;
+    $username = $data['username']??null;
+    $password = $data['password']??null;
+    $prenom = $data['prenom']??null;
+    $nomDeFamille = $data['nom']??null;
+    $dateDeNaissance = $data['dateNaissance']??null;
+    if(empty($email)|| empty($username)|| empty($password)|| empty($prenom)|| empty($nomDeFamille)|| empty($dateDeNaissance)){
+      echo json_encode(["message" => "ca marche"]);
     }
     else{
-        $requete = $pdo->prepare("INSERT INTO EQ1_Comptes(`email`, `username`, `password`,
-        `prenom`, `nomDeFamille`, `dateDeNaissance`) values (?,?,?,?,?,?)");
+        $requete = $pdo->prepare("INSERT INTO EQ1_Compte(email, username, password,
+        prenom, nomDeFamille, dateDeNaissance) values (?,?,?,?,?,?)");
         $requete->execute([$email, $username, $password, $prenom, $nomDeFamille, $dateDeNaissance]);
-        echo '<span class="messResult">Compte ajouté avec succès!</span>';
+       
+        echo json_encode(["message" => "ca marche"]);
     }
+    
 });
 
 // Static GET
@@ -165,7 +170,7 @@ post('/user', '/api/save_user');
 // ##################################################
 // any can be used for GETs or POSTs
 
-// For GET or POST
-// The 404.php which is inside the views folder will be called
-// The 404.php has access to $_GET and $_POST
-any('/404', 'views/404.php');
+// // For GET or POST
+// // The 404.php which is inside the views folder will be called
+// // The 404.php has access to $_GET and $_POST
+// any('/404', 'views/404.php');
