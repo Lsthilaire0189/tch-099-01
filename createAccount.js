@@ -19,7 +19,7 @@ document.querySelector("#createSubmit").addEventListener("click", async () => {
 
     const compte = { nom, prenom, dateNaissance, email, password, username };
     try {
-      const response = await fetch("/api/ajouterCompte", {
+      const response = await fetch("projet1/api/ajouterCompte", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

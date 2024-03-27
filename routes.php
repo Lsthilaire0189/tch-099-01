@@ -47,7 +47,7 @@ get('/api/pokemons/$id', function ($id) {
 
 });
 
-post('/api/ajouterCompte', function use ($pdo){
+post('projet1/api/ajouterCompte', function use ($pdo){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $email = $data['email'],
