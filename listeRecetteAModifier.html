@@ -1,68 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>listeRecettes.html</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <main>
-        <header class="entete">
-            <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
-            <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
-            <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnection</a>
-        </header>
-        <section id="modMsg">
-            <span>Veuillez sélectionner la recette à modifier.</span>
-        </section>
-        <section class="listeImagesFiltres">
-            <aside class="listeFiltres">
-                <h1>Filtres de recherches</h1>
-                <section>
-                    <label for="pays">Pays d'origine:</label>
-                    <select name="Pays" id="pays">
-                        <option value="">Veuillez sélectionner un pays</option>
-                        <option value="grec">Grec</option>
-                        <option value="algerien">Algérien</option>
-                        <option value="irlandais">Irlandais</option>
-                        <option value="etatsUnis">États-Unis</option>
-                        <option value="francais">Français</option>
-                        <option value="espagnole">Espagnole</option>
-                        <option value="mexicain">Mexicain</option>
-                        <option value="chinois">Chinois</option>
-                    </select>
-                    <label for="regimes">Régimes alimentaires:</label>
-                    <select name="Regimes" id="regimes">
-                        <option value="">Veuillez sélectionner un régime</option>
-                        <option value="vegetarien">Végétarien</option>
-                        <option value="sansGluten">Sans glutenne</option>
-                        <option value="proteines">Protéiné</option>
-                        <option value="vegan">Vegan</option>
-                    </select>
-                    <label for="regimes">Types d'aliments:</label>
-                    <select name="TypeAliments" id="typesAliments">
-                        <option value="">Veuillez sélectionner un aliment</option>
-                        <option value="poulet">Poulet</option>
-                        <option value="boeuf">Boeuf</option>
-                        <option value="porc">Porc</option>
-                        <option value="poisson">Poisson</option>
-                        <option value="patisserie">Pâtisserie</option>
-                        <option value="salade">Salade</option>
-                        <option value="pates">Pâtes</option>
-                    </select>
-                </section>
-            </aside>
-            <ul>
-                <li><a href="./modifierRecette.html?no=1">Soupe aux tomates</a>Chef Thom<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                <li><a href="./modifierRecette.html?no=2">Sauté de crevettes</a>Chef Paul<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                <li><a href="./modifierRecette.html?no=3">Toast aux pommes</a>Chef Pierre<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                <li><a href="./modifierRecette.html?no=1">Soupe aux tomates</a>Chef Thom<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                <li><a href="./modifierRecette.html?no=2">Sauté de crevettes</a>Chef Paul<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                <li><a href="./modifierRecette.html?no=3">Toast aux pommes</a>Chef Pierre<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                <li><a href="./modifierRecette.html?no=4">Burger Américain</a>Chef Fred<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                <li><a href="./modifierRecette.html?no=4">Burger Américain</a>Chef Fred<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-            </ul>
-        </section>
-    </main>
+    <head>
+        <title>listeRecettes.html</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <main>
+            <header class="entete">
+                <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
+                <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
+                <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnexion</a>
+
+            </header>
+            <section id="modMsg">
+                <span>Veuillez sélectionner la recette à modifier.</span>
+            </section>
+            <section class="listeImagesFiltres">
+                <aside class="listeFiltres">
+                    <h1>Filtres de recherches</h1>
+                    <section >
+                        <label for="pays">Pays d'origine:</label>
+                        <select name="Pays" id="pays">
+                            <option value="">Veuillez sélectionner un pays</option>
+                            <option value="grec">Grec</option>
+                            <option value="algerien">Algérien</option>
+                            <option value="irlandais">Irlandais</option>
+                            <option value="etatsUnis">États-Unis</option>
+                            <option value="francais">Français</option>
+                            <option value="espagnole">Espagnole</option>
+                            <option value="mexicain">Mexicain</option>
+                            <option value="chinois">Chinois</option>
+                          </select>
+                          <label for="regimes">Régimes alimentaires:</label>
+                        <select name="Regimes" id="regimes">
+                            <option value="">Veuillez sélectionner un régime</option>
+                            <option value="vegetarien">Végétarien</option>
+                            <option value="sansGluten">Sans glutenne</option>
+                            <option value="proteines">Protéiné</option>
+                            <option value="vegan">Vegan</option>
+                          </select>
+                          <label for="regimes">Types d'aliments:</label>
+                          <select name="TypeAliments" id="typesAliments">
+                            <option value="">Veuillez sélectionner un aliment</option>
+                            <option value="poulet">Poulet</option>
+                            <option value="boeuf">Boeuf</option>
+                            <option value="porc">Porc</option>
+                            <option value="poisson">Poisson</option>
+                            <option value="patisserie">Pâtisserie</option>
+                            <option value="salade">Salade</option>
+                            <option value="pates">Pâtes</option>
+                          </select>
+                    </section>
+                </aside>
+                <ul>
+                    <li><a href="./modifierRecette.html?no=1">Soupe aux tomates</a>Chef Thom<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
+                    <li><a href="./modifierRecette.html?no=2">Sauté de crevettes</a>Chef Paul<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
+                    <li><a href="./modifierRecette.html?no=3">Toast au pommes</a>Chef Pierre<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
+                    <li><a href="./modifierRecette.html?no=1">Soupe aux tomates</a>Chef Thom<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
+                    <li><a href="./modifierRecette.html?no=2">Sauté de crevettes</a>Chef Paul<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
+                    <li><a href="./modifierRecette.html?no=3">Toast au pommes</a>Chef Pierre<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
+                    <li><a href="./modifierRecette.html?no=4">Burger Américain</a>Chef Fred<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
+                    <li><a href="./modifierRecette.html?no=4">Burger Américain</a>Chef Fred<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
+                </ul>
+            </section>
+        </main>
+    </body>
     <footer class="footerParcourir"></footer>
-</body>
 </html>
