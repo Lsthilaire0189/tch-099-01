@@ -13,16 +13,17 @@
         <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnexion</a>
     </header>
     <section class="positionForm">
-        <form class="loginForm" action="loginPage.php" method="post">
+        <form class="loginForm">
             <fieldset class="loginFieldset">
                 <label for="username" class="lbl User">Nom d'utilisateur</label>
                 <input type="text" id="username" name="username" class="input User" required>
                 <label for="password" class="lbl Mdp">Mot de passe</label>
                 <input type="password" id="password" name="password" class="input Mdp" required>
             </fieldset>
-            <button type="submit" class="loginBtn">Login</button>
+            <button type="submit" class="loginBtn" id="btnConnexion">Login</button>
         </form>
     </section>
     <footer class="footerParcourir"></footer>
+    <script src="connexion.js"></script>
 </body>
 </html>
