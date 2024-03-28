@@ -29,3 +29,5 @@ async function fetchRatings(recetteId) {
     .catch(error => {
       console.error('Error:', error);
     });
+
+    // Ceci est un commentaire!
