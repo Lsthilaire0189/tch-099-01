@@ -62,9 +62,6 @@ post('/projet1/api/ajouterCompte', function (){
     if(empty($email)|| empty($username)|| empty($password)|| empty($prenom)|| empty($nomDeFamille)|| empty($dateDeNaissance)){
       echo json_encode(["message" => "ca marche"]);
     }
-    else if(emailExists($pdo, $email)){
-      echo json_encode(["message" => "le compte existe déjà"]);
-    }
     else{
         $requete = $pdo->prepare("INSERT INTO EQ1_Compte(email, username, password,
         prenom, nomDeFamille, dateDeNaissance) values (?,?,?,?,?,?)");
