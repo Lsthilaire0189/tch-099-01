@@ -15,8 +15,7 @@ document.querySelector("#btnConnexion").addEventListener("click",async()=>{
         const responseData= await response.json();
         if(responseData.connexion=="vrai")
         {
-            localStorage.setItem('username',username);
-            console.log('allo');
+            sessionStorage.setItem('username',username);
             window.location.href='/projet1/pageUtilisateur.html';
         }
 
