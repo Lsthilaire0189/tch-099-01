@@ -11,8 +11,8 @@ document.querySelector("#createSubmit").addEventListener("click", async () => {
 
 
   if (!nom || !prenom || !dateNaissance || !email || !password || !username) {
-    mesRep.innerHTML = "Erreur dans le formulaire : information manquante";
-    body.appendChild(message);
+    mesRep.innerHTML = "Erreur dans le formulaire : information manquante"
+    body.appendChild(mesRep)
   }
   else {
     const compte = { nom, prenom, dateNaissance, email, password, username };
@@ -31,6 +31,7 @@ document.querySelector("#createSubmit").addEventListener("click", async () => {
       const responseData = await response.json();
       console.log(responseData.message);
       mesRep.innerHTML = responseData.message;
+      body.appendChild(mesRep)
     }
     catch (error) {
       console.log("Error:", error.message);
