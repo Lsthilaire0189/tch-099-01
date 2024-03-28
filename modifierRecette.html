@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ajouterRecette.html</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main>
+        <header class="entete" id="enteteAjouter">
+            <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
+            <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
+            <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnexion</a>
+        </header>
+        <section>
+            <div class="sectionAjouter">
+                Modification de la recette
+            </div>
+            <form class="formAjouter" id="form1">
+                <label for="nom">Nom du plat:</label>
+                <input type="text" name="nom" id="nom">
+                <label for="nom">Catégories du plat:</label>
+                <div class="filtreAjouter">
+                    <div>
+                        <label for="regimes">Types d'aliments:</label>
+                        <select name="Pays" id="pays">
+                            <option value="">Veuillez sélectionner un pays</option>
+                            <option value="grec">Grec</option>
+                            <option value="algerien">Algérien</option>
+                            <option value="irlandais">Irlandais</option>
+                            <option value="etatsUnis">États-Unis</option>
+                            <option value="francais">Français</option>
+                            <option value="espagnole">Espagnole</option>
+                            <option value="mexicain">Mexicain</option>
+                            <option value="chinois">Chinois</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="regimes">Régimes alimentaires:</label>
+                        <select name="Regimes" id="regimes">
+                            <option value="">Veuillez sélectionner un régime</option>
+                            <option value="vegetarien">Végétarien</option>
+                            <option value="sansGluten">Sans glutenne</option>
+                            <option value="proteines">Protéiné</option>
+                            <option value="vegan">Vegan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="regimes">Types d'aliments:</label>
+                        <select name="TypeAliments" id="typesAliments">
+                            <option value="">Veuillez sélectionner un aliment</option>
+                            <option value="poulet">Poulet</option>
+                            <option value="boeuf">Boeuf</option>
+                            <option value="porc">Porc</option>
+                            <option value="poisson">Poisson</option>
+                            <option value="patisserie">Pâtisserie</option>
+                            <option value="salade">Salade</option>
+                            <option value="pates">Pâtes</option>
+                        </select>
+                    </div>
+                </div>
+                <label id="lblDescrip" for="description">Description du plat:</label>
+                <textarea name="description" id="description"></textarea>
+                <label for="ingredients">Liste des ingrédients:</label>
+                <textarea name="ingredients" id="ingredients"></textarea>
+                <label for="recette">Recette:</label>
+                <textarea name="recette" id="recette"></textarea>
+                <!--Image du plat a drag and drop, futur problème, a modifier en CSS, voir: https://www.w3schools.com/html/html5_draganddrop.asp-->
+                <label for="img">Image du plat (lien):</label>
+                <textarea name="image" id="img"></textarea>
+                <section class="sectionBtn">
+                    <button id="btnSend" type="button" form="form1" value="Submit">Enregistrer</button>
+                    <button id="btnReset" type="reset" form="form1" value="Submit">Annuler</button>
+                </section>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

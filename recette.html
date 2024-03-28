@@ -1,60 +1,55 @@
-<!-- Quand on clique sur une recette, on a ici sa description, la recette, son image, se étoiles, l'endroit pour mettre un commentaire, l'endroit pour ajouter des étoiles -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>recette.html</title>
-        <link rel="stylesheet" href="./style.css">
-    </head>
+<head>
+    <title>recette.html</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
 
-    <body>
-        <main>
-            <header class="entete" id="enteteAjouter">
-                <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
-                <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
-                <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnection</a>
-            </header>
-            
-            <img class="image_recette" src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="Image de la recette">
-            
-            <section class="recette"> 
-                <section>
-                    <h1>NOM DE LA RECETTE</h1>
+<body>
+<main>
+    <header class="entete" id="enteteAjouter">
+        <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
+        <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
+        <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnexion</a>
+    </header>
+
+    <img class="image_recette" src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="Image de la recette">
+
+    <section class="recette"> 
+        <section>
+            <h1>NOM DE LA RECETTE</h1>
+        </section>
+        <section>
+            <p>Description de la recette pweofjwoinfwrlknfroenfroinfrepinerf</p>
+        </section>
+    </section>
+    <section class="recette"> 
+        <h1>Ingrédients</h1>
+        <ul>
+            <li>Soupe aux tomates</li>
+        </ul>
+    </section>
+    <section class="recette">
+        <h1>Préparation</h1>
+        <p>Ouvrir la canne</p>
+    </section>
+    <section class="posEval">
+        <section class="evalRecette">
+            <h1>Évaluations de la recette</h1>
+            <section>
+                <form>
+                    <label for="commentaire">Commentaire:</label>
+                    <textarea name="commentaire" id="commentaire"></textarea>
+                    <!-- Implémenter le système d'étoiles ici -->
+                </form>
+                <div class="stars" data-rating="0">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                  </div>
+                  <button type="button" >Envoyer votre avis</button>
                 </section>
-                <section>
-                    Description de la recette pweofjwoinfwrlknfroenfroinfrepinerf
-                </section>
-            </section>
-            <section class="recette"> 
-                <h1>Ingrédient</h1>
-                <ul>
-                    <li>Soupe au tomate</li>
-                </ul>
-            </section>
-            <section class="recette">
-                <h1>Préparation</h1>
-                Ouvrir la canne
-            </section>
-            <section class="posEval">
-                <section class="evalRecette">
-                    <h1>Évaluations de la recette</h1>
-                    <section>
-                        <form>
-                            <label for="nom">Commentaire:</label>
-                            <textarea type="textarea" name="" id="ingredients"></textarea>
-                            <!--Implémenter le système d'étoile ici, voir: https://www.geeksforgeeks.org/star-rating-using-html-css-and-javascript/-->
-                        </form>
-                    </section>
-                    <div class="stars" data-rating="0">
-                        <span class="star" data-value="1">&#9733;</span>
-                        <span class="star" data-value="2">&#9733;</span>
-                        <span class="star" data-value="3">&#9733;</span>
-                        <span class="star" data-value="4">&#9733;</span>
-                        <span class="star" data-value="5">&#9733;</span>
-                      </div>
-                    <button type="button" >Envoyer votre avis</button>
-                </section>
-            </section>
-        </main>
     </body>
-    <footer class="footerParcourir"></footer>
 </html>

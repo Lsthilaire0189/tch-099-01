@@ -12,10 +12,13 @@
     <header class="entete" id="enteteAjouter">
         <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
         <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
-        <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnection</a>
+        <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnexion</a>
     </header>
+    <section id="modMsg">
+        <h1>Création du compte</h1>
+    </section>
     <section class="positionForm">
-        <form class="loginForm" method="post">
+        <form class="loginForm">
             <fieldset class="loginFieldset">
                 <label for="prenom" class="lbl prenom">Prénom</label>
                 <input type="text" id="prenom" name="prenom" class="input prenom">
@@ -28,12 +31,13 @@
                 <label for="username" class="lbl User">Nom d'utilisateur</label>
                 <input type="text" id="username" name="username" class="input User">
                 <label for="password" class="lbl Mdp">Mot de passe</label>
-                <input type="password" id="password" name="password" class="input Mdp" >
+                <input type="password" id="password" name="password" class="input Mdp">
             </fieldset>
-            <button type="button" id="createSubmit" class="loginBtn">Créer vôtre compte</button>
+            <button type="button" id="createSubmit" class="loginBtn">Créer votre compte</button>
         </form>
     </section>
+    <footer class="footerParcourir"></footer>
+    <script src="createAccount.js"></script>
 </body>
-<footer class="footerParcourir"></footer>
-<script src="createAccount.js"></script>
+
 </html>

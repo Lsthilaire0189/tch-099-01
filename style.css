@@ -126,7 +126,6 @@
     font-size: 1.5rem;
     color:aliceblue;
     font-family: Helvetica, Arial, sans-serif;
-    text-align: center;
     padding: 15px;
 }
 .formAjouter{
@@ -142,7 +141,29 @@
 .formAjouter label{
     font-family: Helvetica, Arial, sans-serif;
     margin-bottom: 7px;
+    color:black
 }
+#lblDescrip{
+    margin-top: 15px;
+}
+.filtreAjouter{
+    display: flex;
+    flex-direction: row;
+    border: solid black 1px;
+    padding: 15px;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: white;
+}
+.filtreAjouter div{
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.filtreAjouter div label{
+    margin-right: 5px;
+}
+
 .formAjouter #nom{
     max-width: 300px;
     margin-bottom: 20px;
@@ -369,6 +390,10 @@
     color: white;
     font-size: 1rem;
     font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 6px;
 }
 
 .btnHome, #btnHome {
@@ -463,3 +488,16 @@
   .stars .star.active {
     color:rgb(2, 115, 152);
   }
+/* modification du compte */
+#modMsg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    font-size: 2rem;
+    color: rgb(2, 115, 152);
+    font-family: Helvetica, Arial, sans-serif;
+    border:solid 3px rgb(2, 115, 152);
+    padding: 20px;
+    border-radius: 10px;
+}
