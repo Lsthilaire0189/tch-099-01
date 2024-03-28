@@ -413,7 +413,7 @@
 }
 
 .recette li {
-    list-style-position: inside; /* Center bullet points with text */
+    list-style-position: inside;
 }
 .recette h1{
     font-family: Helvetica, Arial, sans-serif;
@@ -450,3 +450,16 @@
     flex-direction: row;
     align-items: center;
 }
+.stars {
+    font-size: 34px;
+    cursor: pointer;
+  }
+  .stars .star {
+    color: #ccc;
+    display: inline-block;
+    transition: color 0.2s;
+  }
+  .stars .star:hover,
+  .stars .star.active {
+    color:rgb(2, 115, 152);
+  }
