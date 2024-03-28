@@ -62,6 +62,9 @@ post('/projet1/api/ajouterCompte', function (){
     if(empty($email)|| empty($username)|| empty($password)|| empty($prenom)|| empty($nomDeFamille)|| empty($dateDeNaissance)){
       echo json_encode(["message" => "ca marche"]);
     }
+    else if(emailExists($pdo, $email)){
+      echo json_encode(["message" => "le email existe déja"]);
+    }
     else{
         $requete = $pdo->prepare("INSERT INTO EQ1_Compte(email, username, password,
         prenom, nomDeFamille, dateDeNaissance) values (?,?,?,?,?,?)");
@@ -69,8 +72,13 @@ post('/projet1/api/ajouterCompte', function (){
        
         echo json_encode(["message" => "ca marche"]);
     }
-    
 });
+
+function emailExists($pdo, $email){
+  $verifMail = $pdo->prepare("SELECT 1 FROM EQ1_Compte WHERE email=?");
+  $verifMail->execute([$email]);
+  return (bool)$verifMail->fetchColumn();
+}
 
 // Static GET
 // In the URL -> http://localhost
