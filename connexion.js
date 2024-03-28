@@ -5,7 +5,7 @@ document.querySelector("#btnConnexion").addEventListener("click",async()=>{
     if(username!=null&&password!=null)
     {
         const compte= {username, password};
-        const response= await fetch("projet1/api/connexion",{
+        const response= await fetch("/projet1/api/connexion",{
             method:"POST",
             headers:{
                 "Content-Type":"application"
@@ -16,6 +16,7 @@ document.querySelector("#btnConnexion").addEventListener("click",async()=>{
         if(responseData.connexion=="vrai")
         {
             localStorage.setItem('username',username);
+            console.log('allo');
             window.location.href='/projet1/pageUtilisateur.html';
         }
 
@@ -26,4 +27,4 @@ document.querySelector("#btnConnexion").addEventListener("click",async()=>{
 
 
 
-})
+});

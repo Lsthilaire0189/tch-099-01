@@ -1,6 +1,6 @@
 const mesRep = document.createElement("p");
 const body = document.getElementById("resForm")
-document.querySelector("#createSubmit").addEventListener("click", async () => {
+document.querySelector("#createSubmit").addEventListener("click", async ()=>{
   const nom = document.getElementById("nomFamille").value;
   const prenom = document.getElementById("prenom").value;
   const dateNaissance = document.getElementById("dateNaissance").value;

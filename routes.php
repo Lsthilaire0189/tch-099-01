@@ -43,7 +43,7 @@ post('/projet1/api/ajouterCompte', function (){
     }
 });
 
-post('/projet1/api/connection', function (){
+post('/projet1/api/connexion', function (){
   global $pdo;
   $json = file_get_contents('php://input');
   $data = json_decode($json, true);
@@ -56,11 +56,11 @@ post('/projet1/api/connection', function (){
     
     $stmt = $pdo->prepare("SELECT * FROM EQ1_Compte WHERE username = ? AND password = ?");
     $stmt->execute([$username, $password]);
-    if((bool)$stmt->fetchColumn();){
-      echo json_encode(["connection" => "vrai"]);
+    if((bool)$stmt->fetchColumn()){
+      echo json_encode(["connexion" => "vrai"]);
     }
     else{
-      echo json_encode(["connection" => "faux"]);
+      echo json_encode(["connexion" => "faux"]);
     }
   }
 });
