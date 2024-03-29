@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>pageUtilisateur.html</title>
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -10,12 +11,12 @@
     <header class="entete">
         <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
         <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
-        <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnexion</a>
+        <button type="button" class="btnDeconnection" id="btnDeco">Déconnexion</button>
     </header>
     <section class="btnChoix">
         <section id="modMsg">
             <!--Trouver un moyen avec la connexion-->
-            Bonjour nom! Que souhaitez-vous faire aujourd'hui?
+            <p id="accueil"></p>
         </section>
         <section class="btnLog">
             <a href="./ajouterRecette.html" class="btnMenu">Ajouter une recette à votre livre</a>
@@ -27,4 +28,5 @@
 </main>
 <footer class="footerUser"></footer>
 </body>
+<script src="pageUtilisateur.js" type="module"></script>
 </html>
