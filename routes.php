@@ -47,17 +47,17 @@ post('/projet1/api/connexion', function (){
   global $pdo;
   $json = file_get_contents('php://input');
   $data = json_decode($json, true);
-  $username = $data['username']??null;
+  $email = $data['email']??null;
   $password = $data['password']??null;
-  if(empty($username)|| empty($password)){
+  if(empty($email)|| empty($password)){
     echo json_encode(["message" => "ca marche"]);
   }
   else{
-    
-    $stmt = $pdo->prepare("SELECT * FROM EQ1_Compte WHERE username = ? AND password = ?");
-    $stmt->execute([$username, $password]);
+    $stmt = $pdo->prepare("SELECT * FROM EQ1_Compte WHERE email = ? AND password = ?");
+    $stmt->execute([$email, $password]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
     if((bool)$stmt->fetchColumn()){
-      echo json_encode(["connexion" => "vrai"]);
+      echo json_encode(["connexion" => "vrai","username" => $user['username']]);
     }
     else{
       echo json_encode(["connexion" => "faux"]);
@@ -71,5 +71,49 @@ function emailExists($pdo, $email){
   return (bool)$verifMail->fetchColumn();
 }
 
+post('/projet1/api/ajouterRecette', function (){
+  global $pdo;
+  $json = file_get_contents('php://input');
+  $data = json_decode($json, true);
+  $nom = $data['nom']??null;
+  $pays = $data['pays']??null;
+  $regime = $data['regime']??null;
+  $typeAliments = $data['typeAliments']??null;
+  $description = $data['description']??null;
+  $ingredients = $data['ingredients']??null;
+  $recette = $data['recette']??null;
+  $img = $data['img']??null;
+  if(empty($nom)|| empty($pays)|| empty($regime)|| empty($typeAliments)|| empty($description)|| empty($ingredients)|| empty($recette)|| empty($img)){
+    echo json_encode(["message" => "ca marche"]);
+  }else{
+      $requete = $pdo->prepare("INSERT INTO EQ1_Recette(nom, paysOrigine,
+      typeRegime, typeIngredient, Description, listeIngredient, etape, lienImage, compteEmail) values (?,?,?,?,?,?,?,?,?)");
+      $requete->execute([$nom, $pays, $regime,$typeAliments, $description, $ingredients, $recette, $img]);
+     
+      echo json_encode(["message" => "ca marche"]);
+  }
+});
+
+get('/projet1/api/ratings/:articleId', function ($articleId){
+  global $pdo;
+  $stmt = $pdo->prepare('SELECT * FROM ratings WHERE item_id = ?');
+  $stmt->execute([$articleId]);
+  $ratings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+  echo json_encode($ratings);
+});
+
+post('/projet1/api/ratings', function (){
+  global $pdo;
+  $data = json_decode(file_get_contents('php://input'), true);
+  $itemId = $data['itemId'];
+  $userId = $data['userId'];
+  $rating = $data['rating'];
+  
+  $stmt = $pdo->prepare('INSERT INTO ratings (item_id, user_id, rating) VALUES (?, ?, ?)');
+  $stmt->execute([$itemId, $userId, $rating]);
+  
+  echo "Rating submitted successfully";
+});
 
 any('/404', 'views/404.php');
