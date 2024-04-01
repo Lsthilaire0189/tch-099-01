@@ -1,10 +1,10 @@
 document.querySelector("#btnConnexion").addEventListener("click",async()=>{
-    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    if(username!=null&&password!=null)
+    if(email!=null&&password!=null)
     {
-        const compte= {username, password};
+        const compte= {email: email, password};
         const response= await fetch("/projet1/api/connexion",{
             method:"POST",
             headers:{
@@ -15,15 +15,12 @@ document.querySelector("#btnConnexion").addEventListener("click",async()=>{
         const responseData= await response.json();
         if(responseData.connexion=="vrai")
         {
-            sessionStorage.setItem('username',username);
+            sessionStorage.setItem('email',email);
+            sessionStorage.setItem('username',responseData.username);
             window.location.href='/projet1/pageUtilisateur.html';
         }
 
     }
     else{
-
     }
-
-
-
 });

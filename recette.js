@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const rating = parseInt(star.getAttribute('data-value'));
       setRating(rating);
 
-      // Toggle the 'active' class for all stars based on the clicked star's index
       stars.forEach(function(s, index) {
         s.classList.toggle('active', index < rating);
       });
