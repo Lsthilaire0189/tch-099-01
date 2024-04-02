@@ -4,7 +4,7 @@ document.querySelector("#btnConnexion").addEventListener("click",async()=>{
 
     if(email!=null&&password!=null)
     {
-        const compte= {email: email, password};
+        const compte= {email, password};
         const response= await fetch("/projet1/api/connexion",{
             method:"POST",
             headers:{

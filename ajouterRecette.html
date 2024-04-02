@@ -37,8 +37,8 @@
                             </select>
                         </div>
                         <div>
-                            <label for="regimes">Régimes alimentaires:</label>
-                            <select name="Regimes" id="regimes">
+                            <label for="regime">Régimes alimentaires:</label>
+                            <select name="regime" id="regime">
                                 <option value="">Veuillez sélectionner un régime</option>
                                 <option value="vegetarien">Végétarien</option>
                                 <option value="sansGluten">Sans glutenne</option>
@@ -48,7 +48,7 @@
                         </div>
                         <div>
                             <label for="regimes">Types d'aliments:</label>
-                            <select name="TypeAliments" id="typesAliments">
+                            <select name="TypeAliment" id="typeAliment">
                                 <option value="">Veuillez sélectionner un aliment</option>
                                 <option value="poulet">Poulet</option>
                                 <option value="boeuf">Boeuf</option>
@@ -63,14 +63,14 @@
                     <label id="lblDescrip" for="description">Description du plat:</label>
                     <textarea name="text" id="description"></textarea>
                     <label for="description">Liste des ingredients:</label>
-                    <textarea name="text" id="ingredients"></textarea>
+                    <textarea name="text" id="ingredient"></textarea>
                     <label for="recette">Recette:</label>
                     <textarea name="text" id="recette"></textarea>
                     <!--Image du plat a drag and drop, futur problème, a modifier en CSS, voir: https://www.w3schools.com/html/html5_draganddrop.asp-->
                     <label for="img">Image du plat (lien):</label>
                     <textarea name="image" id="img"></textarea>
                     <div class="sectionBtn">
-                        <button id="btnSend" type="submit" form="form1" value="Submit">Soumettre</button>
+                        <button id="btnSend" type="button" form="form1" value="Submit">Soumettre</button>
                         <button id="btnReset" type="reset" form="form1" value="Submit">Annuler</button>
                     </div>
                 </form>

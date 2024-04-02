@@ -55,9 +55,9 @@ post('/projet1/api/connexion', function (){
   else{
     $stmt = $pdo->prepare("SELECT * FROM EQ1_Compte WHERE email = ? AND password = ?");
     $stmt->execute([$email, $password]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    if((bool)$stmt->fetchColumn()){
-      echo json_encode(["connexion" => "vrai","username" => $user['username']]);
+    $user = $stmt->fetch();
+    if((bool)$user!=null){
+      echo json_encode(["connexion" => "vrai","username" => $user['username'] ]);
     }
     else{
       echo json_encode(["connexion" => "faux"]);
@@ -78,17 +78,19 @@ post('/projet1/api/ajouterRecette', function (){
   $nom = $data['nom']??null;
   $pays = $data['pays']??null;
   $regime = $data['regime']??null;
-  $typeAliments = $data['typeAliments']??null;
+  $typeAliment = $data['typeAliment']??null;
   $description = $data['description']??null;
-  $ingredients = $data['ingredients']??null;
+  $ingredient = $data['ingredient']??null;
   $recette = $data['recette']??null;
   $img = $data['img']??null;
-  if(empty($nom)|| empty($pays)|| empty($regime)|| empty($typeAliments)|| empty($description)|| empty($ingredients)|| empty($recette)|| empty($img)){
-    echo json_encode(["message" => "ca marche"]);
+  $email = $data['email']??null;
+  $note=0;
+  if(empty($nom)|| empty($pays)|| empty($regime)|| empty($typeAliment)|| empty($description)|| empty($ingredient)|| empty($recette)|| empty($img)){
+    echo json_encode(["message" => "ca marche pas"]);
   }else{
       $requete = $pdo->prepare("INSERT INTO EQ1_Recette(nom, paysOrigine,
-      typeRegime, typeIngredient, Description, listeIngredient, etape, lienImage, compteEmail) values (?,?,?,?,?,?,?,?,?)");
-      $requete->execute([$nom, $pays, $regime,$typeAliments, $description, $ingredients, $recette, $img]);
+      typeRegime, typeIngredient, Description, listeIngredient, etape, lienImage, note, compteEmail) values (?,?,?,?,?,?,?,?,?,?)");
+      $requete->execute([$nom, $pays, $regime,$typeAliment, $description, $ingredient, $recette, $img,$note,$email]);
      
       echo json_encode(["message" => "ca marche"]);
   }
