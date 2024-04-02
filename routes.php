@@ -96,12 +96,18 @@ post('/projet1/api/ajouterRecette', function (){
   }
 });
 
-get('/projet1/api/ratings/:articleId', function ($articleId){
+get('/projet1/api/recette/$id', function($id){
+  global $pdo;
+  $stmt = $pdo->prepare('SELECT * From EQ1_Recette where id=?');
+  $stmt->execute([$id]);
+  echo json_encode($stmt->fetch());
+});
+
+get('/projet1/api/ratings/:articleId', function($articleId){
   global $pdo;
   $stmt = $pdo->prepare('SELECT * FROM ratings WHERE item_id = ?');
   $stmt->execute([$articleId]);
   $ratings = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  
   echo json_encode($ratings);
 });
 
@@ -118,4 +124,4 @@ post('/projet1/api/ratings', function (){
   echo "Rating submitted successfully";
 });
 
-any('/404', 'views/404.php');
+any('/404', '/projet1/index.php');

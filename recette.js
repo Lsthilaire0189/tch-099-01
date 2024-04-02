@@ -1,3 +1,53 @@
+const urlParams = new URLSearchParams(window.location.search);
+const recetteId = urlParams.get('no');
+getInfo();
+async function getInfo() {
+
+  
+
+  if (recetteId) {
+      const request = `/projet1/api/recette/${recetteId}`;
+      try {
+          const response = await fetch(request);
+          if (response.ok) {
+              const data = await response.json();
+              addInfo(data);
+              
+          } else {
+              console.error('API request failed:', response.status);
+          }
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  } else {
+      console.error('No number provided.');
+  }
+}
+
+function addInfo(data){
+  const titre= document.querySelector('#nomRecette');
+  titre.textContent=data.nom;
+
+  const image=document.querySelector('#image_recette');
+  image.src= data.lienImage;
+
+  const tmpCuisson=document.querySelector('#tempsCuisson');
+  
+
+  const tmpPreparation=document.querySelector('#tempsPreparation');
+
+
+  const description=document.querySelector('#description');
+  description.textContent=data.Description;
+
+  const ingredients=document.querySelector('#ingredients');
+  ingredients.textContent=data.listeIngredient;
+  
+  const instruction =document.querySelector('#instructions');
+  instruction.textContent=data.etape;
+
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const stars = document.querySelectorAll('.star');
 
