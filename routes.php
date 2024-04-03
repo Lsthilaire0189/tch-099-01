@@ -113,16 +113,16 @@ get('/projet1/api/modifierCompte/$mail', function($mail){
 post('/projet1/api/pushModification', function(){
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
-  $email = $data['email']??null;
-  $username = $data['username']??null;
-  $password = $data['password']??null;
-  $prenom = $data['prenom']??null;
-  $nomDeFamille = $data['nom']??null;
-  $dateDeNaissance = $data['dateNaissance']??null;
-  $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ?, WHERE email = ?');
-  $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
-
   echo json_encode(["message" => "ca marche"]);
+  echo json_encode(["data" => $data]);
+  $email = $data['docMail'];
+  $username = $data['docUsername'];
+  $password = $data['docPassword'];
+  $prenom = $data['docPrenom'];
+  $nomDeFamille = $data['docNomFamille'];
+  $dateDeNaissance = $data['docDateNaissance'];
+  $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ? WHERE email = ?');
+  $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
 });
 
 get('/projet1/api/ratings/:articleId', function($articleId){
