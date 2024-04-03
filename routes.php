@@ -110,7 +110,7 @@ get('/projet1/api/modifierCompte/$mail', function($mail){
   echo json_encode($stmt->fetch());
 });
 
-post('/projet1/api/pushModification'), function(){
+post('/projet1/api/pushModification', function(){
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
   $email = $data['email']??null;
@@ -122,8 +122,8 @@ post('/projet1/api/pushModification'), function(){
   $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ?, WHERE email = ?');
   $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
 
-  echo "Compte modifié avec succès!";
-}
+  echo json_encode(["message" => "ca marche"]);
+});
 
 get('/projet1/api/ratings/:articleId', function($articleId){
   global $pdo;
