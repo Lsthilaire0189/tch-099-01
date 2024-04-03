@@ -119,7 +119,10 @@ post('/projet1/api/pushModification'), function(){
   $prenom = $data['prenom']??null;
   $nomDeFamille = $data['nom']??null;
   $dateDeNaissance = $data['dateNaissance']??null;
-  //Chu rendu la dans le post, y faut trouver un moyen de savoir quel user updater
+  $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ?, WHERE email = ?');
+  $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
+
+  echo "Compte modifié avec succès!";
 }
 
 get('/projet1/api/ratings/:articleId', function($articleId){

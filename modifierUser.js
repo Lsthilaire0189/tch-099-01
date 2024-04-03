@@ -19,10 +19,10 @@ function remplireForm(data){
     document.getElementById('prenom').value = data.prenom
     document.getElementById('nomFamille').value = data.nomDeFamille
     document.getElementById('dateNaissance').value = data.dateDeNaissance
-    document.getElementById('email').value = data.email
+    var boxEmail = document.getElementById('email').value = data.email
+    boxEmail.disabled = true
     document.getElementById('username').value = data.prenom
     document.getElementById('password').value = data.password
-
     document.getElementById('modifyAccount').addEventListener("click", async()=>{
         const docPrenom = document.getElementById('prenom').value = data.prenom
         const docNomFamille = document.getElementById('nomFamille').value = data.nomDeFamille
