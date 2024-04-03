@@ -103,6 +103,25 @@ get('/projet1/api/recette/$id', function($id){
   echo json_encode($stmt->fetch());
 });
 
+get('/projet1/api/modifierCompte/$mail', function($mail){
+  global $pdo;
+  $stmt = $pdo->prepare('SELECT * From EQ1_Compte where email=?');
+  $stmt->execute([$mail]);
+  echo json_encode($stmt->fetch());
+});
+
+post('/projet1/api/pushModification'), function(){
+  global $pdo;
+  $data = json_decode(file_get_contents('php://input'), true);
+  $email = $data['email']??null;
+  $username = $data['username']??null;
+  $password = $data['password']??null;
+  $prenom = $data['prenom']??null;
+  $nomDeFamille = $data['nom']??null;
+  $dateDeNaissance = $data['dateNaissance']??null;
+  //Chu rendu la dans le post, y faut trouver un moyen de savoir quel user updater
+}
+
 get('/projet1/api/ratings/:articleId', function($articleId){
   global $pdo;
   $stmt = $pdo->prepare('SELECT * FROM ratings WHERE item_id = ?');
