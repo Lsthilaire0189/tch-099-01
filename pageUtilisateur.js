@@ -1,3 +1,9 @@
+document.querySelector("#btnDeco").addEventListener("click", async()=>{
+    sessionStorage.removeItem('username')
+    sessionStorage.removeItem('email')
+    window.location.href='/projet1/index.php'
+})
+
 function getUtilisateur(){
     if(sessionStorage.getItem('email')!=null||sessionStorage.getItem('username')!=null)
     {

@@ -1,8 +1,3 @@
-document.querySelector("#btnDeco").addEventListener("click", async()=>{
-    sessionStorage.removeItem('username')
-    window.location.href='/projet1/index.php'
-})
-
 document.querySelector("#btnSend").addEventListener("click", async()=>{
     if (confirm("Voulez-vous sauvegarder votre recette?")) {
         const nom = document.getElementById("nom").value;
