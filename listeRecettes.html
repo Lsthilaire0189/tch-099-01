@@ -17,8 +17,8 @@
                 <aside class="listeFiltres">
                     <h1>Filtres de recherches</h1>
                     <section >
-                        <label for="pays">Pays d'origine:</label>
-                        <select name="Pays" id="pays">
+                        <label for="origine">Pays d'origine:</label>
+                        <select name="origine" id="origine">
                             <option value="">Veuillez sélectionner un pays</option>
                             <option value="grec">Grec</option>
                             <option value="algerien">Algérien</option>
@@ -29,17 +29,17 @@
                             <option value="mexicain">Mexicain</option>
                             <option value="chinois">Chinois</option>
                           </select>
-                          <label for="regimes">Régimes alimentaires:</label>
-                        <select name="Regimes" id="regimes">
+                          <label for="regime">Régimes alimentaires:</label>
+                        <select name="Regimes" id="regime">
                             <option value="">Veuillez sélectionner un régime</option>
                             <option value="vegetarien">Végétarien</option>
                             <option value="sansGluten">Sans glutenne</option>
                             <option value="proteines">Protéiné</option>
                             <option value="vegan">Vegan</option>
                           </select>
-                          <label for="regimes">Types d'aliments:</label>
-                          <select name="TypeAliments" id="typesAliments">
-                            <option value="">Veuillez sélectionner un aliment</option>
+                          <label for="type">Types de plat:</label>
+                          <select name="type" id="type">
+                            <option value="">Veuillez sélectionner un type de plat</option>
                             <option value="poulet">Poulet</option>
                             <option value="boeuf">Boeuf</option>
                             <option value="porc">Porc</option>
@@ -48,18 +48,10 @@
                             <option value="salade">Salade</option>
                             <option value="pates">Pâtes</option>
                           </select>
+                          <button type="button" id="recherche">Rechercher</button>
                     </section>
                 </aside>
-                <ul>
-                    <li><a href="./recette.html?no=1">Soupe aux tomates</a>Chef Thom<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                    <li><a href="./recette.html?no=2">Sauté de crevettes</a>Chef Paul<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                    <li><a href="./recette.html?no=3">Toast au pommes</a>Chef Pierre<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                    <li><a href="./recette.html?no=1">Soupe aux tomates</a>Chef Thom<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                    <li><a href="./recette.html?no=2">Sauté de crevettes</a>Chef Paul<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                    <li><a href="./recette.html?no=3">Toast au pommes</a>Chef Pierre<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                    <li><a href="./recette.html?no=4">Burger Américain</a>Chef Fred<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                    <li><a href="./recette.html?no=4">Burger Américain</a>Chef Fred<a href="./recette.html?no=1"><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png" alt="nomduplat"></a></li>
-                </ul>
+                <ul id="liste"></ul>
             </section>
         </main>
     </body>
