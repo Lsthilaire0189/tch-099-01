@@ -183,7 +183,7 @@ post('/projet1/api/pushModification', function(){
 
 get('/projet1/api/ratings/:articleId', function($articleId){
   global $pdo;
-  $stmt = $pdo->prepare('SELECT * FROM ratings WHERE item_id = ?');
+  $stmt = $pdo->prepare('SELECT * FROM EQ1_Avis WHERE item_id = ?');
   $stmt->execute([$articleId]);
   $ratings = $stmt->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($ratings);
@@ -192,14 +192,15 @@ get('/projet1/api/ratings/:articleId', function($articleId){
 post('/projet1/api/ratings', function (){
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
-  $itemId = $data['itemId'];
-  $userId = $data['userId'];
-  $rating = $data['rating'];
+  $recetteId = $data['recetteId']??null;
+  $email = $data['email']??null;
+  $rating = $data['rating']??null;
+  $commentaire = $data['commentaire']??null;
   
-  $stmt = $pdo->prepare('INSERT INTO ratings (item_id, user_id, rating) VALUES (?, ?, ?)');
-  $stmt->execute([$itemId, $userId, $rating]);
-  
-  echo "Rating submitted successfully";
-});
+  $stmt = $pdo->prepare('INSERT INTO EQ1_Avis (userId, recetteId, rating,commentaire) VALUES (?, ?, ?,?)');
+  $stmt->execute([$email, $recetteId,$rating, $commentaire]);
+
+  echo json_encode(["message" => "ca marche"]);
+  });
 
 any('/404', '/index.php');

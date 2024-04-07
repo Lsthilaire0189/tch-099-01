@@ -518,3 +518,38 @@
     border: solid aliceblue 3px;
     color: aliceblue;
 }
+
+.avis-list_item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.avis {
+    margin-bottom: 20px; /* Ajoute une marge en bas de chaque avis */
+    border-bottom: 1px solid #ccc; /* Ajoute une bordure inférieure */
+    padding-bottom: 10px; /* Ajoute un espacement entre la bordure et le contenu de l'avis */
+    font-family: Arial, sans-serif;
+}
+
+.avis span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.avis span:first-child {
+    font-weight: bold;
+}
+
+.avis span:nth-child(2) {
+    color: #ffa500; /* couleur de la note */
+}
+
+.avis span:last-child {
+    font-style: italic;
+}
+
+.titre {
+    text-align: center;
+}
