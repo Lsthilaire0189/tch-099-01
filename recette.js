@@ -2,6 +2,17 @@ const urlParams = new URLSearchParams(window.location.search);
 const recetteId = urlParams.get('no');
 getInfo();
 const email= sessionStorage.getItem("email")
+fetchRatings(recetteId)
+ .then(ratings => {
+   const averageRating = calculateAverageRating(ratings);
+   console.log('Average Rating:', averageRating);
+   console.log(recetteId)
+   console.log(email)
+ })
+ .catch(error => {
+   console.error('Error:', error);
+ });
+
 
 async function getInfo() {
   if (recetteId) {
@@ -140,15 +151,5 @@ document.querySelector("#avisSubmit").addEventListener("click", async ()=>{
   }
 })
 
-fetchRatings(recetteId)
- .then(ratings => {
-   const averageRating = calculateAverageRating(ratings);
-   console.log('Average Rating:', averageRating);
-   console.log(recetteId)
-   console.log(email)
- })
- .catch(error => {
-   console.error('Error:', error);
- });
 
  

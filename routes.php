@@ -181,9 +181,9 @@ post('/projet1/api/pushModification', function(){
   $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
 });
 
-get('/projet1/api/ratings/:articleId', function($articleId){
+get('/projet1/api/ratings/$articleId', function($articleId){
   global $pdo;
-  $stmt = $pdo->prepare('SELECT * FROM EQ1_Avis WHERE item_id = ?');
+  $stmt = $pdo->prepare('SELECT * FROM EQ1_Avis WHERE recetteId = ?');
   $stmt->execute([$articleId]);
   $ratings = $stmt->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($ratings);
