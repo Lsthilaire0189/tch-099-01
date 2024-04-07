@@ -1,10 +1,9 @@
 const urlParams = new URLSearchParams(window.location.search);
 const recetteId = urlParams.get('no');
 getInfo();
+const email= sessionStorage.getItem("email")
+
 async function getInfo() {
-
-  
-
   if (recetteId) {
       const request = `/projet1/api/recette/${recetteId}`;
       try {
@@ -50,10 +49,12 @@ function addInfo(data){
 
 document.addEventListener('DOMContentLoaded', function() {
   const stars = document.querySelectorAll('.star');
+  const ratingValue = document.getElementById('ratingValue');
 
   stars.forEach(function(star) {
     star.addEventListener('click', function() {
       const rating = parseInt(star.getAttribute('data-value'));
+      ratingValue.value = rating;
       setRating(rating);
 
       stars.forEach(function(s, index) {
@@ -112,12 +113,42 @@ function calculateAverageRating(ratings) {
  return totalRating / ratings.length;
 }
 
+document.querySelector("#avisSubmit").addEventListener("click", async ()=>{
+  const commentaire = document.getElementById("commentaire").value;
+  const rating = document.getElementById("ratingValue").value;
+  if (rating!=0||commentaire!=null||commentaire!=""){
+    const avis ={recetteId,email, commentaire, rating}
+    try {
+      const response = await fetch("/projet1/api/ratings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(avis),
+      });
+      if (!response.ok) { 
+        throw new Error("Failed to send data");
+      }
+      const responseData = await response.json();
+      console.log(responseData.message);
+      document.getElementById("commentaire").value = "";
+      document.getElementById("ratingValue").value = 0;
+    } catch (error) {
+      console.error(error);
+      console.log('ça nenvoie pas')
+    }
+  }
+})
 
 fetchRatings(recetteId)
  .then(ratings => {
    const averageRating = calculateAverageRating(ratings);
    console.log('Average Rating:', averageRating);
+   console.log(recetteId)
+   console.log(email)
  })
  .catch(error => {
    console.error('Error:', error);
  });
+
+ 
