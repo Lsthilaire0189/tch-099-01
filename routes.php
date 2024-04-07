@@ -18,6 +18,7 @@ try {
    
 }
 
+
 post('/projet1/api/ajouterCompte', function (){
     global $pdo;
     $json = file_get_contents('php://input');
@@ -69,7 +70,7 @@ function emailExists($pdo, $email){
   $verifMail = $pdo->prepare("SELECT 1 FROM EQ1_Compte WHERE email=?");
   $verifMail->execute([$email]);
   return (bool)$verifMail->fetchColumn();
-}
+};
 
 post('/projet1/api/ajouterRecette', function (){
   global $pdo;
@@ -80,20 +81,54 @@ post('/projet1/api/ajouterRecette', function (){
   $regime = $data['regime']??null;
   $typeAliment = $data['typeAliment']??null;
   $description = $data['description']??null;
-  $ingredient = $data['ingredient']??null;
   $recette = $data['recette']??null;
   $img = $data['img']??null;
   $email = $data['email']??null;
-  $note=0;
-  if(empty($nom)|| empty($pays)|| empty($regime)|| empty($typeAliment)|| empty($description)|| empty($ingredient)|| empty($recette)|| empty($img)){
+  $preparation=0;
+  $cuisson=0;
+  $portion=0;
+  if(empty($nom)|| empty($pays)|| empty($regime)|| empty($typeAliment)|| empty($description)|| empty($recette)|| empty($img)){
     echo json_encode(["message" => "ca marche pas"]);
   }else{
-      $requete = $pdo->prepare("INSERT INTO EQ1_Recette(nom, paysOrigine,
-      typeRegime, typeIngredient, Description, listeIngredient, etape, lienImage, note, compteEmail) values (?,?,?,?,?,?,?,?,?,?)");
-      $requete->execute([$nom, $pays, $regime,$typeAliment, $description, $ingredient, $recette, $img,$note,$email]);
-     
+      $requete = $pdo->prepare("INSERT INTO EQ1_Recette(nom, origine, regime, type, description, etape, src, email, preparation, cuisson) values (?,?,?,?,?,?,?,?,?,?)");
+      $requete->execute([$nom, $pays, $regime, $typeAliment, $description, $recette, $img, $email, $preparation, $cuisson]);
       echo json_encode(["message" => "ca marche"]);
   }
+});
+
+post('/projet1/api/filtrer', function(){
+  global $pdo;
+  $json = file_get_contents('php://input');
+  $data=json_decode($json,true);
+  $origine = isset($data['origine']) ? $data['origine'] : null;
+$regime = isset($data['regime']) ? $data['regime'] : null;
+$type = isset($data['type']) ? $data['type'] : null;
+
+$conditions = [];
+$params = [];
+
+if ($origine !== "") {
+    $conditions[] = "origine = ?";
+    $params[] = $origine;
+}
+if ($regime !== "") {
+    $conditions[] = "regime = ?";
+    $params[] = $regime;
+}
+if ($type !== "") {
+    $conditions[] = "type = ?";
+    $params[] = $type;
+}
+
+$sql = "SELECT * FROM EQ1_Recette";
+if (!empty($conditions)) {
+    $sql .= " WHERE " . implode(" AND ", $conditions);
+}
+
+$requete = $pdo->prepare($sql);
+$requete->execute($params);
+header('Content-type: application/json');
+echo json_encode($requete->fetchAll());
 });
 
 get('/projet1/api/recette/$id', function($id){
@@ -113,16 +148,16 @@ get('/projet1/api/modifierCompte/$mail', function($mail){
 post('/projet1/api/pushModification', function(){
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
-  $email = $data['email']??null;
-  $username = $data['username']??null;
-  $password = $data['password']??null;
-  $prenom = $data['prenom']??null;
-  $nomDeFamille = $data['nom']??null;
-  $dateDeNaissance = $data['dateNaissance']??null;
-  $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ?, WHERE email = ?');
-  $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
-
   echo json_encode(["message" => "ca marche"]);
+  echo json_encode(["data" => $data]);
+  $email = $data['docMail'];
+  $username = $data['docUsername'];
+  $password = $data['docPassword'];
+  $prenom = $data['docPrenom'];
+  $nomDeFamille = $data['docNomFamille'];
+  $dateDeNaissance = $data['docDateNaissance'];
+  $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ? WHERE email = ?');
+  $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
 });
 
 get('/projet1/api/ratings/:articleId', function($articleId){
@@ -147,4 +182,4 @@ post('/projet1/api/ratings', function (){
   echo json_encode(["message" => "ca marche"]);
   });
 
-any('/404', '/projet1/index.php');
+any('/404', '/index.php');
