@@ -39,16 +39,24 @@ async function filtrer()
 }
 function addElements(data)
 {
-    data.forEach(recette => {
+    if(data.length===0)
+    {
         const recetteFiche= document.createElement('li');
-        const nomRecette= document.createElement('a');
-        nomRecette.textContent = recette.nom;
-        nomRecette.href= "./recette.html?no="+recette.id;
-        const chef = document.createElement('a');
-        chef.textContent = recette.email;
-        const img = document.createElement('img');
-        img.src = recette.src;
-        recetteFiche.append(nomRecette, chef, img);
+        recetteFiche.textContent = "Aucune recette ne correspond à votre recherche";
         ulElement.append(recetteFiche);
-    });
+    }
+    else{
+        data.forEach(recette => {
+            const recetteFiche= document.createElement('li');
+            const nomRecette= document.createElement('a');
+            nomRecette.textContent = recette.nom;
+            nomRecette.href= "./recette.html?no="+recette.id;
+            const chef = document.createElement('a');
+            chef.textContent = "Chef " + recette.prenom;
+            const img = document.createElement('img');
+            img.src = recette.src;
+            recetteFiche.append(nomRecette, chef, img);
+            ulElement.append(recetteFiche);
+        });
+    }
 }

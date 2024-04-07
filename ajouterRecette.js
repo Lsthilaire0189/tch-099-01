@@ -18,11 +18,14 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
                 },
                 body:JSON.stringify(newrecette),
             } );
-            // if(response.ok)
-            // {
-            //     confirm("Votre recette est enregistrée.");
-            //     window.location.href = 'pageUtilisateur.html';
-            // }
+            if(response.ok)
+            {
+                confirm("Votre recette est enregistrée.");
+                window.location.href = 'pageUtilisateur.html';
+            }
+            else{
+                alert("Erreur lors de l'enregistrement");
+            }
         }
         
     }

@@ -19,6 +19,10 @@ document.querySelector("#btnConnexion").addEventListener("click",async()=>{
             sessionStorage.setItem('username',responseData.username);
             window.location.href='/projet1/pageUtilisateur.html';
         }
+        if(responseData.connexion=="faux")
+        {
+            alert("Email ou mot de passe incorrect");
+        }
 
     }
     else{

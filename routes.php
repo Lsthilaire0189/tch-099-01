@@ -127,9 +127,30 @@ if (!empty($conditions)) {
 
 $requete = $pdo->prepare($sql);
 $requete->execute($params);
+$results= $requete->fetchAll();
+foreach($results as $key =>$row){
+  $email=$row['email'];
+  $stmt = $pdo->prepare('SELECT * From EQ1_Compte where email=?');
+  $stmt->execute([$email]);
+  $user = $stmt->fetch();
+  $results[$key]['prenom']=$user['prenom'];
+}
 header('Content-type: application/json');
-echo json_encode($requete->fetchAll());
+echo json_encode($results);
 });
+
+post('/projet1/api/filtrerUser',function(){
+  global $pdo;
+  $json = file_get_contents('php://input');
+  $data=json_decode($json,true);
+  $email = isset($data['emailUser']) ? $data['emailUser'] : null;
+  $requete = $pdo->prepare("SELECT * FROM EQ1_Recette WHERE email = ?");
+  $requete->execute([$email]);
+  $results= $requete->fetchAll();
+  header('Content-type: application/json');
+  echo json_encode($results);
+});
+
 
 get('/projet1/api/recette/$id', function($id){
   global $pdo;
