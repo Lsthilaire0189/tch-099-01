@@ -1,7 +1,9 @@
 const urlParams = new URLSearchParams(window.location.search);
 const recetteId = urlParams.get('no');
 getInfo();
+getAvis();
 const email= sessionStorage.getItem("email")
+const username=sessionStorage.getItem("username")
 fetchRatings(recetteId)
  .then(ratings => {
    const averageRating = calculateAverageRating(ratings);
@@ -32,6 +34,24 @@ async function getInfo() {
   } else {
       console.error('No number provided.');
   }
+}
+
+async function getAvis() {
+  if (recetteId) {
+    try {
+    const response = await fetch( `/projet1/api/ratings/${recetteId}`);
+    if (response.ok) {
+      const avis = await response.json();
+      addCommentToPage(avis);
+    } else {
+      console.error('API request failed:', response.status);
+  }
+} catch (error) {
+  console.error('Error fetching data:', error);
+}
+} else {
+console.error('No number provided.');
+}
 }
 
 function addInfo(data){
@@ -128,7 +148,7 @@ document.querySelector("#avisSubmit").addEventListener("click", async ()=>{
   const commentaire = document.getElementById("commentaire").value;
   const rating = document.getElementById("ratingValue").value;
   if (rating!=0||commentaire!=null||commentaire!=""){
-    const avis ={recetteId,email, commentaire, rating}
+    const avis ={recetteId,email, commentaire, rating, username}
     try {
       const response = await fetch("/projet1/api/ratings", {
         method: "POST",
@@ -150,6 +170,32 @@ document.querySelector("#avisSubmit").addEventListener("click", async ()=>{
     }
   }
 })
+
+function addCommentToPage(commentlist){
+  var commentContainer = document.querySelector(".avis-list_item");
+  commentlist.forEach((avis)=>{
+    var username = document.createElement("span");
+    var note = document.createElement("span");
+    var commentaire = document.createElement("span");
+    var test = document.createElement("p");
+    var container = document.createElement("div");
+    container.classList.add("avis");
+
+    username.textContent = avis.username;
+    note.textContent = "note : "+avis.rating+ '&#9733;' ;
+    commentaire.textContent = avis.commentaire;
+    test.textContent = "test";
+
+    container.appendChild(username);
+    container.appendChild(note);
+    container.appendChild(commentaire);
+    container.appendChild(test);
+
+    commentContainer.appendChild(container);
+  });
+}
+
+
 
 
  

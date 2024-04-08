@@ -181,10 +181,10 @@ post('/projet1/api/pushModification', function(){
   $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
 });
 
-get('/projet1/api/ratings/$articleId', function($articleId){
+get('/projet1/api/ratings/$recetteId', function($recetteId){
   global $pdo;
   $stmt = $pdo->prepare('SELECT * FROM EQ1_Avis WHERE recetteId = ?');
-  $stmt->execute([$articleId]);
+  $stmt->execute([$recetteId]);
   $ratings = $stmt->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($ratings);
 });
@@ -196,9 +196,9 @@ post('/projet1/api/ratings', function (){
   $email = $data['email']??null;
   $rating = $data['rating']??null;
   $commentaire = $data['commentaire']??null;
-  
-  $stmt = $pdo->prepare('INSERT INTO EQ1_Avis (userId, recetteId, rating,commentaire) VALUES (?, ?, ?,?)');
-  $stmt->execute([$email, $recetteId,$rating, $commentaire]);
+  $username = $data['username']??null;
+  $stmt = $pdo->prepare('INSERT INTO EQ1_Avis (userId, recetteId, rating,commentaire,username) VALUES (?, ?, ?,?,?)');
+  $stmt->execute([$email, $recetteId,$rating, $commentaire,$username]);
 
   echo json_encode(["message" => "ca marche"]);
   });
