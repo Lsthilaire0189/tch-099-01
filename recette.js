@@ -164,6 +164,7 @@ document.querySelector("#avisSubmit").addEventListener("click", async ()=>{
       console.log(responseData.message);
       document.getElementById("commentaire").value = "";
       document.getElementById("ratingValue").value = 0;
+      showSnackbar();
     } catch (error) {
       console.error(error);
       console.log('ça nenvoie pas')
@@ -171,25 +172,29 @@ document.querySelector("#avisSubmit").addEventListener("click", async ()=>{
   }
 })
 
+function showSnackbar() {
+  var snackbar = document.getElementById("snackbar");
+  snackbar.className = "show";
+  setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 3000); // Disparaît après 3 secondes
+}
+
 function addCommentToPage(commentlist){
   var commentContainer = document.querySelector(".avis-list_item");
   commentlist.forEach((avis)=>{
     var username = document.createElement("span");
     var note = document.createElement("span");
     var commentaire = document.createElement("span");
-    var test = document.createElement("p");
     var container = document.createElement("div");
     container.classList.add("avis");
 
+    const starSymbolHtml = '\u2605';
     username.textContent = avis.username;
-    note.textContent = "note : "+avis.rating+ '&#9733;' ;
+    note.textContent = 'note : '+avis.rating+ starSymbolHtml ;
     commentaire.textContent = avis.commentaire;
-    test.textContent = "test";
 
     container.appendChild(username);
     container.appendChild(note);
     container.appendChild(commentaire);
-    container.appendChild(test);
 
     commentContainer.appendChild(container);
   });
