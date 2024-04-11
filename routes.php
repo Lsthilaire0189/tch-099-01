@@ -11,7 +11,7 @@ $DBpass = '+Sdum3RzzBJGQYvo';
 $pdo = null;
 
 try {
-    $database = 'mysql:host=localhost:3306;dbname=equipe500';
+    $database = 'mysql:h ost=localhost:3306;dbname=equipe500';
     $pdo = new PDO($database, $DBuser, $DBpass);
     
 } catch (PDOException $e) {
@@ -103,7 +103,8 @@ post('/projet1/api/filtrer', function(){
   $origine = isset($data['origine']) ? $data['origine'] : null;
 $regime = isset($data['regime']) ? $data['regime'] : null;
 $type = isset($data['type']) ? $data['type'] : null;
-
+header('Content-type: application/json');
+echo json_encode(["message" => "origine: $origine, regime: $regime, type: $type"]);
 $conditions = [];
 $params = [];
 
@@ -147,8 +148,8 @@ post('/projet1/api/filtrerUser',function(){
   $requete = $pdo->prepare("SELECT * FROM EQ1_Recette WHERE email = ?");
   $requete->execute([$email]);
   $results= $requete->fetchAll();
-  header('Content-type: application/json');
-  echo json_encode($results);
+ // header('Content-type: application/json');
+//  echo json_encode($results);
 });
 
 
