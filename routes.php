@@ -30,20 +30,44 @@ post('/projet1/api/ajouterCompte', function (){
     $nomDeFamille = $data['nom']??null;
     $dateDeNaissance = $data['dateNaissance']??null;
     if(empty($email)|| empty($username)|| empty($password)|| empty($prenom)|| empty($nomDeFamille)|| empty($dateDeNaissance)){
-      echo json_encode(["message" => "ca marche"]);
+      echo json_encode(["message" => "Veuillez remplire tous les champs"]);
+    }
+    else if(usernameExist($pdo, $username)){
+      echo json_encode(["message" => "Le nom d'utilisateur est déja utiliser."]);
+    }
+    else if(usernameValide($username)){
+      echo json_encode(["message" => "Le nom d'utilisateur est trop grand"]);
     }
     else if(emailExists($pdo, $email)){
-      echo json_encode(["message" => "le email existe déja"]);
+      echo json_encode(["message" => "L'adresse courriel est déja utiliser."]);
+    }
+    else if(emailInvalide($email)){
+      echo json_encode(["message" => "L'adresse courriel n'est pas reconnue comme une adresse valide"]);
     }
     else{
         $requete = $pdo->prepare("INSERT INTO EQ1_Compte(email, username, password,
         prenom, nomDeFamille, dateDeNaissance) values (?,?,?,?,?,?)");
         $requete->execute([$email, $username, $password, $prenom, $nomDeFamille, $dateDeNaissance]);
        
-        echo json_encode(["message" => "ca marche"]);
+        echo json_encode(["message" => "Compte crée avec succès"]);
     }
 });
-
+function usernameExist($pdo, $username){
+  $verifMail = $pdo->prepare("SELECT 1 FROM EQ1_Compte WHERE username=?");
+  $verifMail->execute([$username]);
+  return (bool)$verifMail->fetchColumn();
+}
+function usernameValide($username){
+  return strlen($username) > 12;
+}
+function emailExists($pdo, $email){
+  $verifMail = $pdo->prepare("SELECT 1 FROM EQ1_Compte WHERE email=?");
+  $verifMail->execute([$email]);
+  return (bool)$verifMail->fetchColumn();
+};
+function emailInvalide($email){
+  return filter_var($email, FILTER_VALIDATE_EMAIL) === false;
+}
 post('/projet1/api/connexion', function (){
   global $pdo;
   $json = file_get_contents('php://input');
@@ -66,11 +90,6 @@ post('/projet1/api/connexion', function (){
   }
 });
 
-function emailExists($pdo, $email){
-  $verifMail = $pdo->prepare("SELECT 1 FROM EQ1_Compte WHERE email=?");
-  $verifMail->execute([$email]);
-  return (bool)$verifMail->fetchColumn();
-};
 
 post('/projet1/api/ajouterRecette', function (){
   global $pdo;
@@ -170,8 +189,6 @@ get('/projet1/api/modifierCompte/$mail', function($mail){
 post('/projet1/api/pushModification', function(){
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
-  echo json_encode(["message" => "ca marche"]);
-  echo json_encode(["data" => $data]);
   $email = $data['docMail'];
   $username = $data['docUsername'];
   $password = $data['docPassword'];
@@ -180,6 +197,14 @@ post('/projet1/api/pushModification', function(){
   $dateDeNaissance = $data['docDateNaissance'];
   $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ? WHERE email = ?');
   $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
+});
+
+post("/projet1/api/deletAccount", function(){
+  global $pdo;
+  $data = json_decode(file_get_contents('php://input'), true);
+  $email = $data['docMail'];
+  $stmt = $pdo->prepare('DELETE FROM EQ1_Compte WHERE EQ1_Compte.email = ?');
+  $stmt->execute([$email]);
 });
 
 get('/projet1/api/ratings/$recetteId', function($recetteId){
@@ -200,8 +225,7 @@ post('/projet1/api/ratings', function (){
   $username = $data['username']??null;
   $stmt = $pdo->prepare('INSERT INTO EQ1_Avis (userId, recetteId, rating,commentaire,username) VALUES (?, ?, ?,?,?)');
   $stmt->execute([$email, $recetteId,$rating, $commentaire,$username]);
-
-  echo json_encode(["message" => "ca marche"]);
-  });
+});
 
 any('/404', '/index.php');
+

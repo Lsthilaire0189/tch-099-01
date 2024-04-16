@@ -46,3 +46,17 @@ document.getElementById('modifyAccount').addEventListener("click", async()=>{
         
     }
 })
+
+document.getElementById('deletAccount').addEventListener("click", async()=>{
+    const docMail = document.getElementById('email').value
+    if(docMail != null){
+        const rep = await fetch("/projet1/api/deletAccount",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application"
+            },
+            body:JSON.stringify(docMail)
+        })
+        sessionStorage.clear()
+    } 
+})

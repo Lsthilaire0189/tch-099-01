@@ -26,9 +26,13 @@ document.querySelector("#createSubmit").addEventListener("click", async ()=>{
         throw new Error("Failed to add account: " + response.status);
       }
       const responseData = await response.json();
-      console.log(responseData.message);
       mesRep.innerHTML = responseData.message;
-      body.appendChild(mesRep)
+      if(responseData == null){
+        body.appendChild("Erreur avec la base de donnée, Veuillez changer certaines informations.")
+      }
+      else{
+        body.appendChild(mesRep)
+      }
     }
     catch (error) {
       console.log("Error:", error.message);
