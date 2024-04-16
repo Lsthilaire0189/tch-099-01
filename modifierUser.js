@@ -43,5 +43,6 @@ document.getElementById('modifyAccount').addEventListener("click", async()=>{
         })
         sessionStorage.setItem("email", docMail)
         sessionStorage.setItem("username", docUsername)
+        
     }
 })
