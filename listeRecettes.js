@@ -1,9 +1,10 @@
-if(sessionStorage.getItem("email") !== null){
-    document.querySelector("#btnDeco").remove()
-    document.querySelector("#lienHome").href = './pageUtilisateur.html'
+const btnConnexion = document.querySelector('#btnParcourir')
+const uName = sessionStorage.getItem('username')
+if(uName != null){
+    btnConnexion.innerHTML = "Retour a votre compte: " + uName
+    btnConnexion.href = "pageUtilisateur.html"
 }
 const ulElement = document.getElementById("liste");
-
 const bouton = document.getElementById("recherche");
 bouton.addEventListener('click',filtrer);
 filtrer();
@@ -59,10 +60,4 @@ function addElements(data)
             ulElement.append(recetteFiche);
         });
     }
-}
-const btnConnexion = document.querySelector('#btnParcourir')
-const uName = sessionStorage.getItem('username')
-if(uName != null){
-    btnConnexion.innerHTML = "Retour a votre compte: " + uName
-    btnConnexion.href = "pageUtilisateur.html"
 }
