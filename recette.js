@@ -167,7 +167,6 @@ document.querySelector("#avisSubmit").addEventListener("click", async ()=>{
       showSnackbar();
     } catch (error) {
       console.error(error);
-      console.log('ça nenvoie pas')
     }
   }
 })
@@ -201,7 +200,7 @@ function addCommentToPage(commentlist){
 }
 
 document.querySelector("#addFavori").addEventListener("click", async ()=>{
-  const favori ={recetteId,email};
+  const favori ={email,recetteId};
   try {
     const response = await fetch("/projet1/api/favori", {
       method: "POST",
@@ -218,11 +217,5 @@ document.querySelector("#addFavori").addEventListener("click", async ()=>{
     showSnackbar();
   } catch (error) {
     console.error(error);
-    console.log('ça nenvoie pas')
   }
 });
-
-
-
-
- 

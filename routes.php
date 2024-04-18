@@ -230,11 +230,10 @@ post('/projet1/api/ratings', function (){
 post('/projet1/api/favori', function (){
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
-  $recetteId = $data['recetteId']??null;
   $email = $data['email']??null;
+  $recetteId = $data['recetteId']??null;
   $stmt = $pdo->prepare('INSERT INTO EQ1_Favoris (CompteEmail, RecetteId) VALUES (?, ?)');
   $stmt->execute([$email, $recetteId]);
-  
 });
 
 any('/404', '/index.php');
