@@ -200,6 +200,28 @@ function addCommentToPage(commentlist){
   });
 }
 
+document.querySelector("#addFavori").addEventListener("click", async ()=>{
+  const favori ={recetteId,email};
+  try {
+    const response = await fetch("/projet1/api/favori", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(favori),
+    });
+    if (!response.ok) { 
+      throw new Error("Failed to send data");
+    }
+    const responseData = await response.json();
+    console.log(responseData.message);
+    showSnackbar();
+  } catch (error) {
+    console.error(error);
+    console.log('ça nenvoie pas')
+  }
+});
+
 
 
 

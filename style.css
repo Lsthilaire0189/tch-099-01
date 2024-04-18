@@ -594,3 +594,8 @@
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
   }
+
+  #addFavori{
+    margin-top: 30px;
+    font-size: 20px;
+  }
