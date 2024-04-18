@@ -60,3 +60,6 @@ document.getElementById('deletAccount').addEventListener("click", async()=>{
         sessionStorage.clear()
     } 
 })
+const btnConnexion = document.querySelector('#idBtnConn')
+const uName = sessionStorage.getItem('username')
+btnConnexion.innerHTML = "Retour a votre compte: " + uName
