@@ -59,19 +59,28 @@ function addInfo(data){
   titre.textContent=data.nom;
 
   const image=document.querySelector('#image_recette');
-  image.src= data.lienImage;
+  image.src= data.src;
 
   const tmpCuisson=document.querySelector('#tempsCuisson');
+  tmpCuisson.textContent=data.cuisson;
   
 
   const tmpPreparation=document.querySelector('#tempsPreparation');
+  tmpPreparation.textContent=data.preparation;
+
+  const portion=document.querySelector('#portion');
+  portion.textContent=data.portion;
 
 
   const description=document.querySelector('#description');
   description.textContent=data.Description;
 
   const ingredients=document.querySelector('#ingredients');
-  ingredients.textContent=data.listeIngredient;
+  data.ingredients.forEach(ingredient => {
+    const li = document.createElement('li');
+    li.textContent = ingredient;
+    ingredients.appendChild(li);
+  });
   
   const instruction =document.querySelector('#instructions');
   instruction.textContent=data.etape;

@@ -9,9 +9,12 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
         const img = document.getElementById("img").value;
         const email= sessionStorage.getItem('email');
         const ingredients = document.getElementById("ingredient").value.split(",");
+        const tempsPreparation =parseInt( document.getElementById("tempsPreparation").value);
+        const tempsCuisson =parseInt( document.getElementById("tempsCuisson").value);
+        const portion = parseInt( document.getElementById("portion").value);
     
-        if(nom!=null&&pays!=null&&regime!=null&&typeAliment!=null&&description!=null&&recette!=null&&img!=null&&email!=null&&ingredients!=null){
-            const newrecette={nom, pays, regime, typeAliment, description, recette, img, email,ingredients };
+        if(nom!=null&&pays!=null&&regime!=null&&typeAliment!=null&&description!=null&&recette!=null&&img!=null&&email!=null&&ingredients!=null&&tempsPreparation!=null&&tempsCuisson!=null&&portion!=null){
+            const newrecette={nom, pays, regime, typeAliment, description, recette, img, email,ingredients,tempsPreparation,tempsCuisson,portion };
             const response= await fetch("/projet1/api/ajouterRecette",{
                 method:"POST",
                 headers:{
