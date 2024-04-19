@@ -215,6 +215,17 @@ get('/projet1/api/ratings/$recetteId', function($recetteId){
   echo json_encode($ratings);
 });
 
+get('/projet1/api/favori/$email', function($email){
+  global $pdo;
+  $stmt = $pdo->prepare('SELECT EQ1_Recette.* FROM EQ1_Recette
+  INNER JOIN EQ1_Favoris ON EQ1_Recette.id = EQ1_Favoris.RecetteId
+  WHERE EQ1_Favoris.CompteEmail = ?');
+  $stmt->execute([$email]);
+  $favori = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  header('Content-Type: application/json');
+  echo json_encode($favori);
+});
+
 post('/projet1/api/ratings', function (){
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
@@ -230,8 +241,8 @@ post('/projet1/api/ratings', function (){
 post('/projet1/api/favori', function (){
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
-  $email = $data['email']??null;
-  $recetteId = $data['recetteId']??null;
+  $email = $data['email'];
+  $recetteId = $data['recetteId'];
   $stmt = $pdo->prepare('INSERT INTO EQ1_Favoris (CompteEmail, RecetteId) VALUES (?, ?)');
   $stmt->execute([$email, $recetteId]);
 });
