@@ -103,17 +103,42 @@ post('/projet1/api/ajouterRecette', function (){
   $recette = $data['recette']??null;
   $img = $data['img']??null;
   $email = $data['email']??null;
+  $ingredients = $data['ingredients']??null;
   $preparation=0;
   $cuisson=0;
   $portion=0;
   if(empty($nom)|| empty($pays)|| empty($regime)|| empty($typeAliment)|| empty($description)|| empty($recette)|| empty($img)){
     echo json_encode(["message" => "ca marche pas"]);
-  }else{
-      $requete = $pdo->prepare("INSERT INTO EQ1_Recette(nom, origine, regime, type, description, etape, src, email, preparation, cuisson) values (?,?,?,?,?,?,?,?,?,?)");
-      $requete->execute([$nom, $pays, $regime, $typeAliment, $description, $recette, $img, $email, $preparation, $cuisson]);
+  }
+  else{
+        $requete = $pdo->prepare("INSERT INTO EQ1_Recette(nom, origine, regime, type, description, etape, src, email, preparation, cuisson) values (?,?,?,?,?,?,?,?,?,?)");
+        $requete->execute([$nom, $pays, $regime, $typeAliment, $description, $recette, $img, $email, $preparation, $cuisson]);
+        $requete1=$pdo->prepare("SELECT id from EQ1_Recette where nom=?");
+        $requete1->execute([$nom]);
+        $id=$requete1->fetch();
+      foreach($ingredients as $key =>$row){
+        ajoutIngredient($row);
+        $requete2=$pdo->prepare("INSERT INTO EQ1_Recette_Ingredient(ingredient, recette) values (?,?)");
+        $requete2->execute([$row, $id]);
+      }
       echo json_encode(["message" => "ca marche"]);
   }
 });
+
+
+function ajoutIngredient($ingredient)
+{
+  global $pdo;
+  $requete=$pdo->prepare("SELECT * FROM EQ1_Ingredient WHERE ingredient=?");
+  $requete->execute([$ingredient]);
+  $ingredientExistant=$requete->fetch();
+  if($ingredientExistant==null){
+    $requete=$pdo->prepare("INSERT INTO EQ1_Ingredient(ingredient) values (?)");
+    $requete->execute([$ingredient]);
+  }
+}
+
+
 
 post('/projet1/api/filtrer', function(){
   global $pdo;

@@ -8,9 +8,10 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
         const recette = document.getElementById("recette").value;
         const img = document.getElementById("img").value;
         const email= sessionStorage.getItem('email');
+        const ingredients = document.getElementById("ingredient").value.split(",");
     
-        if(nom!=null&&pays!=null&&regime!=null&&typeAliment!=null&&description!=null&&recette!=null&&img!=null){
-            const newrecette={nom, pays, regime, typeAliment, description, recette, img, email };
+        if(nom!=null&&pays!=null&&regime!=null&&typeAliment!=null&&description!=null&&recette!=null&&img!=null&&email!=null&&ingredients!=null){
+            const newrecette={nom, pays, regime, typeAliment, description, recette, img, email,ingredients };
             const response= await fetch("/projet1/api/ajouterRecette",{
                 method:"POST",
                 headers:{
@@ -21,7 +22,7 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
             if(response.ok)
             {
                 confirm("Votre recette est enregistrée.");
-                window.location.href = 'pageUtilisateur.html';
+                //window.location.href = 'pageUtilisateur.html';
             }
             else{
                 alert("Erreur lors de l'enregistrement");
