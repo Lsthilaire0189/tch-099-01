@@ -94,7 +94,7 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
             if(response.ok)
             {
                 confirm("Votre recette est enregistrée.");
-                //window.location.href = 'pageUtilisateur.html';
+                window.location.href = 'pageUtilisateur.html';
             }
             else{
                 alert("Erreur lors de l'enregistrement");
