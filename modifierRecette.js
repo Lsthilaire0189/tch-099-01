@@ -116,7 +116,7 @@ document.querySelector("#btnDelete").addEventListener("click", async()=>{
         if(response.ok)
         {
             confirm("Votre recette est supprimée.");
-            //window.location.href = 'pageUtilisateur.html';
+            window.location.href = 'pageUtilisateur.html';
         }
         else{
             alert("Erreur lors de la suppression");
