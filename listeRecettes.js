@@ -1,9 +1,4 @@
-const btnConnexion = document.querySelector('#btnParcourir')
-const uName = sessionStorage.getItem('username')
-if(uName != null){
-    btnConnexion.innerHTML = "Retour a votre compte: " + uName
-    btnConnexion.href = "pageUtilisateur.html"
-}
+
 const ulElement = document.getElementById("liste");
 const bouton = document.getElementById("recherche");
 bouton.addEventListener('click',filtrer);
@@ -20,7 +15,8 @@ async function filtrer()
     const regime = choixRegime.options[choixRegime.selectedIndex].value;
     const choixType = document.getElementById("type");
     const type= choixType.options[choixType.selectedIndex].value;
-    let filtre={origine,regime,type};
+    const ingredients = document.getElementById("ingredients").value.split(",");
+    let filtre={origine,regime,type,ingredients};
     
     try{
         const response = await fetch("/projet1/api/filtrer",{

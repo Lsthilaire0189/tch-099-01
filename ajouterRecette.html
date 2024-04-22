@@ -11,9 +11,9 @@
     <body>
         <main>
             <header class="entete" id="enteteAjouter">
-                <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
-                <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
-                <a id ="idBtnConn" href="./pageUtilisateur.html" class="btnLogin"></a>
+                <!-- <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a> -->
+                <a href="./index.php"><img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web"></a>
+                <a id ="idBtnConn" href="./pageUtilisateur.html" class="btnLogin">Mon compte</a>
             </header>
             <section class="sectionAjouter">
                 <h1>Entrez le plus d'information possible à propos de la recette dans le but de faciliter sa recherche!</h1>
@@ -60,6 +60,12 @@
                             </select>
                         </div>
                     </div>
+                    <label for="tempsPreparation">Temps de préparation:</label>
+                    <input type="text" name="tempsPreparation" id="tempsPreparation">
+                    <label for="tempsCuisson">Temps de cuisson:</label>
+                    <input type="text" name="tempsCuisson" id="tempsCuisson">
+                    <label for="portion">Nombre de portions:</label>
+                    <input type="text" name="portion" id="portion">
                     <label id="lblDescrip" for="description">Description du plat:</label>
                     <textarea name="text" id="description"></textarea>
                     <label for="description">Liste des ingredients:</label>

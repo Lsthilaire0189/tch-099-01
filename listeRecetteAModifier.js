@@ -1,3 +1,18 @@
+function getUtilisateur(){
+    if(sessionStorage.getItem('email')==null)
+    {
+        confirm("Vous n'êtes pas connecté! Veuillez vous connecter.")
+        window.location.href='loginPage.html';
+    }
+}
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        window.location.reload(); 
+    }
+};
+
+getUtilisateur();
+
 
 const ulElement = document.getElementById("liste");
 filtrerUser();
@@ -32,6 +47,3 @@ function addElements(data)
         ulElement.append(recetteFiche);
     });
 }
-const btnConnexion = document.querySelector('#idBtnConn')
-const uName = sessionStorage.getItem('username')
-btnConnexion.innerHTML = "Retour a votre compte: " + uName

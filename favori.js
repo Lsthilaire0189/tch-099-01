@@ -1,11 +1,23 @@
+function getUtilisateur(){
+    if(sessionStorage.getItem('email')==null)
+    {
+        confirm("Vous n'êtes pas connecté! Veuillez vous connecter.")
+        window.location.href='loginPage.html';
+    }
+}
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        window.location.reload(); 
+    }
+};
+
+getUtilisateur();
+
+
+
 
 const email= sessionStorage.getItem("email")
 getFavori();
-document.querySelector("#btnDeco").addEventListener("click", async()=>{
-    sessionStorage.removeItem('username')
-    sessionStorage.removeItem('email')
-    window.location.href='/projet1/index.php'
-})
 const ulElement = document.getElementById("liste");
 function addElements(data)
 {

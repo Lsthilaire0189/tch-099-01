@@ -10,13 +10,13 @@
 <body>
     <main>
         <header class="entete" id="enteteAjouter">
-            <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png"
-                    alt="Bouton home" style="width:42px;height:42px;"></a>
-            <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
-            <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnexion</a>
+            <a class="boutonEntete" href="./listeRecettes.html">Retour</a>
+            <a href="./index.php"><img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web"></a>
+            <a href="./pageUtilisateur.html" class="boutonEntete">Mon compte</a>
         </header>
 
-        <img id="image_recette">
+        <img class="image_recette" id="image_recette" alt="Image de la recette">
+
         <section class="recette">
             <section>
                 <h1 id="nomRecette"></h1>
@@ -24,10 +24,12 @@
             <section>
                 <p id="tempsCuisson"></p>
                 <p id="tempsPreparation"></p>
+                <p id="portion"></p>
             </section>
             <section>
                 <p id="description"></p>
             </section>
+           
             <section>
                 <h1>Ingrédients</h1>
                 <ul id="ingredients"></ul>
@@ -37,8 +39,8 @@
                 <ul id="instructions"></ul>
             </section>
 
-            <section class="posEval">
-                <section class="evalRecette">
+            <section class="posEval" >
+                <section class="evalRecette" id="interactionsRecette">
                     <h1>Évaluations de la recette</h1>
                     <form>
                         <label for="commentaire">Commentaire:</label>
@@ -56,15 +58,12 @@
                     <input type="hidden" name="rating" id="ratingValue" value="0">
                     <button id="avisSubmit" class="ratingBtn">Envoyer votre avis</button>
                 </section>
-                <button id="addFavori" class="favoriBtn">Mettre en Favori</button>
+                <section id="interactionsRecette">
+                    <button id="addFavori" class="favoriBtn">Mettre en Favori</button>
+                </section>
             </section>
 
         </section>
-
-        <img class="image_recette"
-            src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png"
-            alt="Image de la recette">
-
            
         <div class="avis-list_item">
             <h1 class="titre">Avis des utilisateurs</h1> 

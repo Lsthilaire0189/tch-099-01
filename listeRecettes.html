@@ -9,9 +9,8 @@
     <body>
         <main>
             <header class="entete">
-                <a id="lienHome" href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
-                <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
-                <a id ="btnParcourir" href="./loginPage.html" class="btnLogin">Connexion</a>
+                <a href="./index.php"><img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web"></a>
+                <a id ="idBtnConn" href="./pageUtilisateur.html" class="btnLogin">Mon compte</a>
             </header>
             <section class="listeImagesFiltres">
                 <aside class="listeFiltres">
@@ -48,6 +47,8 @@
                             <option value="salade">Salade</option>
                             <option value="pates">Pâtes</option>
                           </select>
+                          <label for="ingredients">Ingrédients:</label>
+                            <input type="text" id="ingredients" name="ingredients">
                           <button type="button" id="recherche">Rechercher</button>
                     </section>
                 </aside>
