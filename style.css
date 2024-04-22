@@ -415,12 +415,17 @@
     order: 3;
 }
 /* recette.html */
-
 .image_recette {
     display: block;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
+    background-color: rgb(2, 115, 152);
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    border: solid black;
 }
 
 .recette{
@@ -428,9 +433,11 @@
     max-width: 600px; 
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid black;
+    border: 3px solid black;
     background-color : azure;
     overflow-wrap: break-word;
+    margin-bottom: 40px;
+    border-radius: 5px;
 }
 .recette ul {
     margin: 0;
@@ -447,7 +454,7 @@
 }
 .evalRecette{
     display: flex;
-    flex-direction: column;
+    flex-direction:column;
     margin-top: 5%;
     background-color: azure;
     text-align: center;
