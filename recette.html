@@ -18,30 +18,30 @@
         <img class="image_recette" id="image_recette" alt="Image de la recette">
 
         <section class="recette">
-            <section>
+            <section id="titre_recette">
                 <h1 id="nomRecette"></h1>
             </section>
-            <section>
-                <p id="tempsCuisson"></p>
-                <p id="tempsPreparation"></p>
-                <p id="portion"></p>
+            <section id="prep">
+                <p id="tempsCuisson">Temps de cuissons: </p>
+                <p id="tempsPreparation">Temps de préparation: </p>
+                <p id="portion">Nombre de portions: </p>
             </section>
             <section>
                 <p id="description"></p>
             </section>
            
-            <section>
-                <h1>Ingrédients</h1>
+            <section id="ingre">
+                <h1>Ingrédients :</h1>
                 <ul id="ingredients"></ul>
             </section>
-            <section>
+            <section id="prepa">
                 <h1>Préparation</h1>
                 <ul id="instructions"></ul>
             </section>
 
             <section class="posEval" >
                 <section class="evalRecette" id="interactionsRecette">
-                    <h1>Évaluations de la recette</h1>
+                    <h1>Évaluation de la recette</h1>
                     <form>
                         <label for="commentaire">Commentaire:</label>
                         <textarea name="commentaire" id="commentaire"></textarea>
@@ -59,7 +59,7 @@
                     <button id="avisSubmit" class="ratingBtn">Envoyer votre avis</button>
                 </section>
                 <section id="interactionsRecette">
-                    <button id="addFavori" class="favoriBtn">Mettre en Favori</button>
+                    <button id="addFavori" class="favoriBtn">Mettre en favoris</button>
                 </section>
             </section>
 
@@ -68,26 +68,6 @@
         <div class="avis-list_item">
             <h1 class="titre">Avis des utilisateurs</h1> 
         </div> 
-<!-- 
-        <section class="recette">
-            <section>
-                <h1>NOM DE LA RECETTE</h1>
-            </section>
-            <section>
-                <p>Description de la recette pweofjwoinfwrlknfroenfroinfrepinerf</p>
-            </section>
-        </section>
-        <section class="recette">
-            <h1>Ingrédients</h1>
-            <ul>
-                <li>Soupe aux tomates</li>
-            </ul>
-        </section>
-        <section class="recette">
-            <h1>Préparation</h1>
-            <p>Ouvrir la canne</p>
-        </section> -->
-        
         <script src="recette.js"></script>
 </body>
 

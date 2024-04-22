@@ -242,7 +242,7 @@ if (!empty($conditions)) {
 
 $requete = $pdo->prepare($sql);
 $requete->execute($params);
-$results= $requete->fetchAll();
+$results= $requete->fetchAll(PDO::FETCH_ASSOC);
 foreach($results as $key =>$row){
   $email=$row['email'];
   $stmt = $pdo->prepare('SELECT * From EQ1_Compte where email=?');
