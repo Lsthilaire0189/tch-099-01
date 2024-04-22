@@ -360,5 +360,35 @@ post('/projet1/api/favori', function (){
   echo json_encode(["message" => "Recette ajoutée aux favoris avec succès"]);
 });
 
+post('/projet1/api/estFavoris', function(){
+  global $pdo;
+  $data = json_decode(file_get_contents('php://input'), true);
+  $email = $data['mail'];
+  $recetteId = $data['recette'];
+  $stmt = $pdo->prepare('SELECT * FROM EQ1_Favoris WHERE RecetteId = ? AND CompteEmail = ?');
+  $stmt->execute([$recetteId,$email]);
+  $estFavoris = $stmt->fetch();
+  if((bool)$estFavoris!=null){
+    echo json_encode(["result" => "vrai"]);
+  }
+  else{
+    echo json_encode(["result" => "faux"]);
+  }
+});
+
+post('/projet1/api/enleverFavoris', function(){
+  global $pdo;
+  $data = json_decode(file_get_contents('php://input'), true);
+  $email = $data['email'];
+  $recetteId = $data['recetteId'];
+  $stmt = $pdo->prepare('DELETE FROM EQ1_Favoris WHERE CompteEmail = ? AND RecetteId = ?');
+  $stmt->execute([$email, $recetteId]);
+  header('Content-Type: application/json');
+  echo json_encode(["message" => "Recette retirée des favoris avec succès"]);
+});
+
+
+
+
 any('/404', '/index.php');
 
