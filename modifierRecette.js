@@ -103,3 +103,23 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
         
     }
 })
+document.querySelector("#btnDelete").addEventListener("click", async()=>{
+    if (confirm("Voulez-vous supprimer votre recette?")) {
+        const id = parseInt( recetteId);
+        const response= await fetch("/projet1/api/supprimerRecette",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application"
+            },
+            body:JSON.stringify({id}),
+        } );
+        if(response.ok)
+        {
+            confirm("Votre recette est supprimée.");
+            //window.location.href = 'pageUtilisateur.html';
+        }
+        else{
+            alert("Erreur lors de la suppression");
+        }
+    }
+})

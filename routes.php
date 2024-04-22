@@ -180,6 +180,18 @@ function ajoutIngredient($ingredient)
   }
 }
 
+
+post('/projet1/api/supprimerRecette',function(){
+  global $pdo;
+  $json = file_get_contents('php://input');
+  $data = json_decode($json, true);
+  $id = $data['id']??null;
+  $requete = $pdo->prepare("DELETE FROM EQ1_Recette WHERE id=?");
+  $requete->execute([$id]);
+  header('Content-type: application/json');
+  echo json_encode(["message" => "Recette supprimée avec succès"]);
+});
+
 // Fonctions fetch Recette
 
 
