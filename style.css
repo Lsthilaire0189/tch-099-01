@@ -610,6 +610,17 @@
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.5rem;
 }
+.avis-list_item h1{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    background-color: rgb(2, 115, 152);
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 20px;
+    color: aliceblue;
+    border-radius: 7px;
+    border:solid black 3px;
+}
 /* modification du compte */
 #modMsg{
     display: flex;
