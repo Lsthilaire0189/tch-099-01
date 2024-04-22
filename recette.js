@@ -196,8 +196,10 @@ function activerInteractions() {
     }
   })
 
+  let statut = getEstFavoris();
+
   document.querySelector("#addFavori").addEventListener("click", async () => {
-    if (getEstFavoris()) {
+    if (statut == true) {
       const favori = { email, recetteId };
       try {
         const response = await fetch("/projet1/api/enleverFavoris", {
@@ -211,8 +213,8 @@ function activerInteractions() {
           throw new Error("Failed to send data");
         }
         const responseData = await response.json();
-        showSnackbar("Retiré des favoris");
-        window.location.href = 'recette.html';
+        showSnackbar(responseData.message);
+        modificationStatut();
       } catch (error) {
         console.error(error);
       }
@@ -231,9 +233,9 @@ function activerInteractions() {
           throw new Error("Failed to send data");
         }
         const responseData = await response.json();
-        showSnackbar("Ajouter au favoris");
-        showSnackbar();
-        window.location.href = 'recette.html';
+        showSnackbar(responseData.message);
+        modificationStatut();
+
       } catch (error) {
         console.error(error);
       }
@@ -269,6 +271,8 @@ function addCommentToPage(commentlist) {
     commentContainer.appendChild(container);
   });
 }
+
+
 async function getEstFavoris() {
   const mail = email
   const recette = recetteId
@@ -295,9 +299,15 @@ async function getEstFavoris() {
     }
   }
 }
-if (getEstFavoris()){
-  document.querySelector("#addFavori").textContent = "Retirer des favoris"
-}
-else {
-  document.querySelector("#addFavori").textContent = "Mettre en favoris"
+
+modificationStatut();   
+function modificationStatut() {
+  let statut = getEstFavoris();
+  if (statut == true) {
+    document.querySelector("#addFavori").textContent = "Retirer des favoris"
+  }
+  else {
+    document.querySelector("#addFavori").textContent = "Mettre en favoris"
+  }  
+  return statut;
 }
