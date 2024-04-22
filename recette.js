@@ -77,14 +77,14 @@ function addInfo(data) {
   image.src = data.src;
 
   const tmpCuisson = document.querySelector('#tempsCuisson');
-  tmpCuisson.textContent = data.cuisson;
+  tmpCuisson.append(data.cuisson)
 
 
   const tmpPreparation = document.querySelector('#tempsPreparation');
-  tmpPreparation.textContent = data.preparation;
+  tmpPreparation.append(data.preparation)
 
   const portion = document.querySelector('#portion');
-  portion.textContent = data.portion;
+  portion.append(data.portion)
 
 
   const description = document.querySelector('#description');
