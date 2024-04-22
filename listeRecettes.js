@@ -1,9 +1,4 @@
-const btnConnexion = document.querySelector('#btnParcourir')
-const uName = sessionStorage.getItem('username')
-if(uName != null){
-    btnConnexion.innerHTML = "Retour a votre compte: " + uName
-    btnConnexion.href = "pageUtilisateur.html"
-}
+
 const ulElement = document.getElementById("liste");
 const bouton = document.getElementById("recherche");
 bouton.addEventListener('click',filtrer);

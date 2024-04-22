@@ -15,7 +15,6 @@ function getUtilisateur(){
 
     }
     else{
-        confirm("Vous n'êtes pas connecté! Veuillez vous connecter.")
         window.location.href='loginPage.html';
     }
     

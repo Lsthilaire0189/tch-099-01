@@ -103,6 +103,3 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
         
     }
 })
-const btnConnexion = document.querySelector('#idBtnConn')
-const uName = sessionStorage.getItem('username')
-btnConnexion.innerHTML = "Retour a votre compte: " + uName

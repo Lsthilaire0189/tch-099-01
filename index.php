@@ -10,7 +10,7 @@
             <header class="entete">
                 <!-- Futur bouton en css -->
                 <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web" id="imgageEntete">
-                <a id ="idBtnConn" href="./loginPage.html" class="btnLogin">Connexion</a>
+                <a id ="idBtnConn" href="./pageUtilisateur.html" class="btnLogin">Mon compte</a>
             </header>
             <section>
                 <section class="sectionImage">
