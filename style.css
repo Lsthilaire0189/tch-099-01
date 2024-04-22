@@ -536,17 +536,23 @@
     flex-direction:column;
     margin-top: 3%;
     text-align: center;
-    width: 780px; 
+    padding-left: 25px;
+    padding-right: 25px;
     padding-bottom: 20px;
     border: 2px solid aliceblue;
     background-color: rgb(0, 61, 126);
-    align-items: center;
+    align-items:flex-start;
     border-radius: 7px;
 }
 .evalRecette h1{
     color: aliceblue;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 2rem;
+    font-size: 1.5rem;
+}
+.evalRecette label{
+    color: aliceblue;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
 }
 .posEval{
     display: flex;
@@ -572,6 +578,9 @@
 .stars {
     font-size: 34px;
     cursor: pointer;
+    margin-top: 15px;
+    margin-left: 145PX;
+    margin-bottom: 10PX;
   }
   .stars .star {
     color: #ccc;
@@ -580,8 +589,27 @@
   }
   .stars .star:hover,
   .stars .star.active {
-    color:rgb(2, 115, 152);
+    color:yellow;
   }
+#avisSubmit{
+    margin-left: 336px;
+    background-color: aliceblue;
+    padding: 6px;
+    border-radius: 7px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+}
+#addFavori{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: aliceblue;
+}
+.avis-list_item{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+}
 /* modification du compte */
 #modMsg{
     display: flex;
