@@ -19,6 +19,8 @@ try {
 }
 
 
+// Fonctions compte
+
 post('/projet1/api/ajouterCompte', function (){
     global $pdo;
     $json = file_get_contents('php://input');
@@ -52,22 +54,27 @@ post('/projet1/api/ajouterCompte', function (){
         echo json_encode(["message" => "Compte crée avec succès"]);
     }
 });
+
 function usernameExist($pdo, $username){
   $verifMail = $pdo->prepare("SELECT 1 FROM EQ1_Compte WHERE username=?");
   $verifMail->execute([$username]);
   return (bool)$verifMail->fetchColumn();
 }
+
 function usernameValide($username){
   return strlen($username) > 12;
 }
+
 function emailExists($pdo, $email){
   $verifMail = $pdo->prepare("SELECT 1 FROM EQ1_Compte WHERE email=?");
   $verifMail->execute([$email]);
   return (bool)$verifMail->fetchColumn();
 };
+
 function emailInvalide($email){
   return filter_var($email, FILTER_VALIDATE_EMAIL) === false;
 }
+
 post('/projet1/api/connexion', function (){
   global $pdo;
   $json = file_get_contents('php://input');
@@ -90,6 +97,7 @@ post('/projet1/api/connexion', function (){
   }
 });
 
+// Fonctions recette
 
 post('/projet1/api/ajouterRecette', function (){
   global $pdo;
@@ -125,6 +133,40 @@ post('/projet1/api/ajouterRecette', function (){
   }
 });
 
+post('/projet1/api/modifierRecette',function(){
+  global $pdo;
+  $json = file_get_contents('php://input');
+  $data = json_decode($json, true);
+  $id = $data['id']??null;
+  $nom = $data['nom']??null;
+  $pays = $data['pays']??null;
+  $regime = $data['regime']??null;
+  $typeAliment = $data['typeAliment']??null;
+  $description = $data['description']??null;
+  $recette = $data['recette']??null;
+  $img = $data['img']??null;
+  $email = $data['email']??null;
+  $ingredients = $data['ingredients']??null;
+  $preparation=$data['tempsPreparation']??null;
+  $cuisson=$data['tempsCuisson']??null;
+  $portion=$data['portion']??null;
+
+  if(empty($id)||empty($nom)|| empty($pays)|| empty($regime)|| empty($typeAliment)|| empty($description)|| empty($recette)|| empty($img)|| empty($email)|| empty($ingredients)|| empty($preparation)|| empty($cuisson)|| empty($portion)){
+    echo json_encode(["message" => "ca marche pas"]);
+  }
+  else{
+    $requete = $pdo->prepare("UPDATE EQ1_Recette SET `nom`=?, `origine`=?, `regime`=?, `type`=?, `description`=?, `etape`=?, `src`=?, `email`=?, `preparation`=?, `cuisson`=?, `portion`=? WHERE `id`=?");
+    $result =$requete->execute([$nom, $pays, $regime, $typeAliment, $description, $recette, $img, $email, $preparation, $cuisson, $portion, $id]);
+    $requete1=$pdo->prepare("DELETE FROM EQ1_Recette_Ingredient WHERE recette=?");
+    $requete1->execute([$id]);
+    foreach($ingredients as $key =>$row){
+      ajoutIngredient($row);
+      $requete2=$pdo->prepare("INSERT INTO EQ1_Recette_Ingredient(ingredient, recette) values (?,?)");
+      $requete2->execute([$row, $id]);
+    }
+    echo json_encode(["message" => "ca marche"]);
+  }
+});
 
 function ajoutIngredient($ingredient)
 {
@@ -138,6 +180,7 @@ function ajoutIngredient($ingredient)
   }
 }
 
+// Fonctions fetch Recette
 
 
 post('/projet1/api/filtrer', function(){
@@ -145,8 +188,9 @@ post('/projet1/api/filtrer', function(){
   $json = file_get_contents('php://input');
   $data=json_decode($json,true);
   $origine = isset($data['origine']) ? $data['origine'] : null;
-$regime = isset($data['regime']) ? $data['regime'] : null;
-$type = isset($data['type']) ? $data['type'] : null;
+  $regime = isset($data['regime']) ? $data['regime'] : null;
+  $type = isset($data['type']) ? $data['type'] : null;
+  $ingredients= isset($data['ingredients']) ? $data['ingredients'] : null;
 //header('Content-type: application/json');
 //echo json_encode(["message" => "origine: $origine, regime: $regime, type: $type"]);
 $conditions = [];
@@ -163,6 +207,20 @@ if ($regime !== "") {
 if ($type !== "") {
     $conditions[] = "type = ?";
     $params[] = $type;
+}
+if ($ingredients !== null) {
+  $contitionsIngredient = [];
+  foreach ($ingredients as $ingredient) {
+    $contitionsIngredient[] = "ingredient=?";;
+  }
+  $sqlIngredient = "SELECT recette FROM EQ1_Recette_Ingredient WHERE " . implode(" OR ", $contitionsIngredient);
+  $requeteIngredient = $pdo->prepare($sqlIngredient);
+  $requeteIngredient->execute($ingredients);
+  $resultsIngredient = $requeteIngredient->fetchAll(PDO::FETCH_COLUMN);
+  foreach ($resultsIngredient as $rowIngredient) {
+    $conditions[] = "id=?";
+    $params[] = $rowIngredient;
+  }
 }
 
 $sql = "SELECT * FROM EQ1_Recette";
@@ -184,6 +242,8 @@ header('Content-type: application/json');
 echo json_encode($results);
 });
 
+
+// Fonction fetch Recette selon Utilisateur
 post('/projet1/api/filtrerUser',function(){
   global $pdo;
   $json = file_get_contents('php://input');
@@ -196,6 +256,7 @@ post('/projet1/api/filtrerUser',function(){
  echo json_encode($results);
 });
 
+// Fonction fetch Recette affichage
 
 get('/projet1/api/recette/$id', function($id){
   global $pdo;

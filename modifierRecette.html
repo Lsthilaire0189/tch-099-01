@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>ajouterRecette.html</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <main>
         <header class="entete" id="enteteAjouter">
-            <a href="./index.php.html"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
+            <a href="./index.php"><img id="btnHome" src="https://i.im.ge/2024/02/28/gvqLLP.5974636.png" alt="Bouton home" style="width:42px;height:42px;"></a>
             <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
             <a id ="idBtnConn" href="./pageUtilisateur.html" class="btnLogin"></a>
         </header>
@@ -58,21 +59,28 @@
                         </select>
                     </div>
                 </div>
+                <label for="tempsPreparation">Temps de préparation:</label>
+                <input type="text" name="tempsPreparation" id="tempsPreparation">
+                <label for="tempsCuisson">Temps de cuisson:</label>
+                <input type="text" name="tempsCuisson" id="tempsCuisson">
+                <label for="portion">Nombre de portions:</label>
+                <input type="text" name="portion" id="portion">
                 <label id="lblDescrip" for="description">Description du plat:</label>
-                <textarea name="description" id="description"></textarea>
-                <label for="ingredients">Liste des ingrédients:</label>
-                <textarea name="ingredients" id="ingredients"></textarea>
+                <textarea name="text" id="description"></textarea>
+                <label for="description">Liste des ingredients:</label>
+                <textarea name="text" id="ingredient"></textarea>
                 <label for="recette">Recette:</label>
-                <textarea name="recette" id="recette"></textarea>
+                <textarea name="text" id="recette"></textarea>
                 <!--Image du plat a drag and drop, futur problème, a modifier en CSS, voir: https://www.w3schools.com/html/html5_draganddrop.asp-->
                 <label for="img">Image du plat (lien):</label>
                 <textarea name="image" id="img"></textarea>
-                <section class="sectionBtn">
-                    <button id="btnSend" type="button" form="form1" value="Submit">Enregistrer</button>
+                <div class="sectionBtn">
+                    <button id="btnSend" type="button" form="form1" value="Submit">Soumettre</button>
                     <button id="btnReset" type="reset" form="form1" value="Submit">Annuler</button>
-                </section>
+                </div>
             </form>
         </section>
     </main>
+    <script src="modifierRecette.js"></script>
 </body>
 </html>

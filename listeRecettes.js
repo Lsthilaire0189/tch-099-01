@@ -20,7 +20,8 @@ async function filtrer()
     const regime = choixRegime.options[choixRegime.selectedIndex].value;
     const choixType = document.getElementById("type");
     const type= choixType.options[choixType.selectedIndex].value;
-    let filtre={origine,regime,type};
+    const ingredients = document.getElementById("ingredients").value.split(",");
+    let filtre={origine,regime,type,ingredients};
     
     try{
         const response = await fetch("/projet1/api/filtrer",{
