@@ -13,9 +13,6 @@ window.onpageshow = function(event) {
 
 getUtilisateur();
 
-
-
-
 const email= sessionStorage.getItem("email")
 getFavori();
 const ulElement = document.getElementById("liste");
@@ -43,7 +40,10 @@ function addElements(data)
     }
 }
 async function getFavori() {
-    const response = await fetch(`projet1/api/favori/${email}`);
+    console.log('Bonjour');
+    const response = await fetch(`/projet1/api/favori/${email}`);
     const favori = await response.json();
+    console.log(response.message);
+    console.log(favori);
     addElements(favori);
 }
