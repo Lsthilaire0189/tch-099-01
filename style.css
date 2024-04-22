@@ -276,7 +276,8 @@
 }
 .listeImagesFiltres ul li img{
     object-fit: contain;
-    max-width: 250px;
+    width: 250px;
+    height: 250px;
     border: solid 2px black;
     border-radius: 5px;
     margin-top: 10px;

@@ -34,43 +34,45 @@
                                 <option value="espagnole">Espagnole</option>
                                 <option value="mexicain">Mexicain</option>
                                 <option value="chinois">Chinois</option>
+                                <option value="italien">Italien</option>
                             </select>
                         </div>
                         <div>
-                            <label for="regime">Régimes alimentaires:</label>
+                            <label for="regime">Régime alimentaire:</label>
                             <select name="regime" id="regime">
                                 <option value="">Veuillez sélectionner un régime</option>
                                 <option value="vegetarien">Végétarien</option>
-                                <option value="sansGluten">Sans glutenne</option>
+                                <option value="sansGluten">Sans Gluten</option>
                                 <option value="proteines">Protéiné</option>
-                                <option value="vegan">Vegan</option>
+                                <option value="vegan">Végétalien</option>
                             </select>
                         </div>
                         <div>
-                            <label for="type">Types d'aliments:</label>
+                            <label for="type">Types de recette (Choisissez la catégorie qui représente le mieux votre création): </label>
                             <select name="type" id="type">
-                                <option value="">Veuillez sélectionner un aliment</option>
-                                <option value="poulet">Poulet</option>
-                                <option value="boeuf">Boeuf</option>
-                                <option value="porc">Porc</option>
-                                <option value="poisson">Poisson</option>
+                                <option value="">Veuillez sélectionner le type de recette</option>
                                 <option value="patisserie">Pâtisserie</option>
                                 <option value="salade">Salade</option>
-                                <option value="pates">Pâtes</option>
+                                <option value="pate">Pâte</option>
+                                <option value="bbq">BBQ</option>
+                                <option value="dessert">Dessert</option>
+                                <option value="fumoir">Fumoir</option>
+                                <option value="fruitDeMer">Fruit de mer</option>
+                                <option value="soupe">Soupe</option>
                             </select>
                         </div>
                     </div>
-                    <label for="tempsPreparation">Temps de préparation:</label>
+                    <label for="tempsPreparation">Temps de préparation (Veuillez spécifier l'unité de temps):</label>
                     <input type="text" name="tempsPreparation" id="tempsPreparation">
-                    <label for="tempsCuisson">Temps de cuisson:</label>
+                    <label for="tempsCuisson">Temps de cuisson (Veuillez spécifer l'unité de temps):</label>
                     <input type="text" name="tempsCuisson" id="tempsCuisson">
                     <label for="portion">Nombre de portions:</label>
                     <input type="text" name="portion" id="portion">
-                    <label id="lblDescrip" for="description">Description du plat:</label>
+                    <label id="lblDescrip" for="description">Description du plat (Brève description du plat):</label>
                     <textarea name="text" id="description"></textarea>
                     <label for="description">Liste des ingredients:</label>
                     <textarea name="text" id="ingredient"></textarea>
-                    <label for="recette">Recette:</label>
+                    <label for="recette">Recette (Décrivez en détail les étapes pour réaliser votre plat):</label>
                     <textarea name="text" id="recette"></textarea>
                     <!--Image du plat a drag and drop, futur problème, a modifier en CSS, voir: https://www.w3schools.com/html/html5_draganddrop.asp-->
                     <label for="img">Image du plat (lien):</label>
