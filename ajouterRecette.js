@@ -1,3 +1,21 @@
+
+
+function getUtilisateur(){
+    if(sessionStorage.getItem('email')==null)
+    {
+        confirm("Vous n'êtes pas connecté! Veuillez vous connecter.")
+        window.location.href='loginPage.html';
+    }
+}
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        window.location.reload(); 
+    }
+};
+
+getUtilisateur();
+
+
 document.querySelector("#btnSend").addEventListener("click", async()=>{
     if (confirm("Voulez-vous sauvegarder votre recette?")) {
         const nom = document.getElementById("nom").value;

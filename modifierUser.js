@@ -1,3 +1,18 @@
+function getUtilisateur(){
+    if(sessionStorage.getItem('email')==null)
+    {
+        confirm("Vous n'êtes pas connecté! Veuillez vous connecter.")
+        window.location.href='loginPage.html';
+    }
+}
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        window.location.reload(); 
+    }
+};
+
+getUtilisateur();
+
 getDonnes();
 async function getDonnes(){
     var mail = sessionStorage.getItem("email")
@@ -47,10 +62,10 @@ document.getElementById('modifyAccount').addEventListener("click", async()=>{
     }
 })
 
-document.getElementById('deletAccount').addEventListener("click", async()=>{
+document.getElementById('deleteAccount').addEventListener("click", async()=>{
     const docMail = document.getElementById('email').value
     if(docMail != null){
-        const rep = await fetch("/projet1/api/deletAccount",{
+        const rep = await fetch("/projet1/api/deleteAccount",{
             method:"POST",
             headers:{
                 "Content-Type":"application"

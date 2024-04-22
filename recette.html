@@ -14,9 +14,8 @@
             <img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web">
             <a id="btnDeco" href="./index.php" class="btnDeconnection">Déconnexion</a>
         </header>
-        <img class="image_recette"
-            src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png"
-            alt="Image de la recette">
+
+        <img class="image_recette" id="image_recette" alt="Image de la recette">
 
         <section class="recette">
             <section>
@@ -40,8 +39,8 @@
                 <ul id="instructions"></ul>
             </section>
 
-            <section class="posEval">
-                <section class="evalRecette">
+            <section class="posEval" >
+                <section class="evalRecette" id="interactionsRecette">
                     <h1>Évaluations de la recette</h1>
                     <form>
                         <label for="commentaire">Commentaire:</label>
@@ -59,7 +58,9 @@
                     <input type="hidden" name="rating" id="ratingValue" value="0">
                     <button id="avisSubmit" class="ratingBtn">Envoyer votre avis</button>
                 </section>
-                <button id="addFavori" class="favoriBtn">Mettre en Favori</button>
+                <section id="interactionsRecette">
+                    <button id="addFavori" class="favoriBtn">Mettre en Favori</button>
+                </section>
             </section>
 
         </section>

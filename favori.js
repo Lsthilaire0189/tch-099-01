@@ -1,3 +1,20 @@
+function getUtilisateur(){
+    if(sessionStorage.getItem('email')==null)
+    {
+        confirm("Vous n'êtes pas connecté! Veuillez vous connecter.")
+        window.location.href='loginPage.html';
+    }
+}
+window.onpageshow = function(event) {
+    if (event.persisted) {
+        window.location.reload(); 
+    }
+};
+
+getUtilisateur();
+
+
+
 
 const email= sessionStorage.getItem("email")
 getFavori();

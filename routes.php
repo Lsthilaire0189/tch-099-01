@@ -296,7 +296,7 @@ post('/projet1/api/pushModification', function(){
   $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
 });
 
-post("/projet1/api/deletAccount", function(){
+post("/projet1/api/deleteAccount", function(){
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
   $email = $data['docMail'];
@@ -333,6 +333,8 @@ post('/projet1/api/ratings', function (){
   $username = $data['username']??null;
   $stmt = $pdo->prepare('INSERT INTO EQ1_Avis (userId, recetteId, rating,commentaire,username) VALUES (?, ?, ?,?,?)');
   $stmt->execute([$email, $recetteId,$rating, $commentaire,$username]);
+  header('Content-Type: application/json');
+  echo json_encode(["message" => "Avis ajouté avec succès"]);   
 });
 
 post('/projet1/api/favori', function (){
@@ -342,6 +344,8 @@ post('/projet1/api/favori', function (){
   $recetteId = $data['recetteId'];
   $stmt = $pdo->prepare('INSERT INTO EQ1_Favoris (CompteEmail, RecetteId) VALUES (?, ?)');
   $stmt->execute([$email, $recetteId]);
+  header('Content-Type: application/json');
+  echo json_encode(["message" => "Recette ajoutée aux favoris avec succès"]);
 });
 
 any('/404', '/index.php');

@@ -1,9 +1,26 @@
 const urlParams = new URLSearchParams(window.location.search);
 const recetteId = urlParams.get('no');
+
 getInfo();
 getAvis();
+
 const email= sessionStorage.getItem("email")
 const username=sessionStorage.getItem("username")
+
+if(email==null||username==null){
+  var items = document.querySelectorAll('#interactionsRecette');
+  items.forEach(function(item) {
+    item.remove(); 
+  });
+  var section=document.querySelector('.posEval');
+  var indice =document.createElement('p').textContent="Vous devez être connecté pour interagir avec la recette"
+  section.append(indice);
+}
+else{
+  activerInteractions();
+
+}
+
 fetchRatings(recetteId)
  .then(ratings => {
    const averageRating = calculateAverageRating(ratings);
@@ -153,32 +170,56 @@ function calculateAverageRating(ratings) {
  return totalRating / ratings.length;
 }
 
-document.querySelector("#avisSubmit").addEventListener("click", async ()=>{
-  const commentaire = document.getElementById("commentaire").value;
-  const rating = document.getElementById("ratingValue").value;
-  if (rating!=0||commentaire!=null||commentaire!=""){
-    const avis ={recetteId,email, commentaire, rating, username}
+function activerInteractions(){
+  document.querySelector("#avisSubmit").addEventListener("click", async ()=>{
+    const commentaire = document.getElementById("commentaire").value;
+    const rating = document.getElementById("ratingValue").value;
+    if (rating!=0||commentaire!=null||commentaire!=""){
+      const avis ={recetteId,email, commentaire, rating, username}
+      try {
+        const response = await fetch("/projet1/api/ratings", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(avis),
+        });
+        if (!response.ok) { 
+          throw new Error("Failed to send data");
+        }
+        const responseData = await response.json();
+        console.log(responseData.message);
+        document.getElementById("commentaire").value = "";
+        document.getElementById("ratingValue").value = 0;
+        
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  })
+  document.querySelector("#addFavori").addEventListener("click", async ()=>{
+    const favori ={email,recetteId};
     try {
-      const response = await fetch("/projet1/api/ratings", {
+      const response = await fetch("/projet1/api/favori", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(avis),
+        body: JSON.stringify(favori),
       });
       if (!response.ok) { 
         throw new Error("Failed to send data");
       }
       const responseData = await response.json();
       console.log(responseData.message);
-      document.getElementById("commentaire").value = "";
-      document.getElementById("ratingValue").value = 0;
       showSnackbar();
     } catch (error) {
       console.error(error);
     }
-  }
-})
+  });
+  
+
+}
 
 function showSnackbar() {
   var snackbar = document.getElementById("snackbar");
@@ -208,23 +249,3 @@ function addCommentToPage(commentlist){
   });
 }
 
-document.querySelector("#addFavori").addEventListener("click", async ()=>{
-  const favori ={email,recetteId};
-  try {
-    const response = await fetch("/projet1/api/favori", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(favori),
-    });
-    if (!response.ok) { 
-      throw new Error("Failed to send data");
-    }
-    const responseData = await response.json();
-    console.log(responseData.message);
-    showSnackbar();
-  } catch (error) {
-    console.error(error);
-  }
-});

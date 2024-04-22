@@ -525,6 +525,11 @@
     border: solid aliceblue 3px;
     color: aliceblue;
 }
+#btnDeco:hover{
+    background-color: aliceblue;
+    color: rgb(0, 61, 126);
+    transition: 1s;
+}
 
 .avis-list_item {
     margin-bottom: 20px;
