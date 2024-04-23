@@ -207,7 +207,7 @@ function activerInteractions() {
         console.log(responseData.message);
         document.getElementById("commentaire").value = "";
         document.getElementById("ratingValue").value = 0;
-
+        location.reload();
       } catch (error) {
         console.error(error);
       }
