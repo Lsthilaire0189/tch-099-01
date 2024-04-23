@@ -115,7 +115,7 @@ post('/projet1/api/ajouterRecette', function (){
   $preparation=$data['tempsPreparation']??null;
   $cuisson=$data['tempsCuisson']??null;
   $portion=$data['portion']??null;
-  if(empty($nom)|| empty($pays)|| empty($regime)|| empty($typeAliment)|| empty($description)|| empty($recette)|| empty($img)|| empty($email)|| empty($ingredients)|| empty($preparation)|| empty($cuisson)|| empty($portion)){
+  if(empty($nom)|| empty($description)|| empty($recette)|| empty($img)|| empty($email)|| empty($ingredients)|| empty($preparation)|| empty($cuisson)|| empty($portion)){
     echo json_encode(["message" => "ca marche pas"]);
   }
   else{

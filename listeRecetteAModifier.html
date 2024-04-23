@@ -1,60 +1,70 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>listeRecettes.html</title>
-        <link rel="stylesheet" href="./style.css">
-    </head>
-    <body>
-        <main>
-            <header class="entete">
-                <a href="./index.php"><img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png" alt="Nom du site web"></a>
-                <a id ="idBtnConn" href="./pageUtilisateur.html" class="btnLogin">Mon compte</a>
-            </header>
-            <section id="modMsg">
-                <span>Veuillez sélectionner la recette à modifier.</span>
-            </section>
-            <section class="listeImagesFiltres">
-                <aside class="listeFiltres">
-                    <h1>Filtres de recherches</h1>
-                    <section >
-                        <label for="pays">Pays d'origine:</label>
-                        <select name="Pays" id="pays">
-                            <option value="">Veuillez sélectionner un pays</option>
-                            <option value="grec">Grec</option>
-                            <option value="algerien">Algérien</option>
-                            <option value="irlandais">Irlandais</option>
-                            <option value="etatsUnis">États-Unis</option>
-                            <option value="francais">Français</option>
-                            <option value="espagnole">Espagnole</option>
-                            <option value="mexicain">Mexicain</option>
-                            <option value="chinois">Chinois</option>
-                          </select>
-                          <label for="regimes">Régimes alimentaires:</label>
-                        <select name="Regimes" id="regimes">
-                            <option value="">Veuillez sélectionner un régime</option>
-                            <option value="vegetarien">Végétarien</option>
-                            <option value="sansGluten">Sans glutenne</option>
-                            <option value="proteines">Protéiné</option>
-                            <option value="vegan">Vegan</option>
-                          </select>
-                          <label for="regimes">Types d'aliments:</label>
-                          <select name="TypeAliments" id="typesAliments">
-                            <option value="">Veuillez sélectionner un aliment</option>
-                            <option value="poulet">Poulet</option>
-                            <option value="boeuf">Boeuf</option>
-                            <option value="porc">Porc</option>
-                            <option value="poisson">Poisson</option>
-                            <option value="patisserie">Pâtisserie</option>
-                            <option value="salade">Salade</option>
-                            <option value="pates">Pâtes</option>
-                          </select>
-                    </section>
-                </aside>
-                <ul id="liste"> </ul>
-            </section>
-        </main>
-        <footer class="footerParcourir"></footer>
-        <script src="listeRecetteAModifier.js"></script>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <title>listeRecettes.html</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <main>
+        <header class="entete">
+            <a href="./index.php"><img src="https://i.im.ge/2024/02/28/gvQxly.imagetest-Copie-2.png"
+                    alt="Nom du site web"></a>
+            <a id="idBtnConn" href="./pageUtilisateur.html" class="btnLogin">Mon compte</a>
+        </header>
+        <section id="modMsg">
+            <span>Veuillez sélectionner la recette à modifier.</span>
+        </section>
+        <section class="listeImagesFiltres">
+            <aside class="listeFiltres">
+                <h1>Filtres de recherches</h1>
+                <section>
+                    <label for="origine">Origine du plat:</label>
+                    <select name="origine" id="origine">
+                        <option value="">Veuillez sélectionner un pays</option>
+                        <option value="grec">Grec</option>
+                        <option value="algerien">Algérien</option>
+                        <option value="irlandais">Irlandais</option>
+                        <option value="etatsUnis">États-Unis</option>
+                        <option value="francais">Français</option>
+                        <option value="espagnole">Espagnole</option>
+                        <option value="mexicain">Mexicain</option>
+                        <option value="chinois">Chinois</option>
+                        <option value="italien">Italien</option>
+                    </select>
+                    <label for="regime">Régime alimentaire:</label>
+                    <select name="regime" id="regime">
+                        <option value="">Veuillez sélectionner un régime</option>
+                        <option value="vegetarien">Végétarien</option>
+                        <option value="sansGluten">Sans Gluten</option>
+                        <option value="proteines">Protéiné</option>
+                        <option value="vegan">Végétalien</option>
+                    </select>
+                    <label for="type">Types de recette: 
+                    </label>
+                    <select name="type" id="type">
+                        <option value="">Veuillez sélectionner le type de recette</option>
+                        <option value="patisserie">Pâtisserie</option>
+                        <option value="salade">Salade</option>
+                        <option value="pate">Pâte</option>
+                        <option value="bbq">BBQ</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="fumoir">Fumoir</option>
+                        <option value="fruitDeMer">Fruit de mer</option>
+                        <option value="soupe">Soupe</option>
+                    </select>
+                    <label for="ingredients">Ingrédients:</label>
+                    <input type="text" id="ingredients" name="ingredients">
+                    <button type="button" id="recherche">Rechercher</button>
+                </section>
+            </aside>
+            <ul id="liste"> </ul>
+        </section>
+    </main>
+    <footer class="footerParcourir"></footer>
+    <script src="listeRecetteAModifier.js"></script>
+</body>
+
 </html>
