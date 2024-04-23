@@ -13,7 +13,7 @@ document.querySelector("#btnConnexion").addEventListener("click",async()=>{
             body:JSON.stringify(compte),
         } );
         const responseData= await response.json();
-        if(responseData.connexion=="vrai")
+        if(responseData.connexion=="Connexion réussie")
         {
             sessionStorage.setItem('email',email);
             sessionStorage.setItem('username',responseData.username);
