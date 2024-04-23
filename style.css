@@ -805,3 +805,74 @@
     margin: 15px;
 }
 /* profil */
+#prof{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#n_prof{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    color: aliceblue;
+    padding: 30px;
+    background-color: rgb(2, 115, 152);
+    margin-top: 30px;
+    align-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+    border-radius: 7px;
+}
+#avis{
+    background-color: azure;
+    border: solid black 3px;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 7px;
+}
+.recetteProfil{
+    display: flex;
+    flex-direction: column;
+}
+.recetteProfil ul{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 30px;
+}
+.recetteProfil ul li{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(2, 115, 152);
+    padding: 30px;
+    border:solid black 3px;
+    border-radius: 7px;
+    margin: 30px;
+}
+.recetteProfil ul li img{
+    object-fit: contain;
+    width: 250px;
+    height: 250px;
+    border: solid 2px black;
+    border-radius: 5px;
+}
+.recetteProfil ul li a{
+    color: aliceblue;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    margin: 15px;
+    margin-bottom: 15px;
+}
+.recetteProfil h2{
+    color: aliceblue;
+    background-color: rgb(2, 115, 152);
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    margin: 15px;
+    margin-bottom: 15px;
+    border: solid black 3px;
+    border-radius: 7px;
+    padding: 30px;
+}
