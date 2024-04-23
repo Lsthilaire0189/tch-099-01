@@ -316,10 +316,11 @@ post('/projet1/api/pushModification', function(){
 
 post("/projet1/api/deleteAccount", function(){
   global $pdo;
-  $data = json_decode(file_get_contents('php://input'), true);
-  $email = $data['docMail'];
+  $json = json_decode(file_get_contents('php://input'), true);
+  $email = $json;
   $stmt = $pdo->prepare('DELETE FROM EQ1_Compte WHERE EQ1_Compte.email = ?');
   $stmt->execute([$email]);
+  header('Content-type: application/json');
 });
 
 get('/projet1/api/ratings/$recetteId', function($recetteId){
