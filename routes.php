@@ -143,9 +143,9 @@ post('/projet1/api/modifierRecette', function () {
   $data = json_decode($json, true);
   $id = $data['id'] ?? null;
   $nom = $data['nom'] ?? null;
-  $pays = isset($data['origine']) ? $data['origine'] : null;
+  $origine = isset($data['origine']) ? $data['origine'] : null;
   $regime = isset($data['regime']) ? $data['regime'] : null;
-  $typeAliment = isset($data['type']) ? $data['type'] : null;
+  $type = isset($data['type']) ? $data['type'] : null;
   $description = $data['description'] ?? null;
   $recette = $data['recette'] ?? null;
   $img = $data['img'] ?? null;
@@ -159,7 +159,7 @@ post('/projet1/api/modifierRecette', function () {
     echo json_encode(["message" => "ca marche pas"]);
   } else {
     $requete = $pdo->prepare("UPDATE EQ1_Recette SET `nom`=?, `origine`=?, `regime`=?, `type`=?, `description`=?, `etape`=?, `src`=?, `email`=?, `preparation`=?, `cuisson`=?, `portion`=? WHERE `id`=?");
-    $result = $requete->execute([$nom, $pays, $regime, $typeAliment, $description, $recette, $img, $email, $preparation, $cuisson, $portion, $id]);
+    $result = $requete->execute([$nom, $origine, $regime, $type, $description, $recette, $img, $email, $preparation, $cuisson, $portion, $id]);
     $requete1 = $pdo->prepare("DELETE FROM EQ1_Recette_Ingredient WHERE recette=?");
     $requete1->execute([$id]);
     foreach ($ingredients as $key => $row) {
@@ -167,7 +167,7 @@ post('/projet1/api/modifierRecette', function () {
       $requete2 = $pdo->prepare("INSERT INTO EQ1_Recette_Ingredient(ingredient, recette) values (?,?)");
       $requete2->execute([$row, $id]);
     }
-    echo json_encode(["message" => "ca marche"]);
+    echo json_encode($result);//["message" => "ca marche"]);
   }
 });
 function ajoutIngredient($ingredient)
@@ -319,41 +319,6 @@ foreach($results as $key =>$row){
 }
 header('Content-type: application/json');
 echo json_encode($results);
-});
-
-
-post('/projet1/api/filtrerIngredient', function () {
-  global $pdo;
-  $json = file_get_contents('php://input');
-  $data = json_decode($json, true);
-  $conditions = [];
-  $params = [];
-  $ingredients = isset ($data['ingredients']) ? $data['ingredients'] : null;
-  if ($ingredients !== null) {
-    $contitionsIngredient = [];
-    foreach ($ingredients as $ingredient) {
-      $contitionsIngredient[] = "`ingredient`=?";
-    }
-    $sqlIngredient = "SELECT * FROM `EQ1_Recette_Ingredient` INNER JOIN EQ1_Recette ON " . implode("AND", $conditions) . " WHERE " . implode(" OR ", $contitionsIngredient);
-    $requeteIngredient = $pdo->prepare($sqlIngredient);
-    $requeteIngredient->execute($ingredients);
-    $resultsIngredient = $requeteIngredient->fetchAll(PDO::FETCH_COLUMN);
-    // $conditionsId = [];
-    // foreach ($resultsIngredient as $rowIngredient) {
-    //   $conditionsId[] = "id=?";
-    //   $paramsId[] = $rowIngredient;
-    //   $sql = "SELECT * FROM EQ1_RECETTE WHERE " . implode(" OR ", $conditionsId);
-    // }
-    // $sql = "SELECT * FROM EQ1_Recette";
-    // if (!empty ($conditions)) {
-    //   $sql .= " WHERE " . implode("AND", $conditions);
-    //   $sql .= " AND " . implode(" OR ", $conditionsId);
-    // }
-    // $requete = $pdo->prepare($sql);
-    // $requete->execute($params);
-    // $results = $requete->fetchAll(PDO::FETCH_ASSOC);
-  }
-  echo json_encode($resultsIngredient);
 });
 
 // Fonction fetch Recette selon Utilisateur

@@ -67,9 +67,9 @@ async function addInfo(data)
 document.querySelector("#btnSend").addEventListener("click", async()=>{
     if (confirm("Voulez-vous sauvegarder votre recette?")) {
         const nom = document.getElementById("nom").value;
-        const pays = document.getElementById("origine").value;
+        const origine = document.getElementById("origine").value;
         const regime = document.getElementById("regime").value;
-        const typeAliment = document.getElementById("type").value;
+        const type = document.getElementById("type").value;
         const description = document.getElementById("description").value;
         const recette = document.getElementById("recette").value;
         const img = document.getElementById("img").value;
@@ -83,7 +83,7 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
 
     
         if(nom!=null&&description!=null&&recette!=null&&img!=null&&email!=null&&ingredients!=null&&tempsPreparation!=null&&tempsCuisson!=null&&portion!=null){
-            const newrecette={nom, pays, regime, typeAliment, description, recette, img, email,ingredients,tempsPreparation,tempsCuisson,portion, id };
+            const newrecette={nom, origine, regime, type, description, recette, img, email,ingredients,tempsPreparation,tempsCuisson,portion, id };
             const response= await fetch("/projet1/api/modifierRecette",{
                 method:"POST",
                 headers:{
@@ -94,7 +94,7 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
             if(response.ok)
             {
                 confirm("Votre recette est enregistrée.");
-                window.location.href = 'pageUtilisateur.html';
+                //window.location.href = 'pageUtilisateur.html';
             }
             else{
                 alert("Erreur lors de l'enregistrement");
