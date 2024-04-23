@@ -88,7 +88,7 @@ function addInfo(data) {
 
 
   const description = document.querySelector('#description');
-  description.textContent = data.Description;
+  description.textContent = data.description;
 
   const ingredients = document.querySelector('#ingredients');
   data.ingredients.forEach(ingredient => {

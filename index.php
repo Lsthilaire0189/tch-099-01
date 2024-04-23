@@ -26,11 +26,7 @@
             </section>
             <section class="ftrMenu">
                 <h1>Recettes favorites de nos utilisateurs!</h1>
-                <ul>
-                    <li><a href="./recette.html?no=1">Soupe aux tomates</a><span>Chef Thom</span><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png"></li>
-                    <li><a href="./recette.html?no=2">Sauté de crevettes</a><span>Chef Pierre</span><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png"></li>
-                    <li><a href="./recette.html?no=3">Toast aux pommes</a><span>Chef Albert</span><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png"></li>
-                    <li><a href="./recette.html?no=4">Burger Américain</a><span>Chef Fred</span><img src="https://assets.shop.loblaws.ca/products/20707829/b1/fr/front/20707829_front_a01_@2.png"></li>
+                <ul id="listeMeilleuresRecettes">
                 </ul>
             </section>
         </main>

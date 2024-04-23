@@ -408,6 +408,25 @@ get('/projet1/api/recetteChef/$mail', function($mail){
   echo json_encode($recette);
 });
 
+get('/projet1/api/getBestReview', function(){
+  global $pdo;
+  $stmt = $pdo->prepare('SELECT recetteId, AVG(rating) as average_rating FROM EQ1_Avis GROUP BY recetteId ORDER BY average_rating DESC limit 4');
+  $stmt->execute();
+  $recette= $stmt->fetchAll(PDO::FETCH_ASSOC);
+  foreach($recette as $key =>$row){
+    $recetteId=$row['recetteId'];
+    $stmt = $pdo->prepare('SELECT * From EQ1_Recette where id=?');
+    $stmt->execute([$recetteId]);
+    $recette[$key]['recette'] = $stmt->fetch();
+    $email=$row['email'];
+    $stmt = $pdo->prepare('SELECT * From EQ1_Compte where email=?');
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
+    $recette[$key]['prenom']=$user['prenom'];
+  }
+  echo json_encode($recette);
+});
+
 
 
 
