@@ -19,7 +19,7 @@ async function filtrer()
     let filtre={origine,regime,type,ingredients};
     
     try{
-        const response = await fetch("/projet1/api/filtrer",{
+        const response = await fetch("/projet1/api/filtrer1",{
             method:"POST",
             headers:{
                 "Content-Type":"application"

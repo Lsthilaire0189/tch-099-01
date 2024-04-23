@@ -26,7 +26,7 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
         const recette = document.getElementById("recette").value;
         const img = document.getElementById("img").value;
         const email= sessionStorage.getItem('email');
-        const ingredients = document.getElementById("ingredient").value.split(",");
+        const ingredients = document.getElementById("ingredient").value.split(",").map(item => item.trim());
         const tempsPreparation = document.getElementById("tempsPreparation").value;
         const tempsCuisson =document.getElementById("tempsCuisson").value;
         const portion = document.getElementById("portion").value;
