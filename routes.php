@@ -387,6 +387,14 @@ post('/projet1/api/enleverFavoris', function(){
   echo json_encode(["message" => "Recette retirée des favoris avec succès"]);
 });
 
+get('/projet1/api/recetteChef/$mail', function($mail){
+  global $pdo;
+  $stmt = $pdo->prepare('SELECT * From EQ1_Recette where email=?');
+  $stmt->execute([$mail]);
+  $recette= $stmt->fetchAll(PDO::FETCH_ASSOC);
+  echo json_encode($recette);
+});
+
 
 
 
