@@ -4,6 +4,7 @@ const email = sessionStorage.getItem("email")
 const username = sessionStorage.getItem("username")
 getInfo();
 getAvis();
+getAvisUtilisateur();
 
 if (email == null || username == null) {
   var items = document.querySelectorAll('#interactionsRecette');
@@ -119,11 +120,12 @@ function addInfo(data) {
   instruction.textContent = data.etape;
 
 }
-
+const commentaire = document.getElementById("commentaire").value;
+  const rating = document.getElementById("ratingValue").value;
 document.addEventListener('DOMContentLoaded', function () {
   const stars = document.querySelectorAll('.star');
   const ratingValue = document.getElementById('ratingValue');
-
+  
   stars.forEach(function (star) {
     star.addEventListener('click', function () {
       const rating = parseInt(star.getAttribute('data-value'));
@@ -157,11 +159,11 @@ document.addEventListener('DOMContentLoaded', function () {
     return document.querySelector('.stars').getAttribute('data-rating');
   }
 
-  function setRating(rating) {
+  
+});
+function setRating(rating) {
     document.querySelector('.stars').setAttribute('data-rating', rating);
   }
-});
-
 
 
 async function fetchRatings(recetteId) {
@@ -188,8 +190,29 @@ function calculateAverageRating(ratings) {
 
 function activerInteractions() {
   document.querySelector("#avisSubmit").addEventListener("click", async () => {
-    const commentaire = document.getElementById("commentaire").value;
-    const rating = document.getElementById("ratingValue").value;
+    let statut = await getAvisUtilisateur();
+    if(statut ==true){
+      if (rating != 0 || commentaire != null || commentaire != "") {
+        const avis = { recetteId, email, commentaire, rating }
+        try {
+          const response = await fetch("/projet1/api/updateRatings", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(avis),
+          });
+          if (!response.ok) {
+            throw new Error("Failed to send data");
+          }
+          const responseData = await response.json();
+          showSnackbar(responseData.message);
+          location.reload();
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    } else{
     if (rating != 0 || commentaire != null || commentaire != "") {
       const avis = { recetteId, email, commentaire, rating, username }
       try {
@@ -204,14 +227,13 @@ function activerInteractions() {
           throw new Error("Failed to send data");
         }
         const responseData = await response.json();
-        console.log(responseData.message);
-        document.getElementById("commentaire").value = "";
-        document.getElementById("ratingValue").value = 0;
+        showSnackbar(responseData.message);
         location.reload();
       } catch (error) {
         console.error(error);
       }
     }
+  }
   })
   
   
@@ -320,6 +342,35 @@ async function getEstFavoris() {
   }
 }
 
+async function getAvisUtilisateur(){
+  const mail = email
+  const recette = recetteId
+  if (mail != null) {
+    const verif = { mail, recette }
+    try {
+      const response = await fetch("/projet1/api/ratingUser", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(verif),
+      });
+      const data = await response.json();
+
+      if (data.result == "vrai") {
+        commentaire.textContent = data.commentaire;
+        setRating(data.rating);
+        return true
+      }
+      else {
+        return false
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
 
  
 async function modificationStatut() {
@@ -333,3 +384,15 @@ async function modificationStatut() {
   return statut;
 }
 modificationStatut();
+
+async function modificationAvis() {
+  const statut = await getAvisUtilisateur();
+  if (statut == true) {
+    document.querySelector("#avisSubmit").textContent = "Modifier votre avis"
+  }
+  else {
+    document.querySelector("#avisSubmit").textContent = "Envoyer votre avis"
+  }  
+  return statut;
+}
+modificationAvis();

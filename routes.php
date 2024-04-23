@@ -400,6 +400,35 @@ post('/projet1/api/enleverFavoris', function(){
   echo json_encode(["message" => "Recette retirée des favoris avec succès"]);
 });
 
+post('/projet1/api/ratingUser', function(){
+  global $pdo;
+  $data = json_decode(file_get_contents('php://input'), true);
+  $email = $data['mail'];
+  $recetteId = $data['recette'];
+  $stmt = $pdo->prepare('SELECT * FROM EQ1_Avis WHERE userId = ? AND recetteId = ?');
+  $stmt->execute([$email, $recetteId]);
+  $aAvis = $stmt->fetch();
+  if((bool)$aAvis!=null){
+    echo json_encode($aAvis,['result' => "vrai"]);
+  }
+  else{
+    echo json_encode($aAvis,['result' => "faux"] );
+  }
+});
+
+post('/projet1/api/updateRatings', function(){
+  global $pdo;
+  $data = json_decode(file_get_contents('php://input'), true);
+  $email = $data['mail'];
+  $recetteId = $data['recette'];
+  $commentaire = $data['commentaire'];
+  $rating = $data['rating'];
+  $stmt = $pdo->prepare('UPDATE EQ1_Avis SET commentaire = ?, rating = ? WHERE userId = ? AND recetteId = ?');
+  $stmt->execute([$commentaire, $rating, $email, $recetteId]);
+  header('Content-Type: application/json');
+  echo json_encode(["message" => "Avis modifié avec succès"]);
+});
+
 get('/projet1/api/recetteChef/$mail', function($mail){
   global $pdo;
   $stmt = $pdo->prepare('SELECT * From EQ1_Recette where email=?');
