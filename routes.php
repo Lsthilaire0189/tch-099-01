@@ -143,9 +143,9 @@ post('/projet1/api/modifierRecette', function () {
   $data = json_decode($json, true);
   $id = $data['id'] ?? null;
   $nom = $data['nom'] ?? null;
-  $pays = $data['pays'] ?? null;
-  $regime = $data['regime'] ?? null;
-  $typeAliment = $data['typeAliment'] ?? null;
+  $pays = isset($data['origine']) ? $data['origine'] : null;
+  $regime = isset($data['regime']) ? $data['regime'] : null;
+  $typeAliment = isset($data['type']) ? $data['type'] : null;
   $description = $data['description'] ?? null;
   $recette = $data['recette'] ?? null;
   $img = $data['img'] ?? null;
@@ -155,7 +155,7 @@ post('/projet1/api/modifierRecette', function () {
   $cuisson = $data['tempsCuisson'] ?? null;
   $portion = $data['portion'] ?? null;
 
-  if (empty ($id) || empty ($nom) || empty ($pays) || empty ($regime) || empty ($typeAliment) || empty ($description) || empty ($recette) || empty ($img) || empty ($email) || empty ($ingredients) || empty ($preparation) || empty ($cuisson) || empty ($portion)) {
+  if (empty ($id) || empty ($nom) || empty ($description) || empty ($recette) || empty ($img) || empty ($email) || empty ($ingredients) || empty ($preparation) || empty ($cuisson) || empty ($portion)) {
     echo json_encode(["message" => "ca marche pas"]);
   } else {
     $requete = $pdo->prepare("UPDATE EQ1_Recette SET `nom`=?, `origine`=?, `regime`=?, `type`=?, `description`=?, `etape`=?, `src`=?, `email`=?, `preparation`=?, `cuisson`=?, `portion`=? WHERE `id`=?");
@@ -170,7 +170,6 @@ post('/projet1/api/modifierRecette', function () {
     echo json_encode(["message" => "ca marche"]);
   }
 });
-
 function ajoutIngredient($ingredient)
 {
   global $pdo;

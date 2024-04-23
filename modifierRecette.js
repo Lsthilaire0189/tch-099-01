@@ -82,7 +82,7 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
 
 
     
-        if(nom!=null&&pays!=null&&regime!=null&&typeAliment!=null&&description!=null&&recette!=null&&img!=null&&email!=null&&ingredients!=null&&tempsPreparation!=null&&tempsCuisson!=null&&portion!=null){
+        if(nom!=null&&description!=null&&recette!=null&&img!=null&&email!=null&&ingredients!=null&&tempsPreparation!=null&&tempsCuisson!=null&&portion!=null){
             const newrecette={nom, pays, regime, typeAliment, description, recette, img, email,ingredients,tempsPreparation,tempsCuisson,portion, id };
             const response= await fetch("/projet1/api/modifierRecette",{
                 method:"POST",
