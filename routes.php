@@ -504,20 +504,20 @@ post('/projet1/api/ratingUser', function(){
   $recetteId = $data['recette'];
   $stmt = $pdo->prepare('SELECT * FROM EQ1_Avis WHERE userId = ? AND recetteId = ?');
   $stmt->execute([$email, $recetteId]);
-  $aAvis = $stmt->fetch();
+  $aAvis = $stmt->fetch(PDO::FETCH_ASSOC);
   if((bool)$aAvis!=null){
-    echo json_encode($aAvis,['result' => "vrai"]);
+    echo json_encode(['result' => "vrai",$aAvis]);
   }
   else{
-    echo json_encode($aAvis,['result' => "faux"] );
+    echo json_encode(['result' => "faux",$aAvis] );
   }
 });
 
 post('/projet1/api/updateRatings', function(){
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
-  $email = $data['mail'];
-  $recetteId = $data['recette'];
+  $email = $data['email'];
+  $recetteId = $data['recetteId'];
   $commentaire = $data['commentaire'];
   $rating = $data['rating'];
   $stmt = $pdo->prepare('UPDATE EQ1_Avis SET commentaire = ?, rating = ? WHERE userId = ? AND recetteId = ?');

@@ -191,6 +191,8 @@ function calculateAverageRating(ratings) {
 function activerInteractions() {
   document.querySelector("#avisSubmit").addEventListener("click", async () => {
     let statut = await getAvisUtilisateur();
+    const commentaire = document.getElementById("commentaire").value;
+    const rating = document.getElementById("ratingValue").value;
     if(statut ==true){
       if (rating != 0 || commentaire != null || commentaire != "") {
         const avis = { recetteId, email, commentaire, rating }
@@ -358,7 +360,8 @@ async function getAvisUtilisateur(){
       const data = await response.json();
 
       if (data.result == "vrai") {
-        commentaire.textContent = data.commentaire;
+        const commentaire = document.getElementById("commentaire");
+        commentaire.textContent = data[0].commentaire;
         setRating(data.rating);
         return true
       }
