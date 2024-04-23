@@ -757,3 +757,41 @@
     margin-bottom: 40px;
     border-radius: 5px;
 }
+/* favoris */
+#fav h1{
+    background-color: rgb(2, 115, 152);
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    padding: 25px;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 7px;
+    border: solid aliceblue 3px;
+    color: aliceblue;
+}
+#fav{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#fav ul img{
+    object-fit: contain;
+    width: 250px;
+    height: 250px;
+    border: solid 2px black;
+    border-radius: 5px;
+}
+#fav ul{
+    background-color: rgb(2, 115, 152);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: solid black 3px;
+    border-radius: 7px;
+    color:aliceblue;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+}

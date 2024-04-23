@@ -115,21 +115,27 @@ post('/projet1/api/ajouterRecette', function (){
   $preparation=$data['tempsPreparation']??null;
   $cuisson=$data['tempsCuisson']??null;
   $portion=$data['portion']??null;
-  if(empty($nom)|| empty($description)|| empty($recette)|| empty($img)|| empty($email)|| empty($ingredients)|| empty($preparation)|| empty($cuisson)|| empty($portion)){
-    echo json_encode(["message" => "stop"]);
+  if (empty($nom) || empty($description) || empty($recette) || empty($img) || empty($email) || empty($ingredients) || empty($preparation) || empty($cuisson) || empty($portion)) {
+    echo json_encode(["message" => "Missing required fields"]);
+    return;
   }
-  else{
-        $requete = $pdo->prepare("INSERT INTO EQ1_Recette(`id`, `nom`, `origine`, `regime`, `type`, `description`, `etape`, `src`, `email`, `preparation`, `cuisson`, `portion`) values (?,?,?,?,?,?,?,?,?,?,?,?)");
-        $result =$requete->execute([null,$nom, $pays, $regime, $typeAliment, $description, $recette, $img, $email, $preparation, $cuisson, $portion]);
-        $requete1=$pdo->prepare("SELECT id from EQ1_Recette where nom=?");  
-        $requete1->execute([$nom]);
-        $id=$requete1->fetch(PDO::FETCH_COLUMN);
-      foreach($ingredients as $key =>$row){
-        ajoutIngredient($row);
-        $requete2=$pdo->prepare("INSERT INTO EQ1_Recette_Ingredient(ingredient, recette) values (?,?)");
-        $requete2->execute([$row, $id]);
-      }
-      echo json_encode(["message" => "ca marche"]);
+
+  try {
+    $requete = $pdo->prepare("INSERT INTO EQ1_Recette(`nom`, `origine`, `regime`, `type`, `description`, `etape`, `src`, `email`, `preparation`, `cuisson`, `portion`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $requete->execute([$nom, $data['pays'] ?? null, $data['regime'] ?? null, $data['typeAliment'] ?? null, $description, $recette, $img, $email, $preparation, $cuisson, $portion]);
+
+    $id = $pdo->lastInsertId();
+
+    // Insert ingredients
+    foreach ($ingredients as $ingredient) {
+      ajoutIngredient($ingredient);
+      $requete2 = $pdo->prepare("INSERT INTO EQ1_Recette_Ingredient(ingredient, recette) VALUES (?, ?)");
+      $requete2->execute([$ingredient, $id]);
+    }
+
+    echo json_encode(["message" => "Success"]);
+  } catch (PDOException $e) {
+    echo json_encode(["error" => $e->getMessage()]);
   }
 });
 

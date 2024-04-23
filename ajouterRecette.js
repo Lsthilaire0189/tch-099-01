@@ -40,14 +40,14 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
                 },
                 body:JSON.stringify(newrecette),
             } );
-            if(response.ok)
-            {
-                if(response.message != stop){
+            if(response.ok){
+                const responseData = await response.json();
+                if(responseData.message == "Success"){
                     confirm("Votre recette est enregistrée.");
                     window.location.href = 'pageUtilisateur.html';
                 }
                 else{
-                    alert("Veuillez remplire tous les champs");
+                    alert(responseData.error);
                 }
             }
             else{
