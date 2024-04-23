@@ -429,7 +429,7 @@ get('/projet1/api/getBestReview', function(){
 
 get('/projet1/api/AVGRatings/$mail', function($mail){
   global $pdo;
-  $stmt = $pdo->prepare('SELECT AVG(EQ1_Avis.rating) as average
+  $stmt = $pdo->prepare('SELECT ROUND(AVG(EQ1_Avis.rating),2) as average
   FROM EQ1_Avis 
   INNER JOIN EQ1_Recette ON EQ1_Recette.id = EQ1_Avis.recetteId
   INNER JOIN EQ1_Compte on EQ1_Compte.email = EQ1_Recette.email
