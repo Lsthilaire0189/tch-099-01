@@ -88,7 +88,7 @@ post('/projet1/api/connexion', function () {
     $stmt->execute([$email, $password]);
     $user = $stmt->fetch();
     if ((bool) $user != null) {
-      echo json_encode(["connexion" => "Connexion réussie", "username" => $user['username']]);
+      echo json_encode(["connexion" => "Connexion réussie", "username" => $user['username'],"email" => $user['email'],"prenom" => $user['prenom'],"nomDeFamille" => $user['nomDeFamille'], "dateDeNaissance" =>$user['dateDeNaissance'], "password" =>$user['password']]);
     } else {
       echo json_encode(["connexion" => "faux"]);
     }
