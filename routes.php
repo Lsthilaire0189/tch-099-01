@@ -115,8 +115,8 @@ post('/projet1/api/ajouterRecette', function (){
   $preparation=$data['tempsPreparation']??null;
   $cuisson=$data['tempsCuisson']??null;
   $portion=$data['portion']??null;
-  if(empty($nom)|| empty($pays)|| empty($regime)|| empty($typeAliment)|| empty($description)|| empty($recette)|| empty($img)|| empty($email)|| empty($ingredients)|| empty($preparation)|| empty($cuisson)|| empty($portion)){
-    echo json_encode(["message" => "ca marche pas"]);
+  if(empty($nom)|| empty($description)|| empty($recette)|| empty($img)|| empty($email)|| empty($ingredients)|| empty($preparation)|| empty($cuisson)|| empty($portion)){
+    echo json_encode(["message" => "stop"]);
   }
   else{
         $requete = $pdo->prepare("INSERT INTO EQ1_Recette(`id`, `nom`, `origine`, `regime`, `type`, `description`, `etape`, `src`, `email`, `preparation`, `cuisson`, `portion`) values (?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -385,6 +385,14 @@ post('/projet1/api/enleverFavoris', function(){
   $stmt->execute([$email, $recetteId]);
   header('Content-Type: application/json');
   echo json_encode(["message" => "Recette retirée des favoris avec succès"]);
+});
+
+get('/projet1/api/recetteChef/$mail', function($mail){
+  global $pdo;
+  $stmt = $pdo->prepare('SELECT * From EQ1_Recette where email=?');
+  $stmt->execute([$mail]);
+  $recette= $stmt->fetchAll(PDO::FETCH_ASSOC);
+  echo json_encode($recette);
 });
 
 
