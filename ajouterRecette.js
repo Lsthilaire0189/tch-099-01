@@ -42,8 +42,13 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
             } );
             if(response.ok)
             {
-                confirm("Votre recette est enregistrée.");
-                //window.location.href = 'pageUtilisateur.html';
+                if(response.message != stop){
+                    confirm("Votre recette est enregistrée.");
+                    window.location.href = 'pageUtilisateur.html';
+                }
+                else{
+                    alert("Veuillez remplire tous les champs");
+                }
             }
             else{
                 alert("Erreur lors de l'enregistrement");

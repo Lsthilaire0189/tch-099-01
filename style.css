@@ -483,12 +483,16 @@
     border-radius: 10px;
     border: solid aliceblue 3px;
 }
+#ingre h1{
+    color:aliceblue;
+}
 #ingre ul{
     background-color: aliceblue;
     padding: 10px;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1rem;
     border-radius: 7px;
+    color: black;
 }
 
 .recette{
@@ -504,13 +508,16 @@
 }
 #prepa{
     background-color: rgb(0, 61, 126);
-    color:aliceblue;
+    color: black;
     display: flex;
     flex-direction: column;
     text-align: left;
     padding: 10px;
     border-radius: 10px;
     border: solid aliceblue 3px;
+}
+#prepa h1{
+    color: aliceblue;
 }
 #prepa ul{
     background-color: aliceblue;
@@ -570,6 +577,7 @@
 .evalRecette form textarea{
     width: 300px;
     border-radius: 7px;
+    color: black;
 }
 .evalRecette form{
     display: flex;

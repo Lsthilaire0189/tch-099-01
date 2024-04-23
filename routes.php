@@ -116,7 +116,7 @@ post('/projet1/api/ajouterRecette', function (){
   $cuisson=$data['tempsCuisson']??null;
   $portion=$data['portion']??null;
   if(empty($nom)|| empty($description)|| empty($recette)|| empty($img)|| empty($email)|| empty($ingredients)|| empty($preparation)|| empty($cuisson)|| empty($portion)){
-    echo json_encode(["message" => "ca marche pas"]);
+    echo json_encode(["message" => "stop"]);
   }
   else{
         $requete = $pdo->prepare("INSERT INTO EQ1_Recette(`id`, `nom`, `origine`, `regime`, `type`, `description`, `etape`, `src`, `email`, `preparation`, `cuisson`, `portion`) values (?,?,?,?,?,?,?,?,?,?,?,?)");
