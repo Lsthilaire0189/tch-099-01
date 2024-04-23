@@ -4,7 +4,7 @@ const mail = urlParams.get('chef');
 getInfoChef();
 console.log(mail);
 getRecetteChef();
-
+fetchRatings();
 const ulElement = document.getElementById("liste");
 
 async function getInfoChef() {
@@ -38,6 +38,25 @@ async function getRecetteChef(){
         }
   }
 
+  async function fetchRatings() {
+    try {
+      const response = await fetch(`/projet1/api/AVGRatings/${mail}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch ratings');
+      }
+      const ratings = await response.json();
+      ajusterAVG(ratings);
+    } catch (error) {
+      console.error('Error fetching ratings:', error);
+      return [];
+    }
+   }
+
+   function ajusterAVG(rating){
+    var avisMoyen = document.getElementById('avis');
+    var average = rating.average;
+    avisMoyen.textContent = "Avis moyen: " + average.toFixed(2);
+   }
 
 function addInfoChef(data){
     const nom =document.querySelector('#nom');
