@@ -39,7 +39,7 @@ async function getInfo() {
       if (response.ok) {
         const data = await response.json();
         addInfo(data);
-
+        console.log(data)
       } else {
         console.error('API request failed:', response.status);
       }
@@ -72,6 +72,24 @@ async function getAvis() {
 function addInfo(data) {
   const titre = document.querySelector('#nomRecette');
   titre.textContent = data.nom;
+
+  const ori = document.querySelector('#origine')
+  ori.append(data.origine)
+  if(data.origine == ""){
+    ori.append("aucuneorigine")
+  }
+
+  const reg = document.querySelector('#regime')
+  reg.append(data.regime);
+  if(data.regime == ""){
+    reg.append("aucunregime")
+  }
+
+  const ty = document.querySelector('#type')
+  ty.append(data.type);
+  if(data.type == ""){
+    ty.append("aucuntype")
+  }
 
   const image = document.querySelector('#image_recette');
   image.src = data.src;

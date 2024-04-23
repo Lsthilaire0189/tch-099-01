@@ -342,10 +342,10 @@ get('/projet1/api/favori/$email', function($email){
     $stmt = $pdo->prepare('SELECT * From EQ1_Compte where email=?');
     $stmt->execute([$email]);
     $user = $stmt->fetch();
-    $results[$key]['prenom']=$user['prenom'];
+    $favori[$key]['prenom']=$user['prenom'];
   }
   header('Content-Type: application/json');
-  echo json_encode($results);
+  echo json_encode($favori);
 });
 
 post('/projet1/api/ratings', function (){
@@ -427,7 +427,17 @@ get('/projet1/api/getBestReview', function(){
   echo json_encode($recette);
 });
 
-
+get('/projet1/api/AVGRatings/$mail', function($mail){
+  global $pdo;
+  $stmt = $pdo->prepare('SELECT AVG(EQ1_Avis.rating) as average
+  FROM EQ1_Avis 
+  INNER JOIN EQ1_Recette ON EQ1_Recette.id = EQ1_Avis.recetteId
+  INNER JOIN EQ1_Compte on EQ1_Compte.email = EQ1_Recette.email
+  WHERE EQ1_Compte.email = ?');
+  $stmt->execute([$mail]);
+  $rating= $stmt->fetch();
+  echo json_encode($rating);
+});
 
 
 any('/404', '/index.php');

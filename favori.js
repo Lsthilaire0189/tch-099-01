@@ -32,6 +32,7 @@ function addElements(data)
             nomRecette.href= "./recette.html?no="+recette.id;
             const chef = document.createElement('a');
             chef.textContent = "Chef " + recette.prenom;
+            chef.href = "./profil.html?chef=" + recette.email;
             const img = document.createElement('img');
             img.src = recette.src;
             recetteFiche.append(nomRecette, chef, img);
