@@ -337,8 +337,15 @@ get('/projet1/api/favori/$email', function($email){
   WHERE EQ1_Favoris.CompteEmail = ?');
   $stmt->execute([$email]);
   $favori = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  foreach($favori as $key =>$row){
+    $email=$row['email'];
+    $stmt = $pdo->prepare('SELECT * From EQ1_Compte where email=?');
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
+    $results[$key]['prenom']=$user['prenom'];
+  }
   header('Content-Type: application/json');
-  echo json_encode($favori);
+  echo json_encode($results);
 });
 
 post('/projet1/api/ratings', function (){

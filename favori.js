@@ -32,7 +32,6 @@ function addElements(data)
             nomRecette.href= "./recette.html?no="+recette.id;
             const chef = document.createElement('a');
             chef.textContent = "Chef " + recette.prenom;
-            chef.href = "./profil.html?no=" + recette.email;
             const img = document.createElement('img');
             img.src = recette.src;
             recetteFiche.append(nomRecette, chef, img);
@@ -41,10 +40,7 @@ function addElements(data)
     }
 }
 async function getFavori() {
-    console.log('Bonjour');
     const response = await fetch(`/projet1/api/favori/${email}`);
     const favori = await response.json();
-    console.log(response.message);
-    console.log(favori);
     addElements(favori);
 }
