@@ -116,7 +116,7 @@ function addInfo(data) {
   });
 
   const instruction = document.querySelector('#instructions');
-  instruction.textContent = data.etape;
+  instruction.innerHTML = data.etape.replace(/\n/g, '<br>');
 
 }
 
