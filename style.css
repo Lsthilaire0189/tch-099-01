@@ -770,9 +770,8 @@
     border: solid aliceblue 3px;
     color: aliceblue;
 }
-#fav{
+#fav ul{
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -783,10 +782,10 @@
     border: solid 2px black;
     border-radius: 5px;
 }
-#fav ul{
-    background-color: rgb(2, 115, 152);
+#fav ul li{
     display: flex;
     flex-direction: column;
+    background-color: rgb(2, 115, 152);
     padding: 20px;
     border: solid black 3px;
     border-radius: 7px;
@@ -794,4 +793,14 @@
     text-decoration: none;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1rem;
+    margin: 35px;
+    align-content: center;
+    align-items: center;
+}
+#fav ul li a{
+    color: aliceblue;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    margin: 15px;
 }
