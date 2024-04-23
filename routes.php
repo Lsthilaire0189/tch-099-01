@@ -32,16 +32,16 @@ post('/projet1/api/ajouterCompte', function (){
     $nomDeFamille = $data['nom']??null;
     $dateDeNaissance = $data['dateNaissance']??null;
     if(empty($email)|| empty($username)|| empty($password)|| empty($prenom)|| empty($nomDeFamille)|| empty($dateDeNaissance)){
-      echo json_encode(["message" => "Veuillez remplire tous les champs"]);
+      echo json_encode(["message" => "Veuillez remplir tous les champs"]);
     }
     else if(usernameExist($pdo, $username)){
-      echo json_encode(["message" => "Le nom d'utilisateur est déja utiliser."]);
+      echo json_encode(["message" => "Le nom d'utilisateur est déjà utilisé."]);
     }
     else if(usernameValide($username)){
       echo json_encode(["message" => "Le nom d'utilisateur est trop grand"]);
     }
     else if(emailExists($pdo, $email)){
-      echo json_encode(["message" => "L'adresse courriel est déja utiliser."]);
+      echo json_encode(["message" => "L'adresse courriel est déjà utilisée."]);
     }
     else if(emailInvalide($email)){
       echo json_encode(["message" => "L'adresse courriel n'est pas reconnue comme une adresse valide"]);
