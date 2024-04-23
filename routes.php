@@ -82,13 +82,13 @@ post('/projet1/api/connexion', function () {
   $email = $data['email'] ?? null;
   $password = $data['password'] ?? null;
   if (empty ($email) || empty ($password)) {
-    echo json_encode(["message" => "ca marche"]);
+    echo json_encode(["connexion" => "Champs manquant(s)"]);
   } else {
     $stmt = $pdo->prepare("SELECT * FROM EQ1_Compte WHERE email = ? AND password = ?");
     $stmt->execute([$email, $password]);
     $user = $stmt->fetch();
     if ((bool) $user != null) {
-      echo json_encode(["connexion" => "vrai", "username" => $user['username']]);
+      echo json_encode(["connexion" => "Connexion réussie", "username" => $user['username']]);
     } else {
       echo json_encode(["connexion" => "faux"]);
     }
