@@ -415,14 +415,14 @@ get('/projet1/api/getBestReview', function(){
   $recette= $stmt->fetchAll(PDO::FETCH_ASSOC);
   foreach($recette as $key =>$row){
     $recetteId=$row['recetteId'];
-    $stmt = $pdo->prepare('SELECT * From EQ1_Recette where id=?');
+    $stmt = $pdo->prepare('SELECT * From `EQ1_Recette` where `id`=?');
     $stmt->execute([$recetteId]);
     $recette[$key]['recette'] = $stmt->fetch();
-    $email=$row['email'];
-    $stmt = $pdo->prepare('SELECT * From EQ1_Compte where email=?');
+    $email = $recette[$key]['recette']['email'];
+    $stmt = $pdo->prepare('SELECT `prenom` From `EQ1_Compte` where `email`=?');
     $stmt->execute([$email]);
-    $user = $stmt->fetch();
-    $recette[$key]['prenom']=$user['prenom'];
+    $recette[$key]['recette']['prenom'] = $stmt->fetch(PDO::FETCH_COLUMN);
+
   }
   echo json_encode($recette);
 });
