@@ -36,14 +36,14 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
             const response= await fetch("/projet1/api/ajouterRecette",{
                 method:"POST",
                 headers:{
-                    "Content-Type":"application"
+                    "Content-Type":"application/json"
                 },
                 body:JSON.stringify(newrecette),
             } );
             if(response.ok)
             {
                 confirm("Votre recette est enregistrée.");
-                window.location.href = 'pageUtilisateur.html';
+                //window.location.href = 'pageUtilisateur.html';
             }
             else{
                 alert("Erreur lors de l'enregistrement");
