@@ -54,8 +54,7 @@ async function getRecetteChef(){
 
    function ajusterAVG(rating){
     var avisMoyen = document.getElementById('avis');
-    var average = rating.average;
-    avisMoyen.textContent = "Avis moyen: " + average.toFixed(2);
+    avisMoyen.textContent = "Avis moyen: " + rating.average;
    }
 
 function addInfoChef(data){
