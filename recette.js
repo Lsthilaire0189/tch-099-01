@@ -195,10 +195,10 @@ function activerInteractions() {
       }
     }
   })
-
-  let statut = getEstFavoris();
-
-  document.querySelector("#addFavori").addEventListener("click", async () => {
+  
+  
+document.querySelector("#addFavori").addEventListener("click", async () => {
+  let statut = await getEstFavoris();
     if (statut == true) {
       const favori = { email, recetteId };
       try {
@@ -206,7 +206,7 @@ function activerInteractions() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-          },
+          },    
           body: JSON.stringify(favori),
         });
         if (!response.ok) {
@@ -286,7 +286,9 @@ async function getEstFavoris() {
         },
         body: JSON.stringify(verif),
       });
-      if (response.result === "vrai") {
+      const data = await response.json();
+
+      if (data.result == "vrai") {
         console.log("YES")
         return true
       }
@@ -300,9 +302,10 @@ async function getEstFavoris() {
   }
 }
 
-modificationStatut();   
-function modificationStatut() {
-  let statut = getEstFavoris();
+
+ 
+async function modificationStatut() {
+  const statut = await getEstFavoris();
   if (statut == true) {
     document.querySelector("#addFavori").textContent = "Retirer des favoris"
   }
@@ -311,3 +314,4 @@ function modificationStatut() {
   }  
   return statut;
 }
+modificationStatut();
