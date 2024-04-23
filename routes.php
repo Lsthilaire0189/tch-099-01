@@ -342,10 +342,10 @@ get('/projet1/api/favori/$email', function($email){
     $stmt = $pdo->prepare('SELECT * From EQ1_Compte where email=?');
     $stmt->execute([$email]);
     $user = $stmt->fetch();
-    $results[$key]['prenom']=$user['prenom'];
+    $favori[$key]['prenom']=$user['prenom'];
   }
   header('Content-Type: application/json');
-  echo json_encode($results);
+  echo json_encode($favori);
 });
 
 post('/projet1/api/ratings', function (){
