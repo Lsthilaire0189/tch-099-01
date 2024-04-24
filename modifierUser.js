@@ -63,7 +63,7 @@ document.getElementById('modifyAccount').addEventListener("click", async()=>{
                 confirm("Votre modification est enregistrée.");
                 sessionStorage.setItem("email", docMail)
                 sessionStorage.setItem("username", docUsername)
-                //window.location.href = 'pageUtilisateur.html'; 
+                window.location.href = 'pageUtilisateur.html'; 
             }
             else{
                 confirm("Erreur lors de la modification."+data.message);

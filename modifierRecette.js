@@ -47,7 +47,7 @@ async function addInfo(data)
     const recette = document.getElementById("recette");
     const img = document.getElementById("img");
     const email= sessionStorage.getItem('email');
-    const ingredients = document.getElementById("ingredient");
+    const list= document.getElementById("list");
     const tempsPreparation =document.getElementById("tempsPreparation");
     const tempsCuisson = document.getElementById("tempsCuisson");
     const portion = document.getElementById("portion");
@@ -58,12 +58,43 @@ async function addInfo(data)
     description.value = data.description;
     recette.value = data.etape;
     img.value = data.src;
-    ingredients.value = data.ingredients;
     tempsPreparation.value = data.preparation;
     tempsCuisson.value = data.cuisson;
     portion.value = data.portion;
+    for (let i = 0; i < data.ingredients.length; i++) {
+        const list = document.getElementById("list");
+        const li = document.createElement("li");
+        const textarea = document.createElement("textarea");
+        textarea.setAttribute("class", "ingredient");
+        textarea.value = data.ingredients[i];
+        const textarea2= document.createElement("textarea");
+        textarea2.setAttribute("class", "quantite");
+        textarea2.value = data.quantite[i];
+        li.appendChild(textarea);
+        li.appendChild(textarea2);
+        list.appendChild(li);
     
 }
+document.querySelector("#btnAdd").addEventListener("click", async()=>{
+
+    const list = document.getElementById("list");
+    const li = document.createElement("li");
+    const textarea = document.createElement("textarea");
+    textarea.setAttribute("class", "ingredient");
+    const textarea2= document.createElement("textarea");
+    textarea2.setAttribute("class", "quantite");
+    li.appendChild(textarea);
+    li.appendChild(textarea2);
+    list.appendChild(li);
+  });
+
+document.querySelector("#btnRemove").addEventListener("click", async()=>{
+const list = document.getElementById("list");
+if(list.children.length>0){
+    list.removeChild(list.lastChild);
+}
+});
+
 document.querySelector("#btnSend").addEventListener("click", async()=>{
     if (confirm("Voulez-vous sauvegarder votre recette?")) {
         const nom = document.getElementById("nom").value;
@@ -74,16 +105,26 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
         const recette = document.getElementById("recette").value;
         const img = document.getElementById("img").value;
         const email= sessionStorage.getItem('email');
-        const ingredients = document.getElementById("ingredient").value.split(",");
-        const tempsPreparation =parseInt( document.getElementById("tempsPreparation").value);
-        const tempsCuisson =parseInt( document.getElementById("tempsCuisson").value);
-        const portion = parseInt( document.getElementById("portion").value);
+        const tempsPreparation =document.getElementById("tempsPreparation").value;
+        const tempsCuisson =document.getElementById("tempsCuisson").value;
+        const portion = document.getElementById("portion").value;
         const id = parseInt( recetteId);
 
+        const listItems = document.querySelectorAll("#list li textarea.ingredient");
+        const ingredients = [];
+        listItems.forEach((item) => {
+          ingredients.push(item.value.toLowerCase());
+        });
+        console.log("Data in each item:", ingredients);
+        const listItems2 = document.querySelectorAll("#list li textarea.quantite");
+        const quantite= [];
+        listItems2.forEach((item) => {
+          quantite.push(item.value.toLowerCase());
+        });
+        console.log("Data in each item:", quantite);
 
-    
-        if(nom!=null&&description!=null&&recette!=null&&img!=null&&email!=null&&ingredients!=null&&tempsPreparation!=null&&tempsCuisson!=null&&portion!=null){
-            const newrecette={nom, origine, regime, type, description, recette, img, email,ingredients,tempsPreparation,tempsCuisson,portion, id };
+        if(nom!=null&&description!=null&&recette!=null&&img!=null&&email!=null&&ingredients!=null&&tempsPreparation!=null&&tempsCuisson!=null&&portion!=null&&quantite!=null&&ingredients.length==quantite.length){
+            const newrecette={nom, origine, regime, type, description, recette, img, email,ingredients,tempsPreparation,tempsCuisson,portion, id, quantite};
             const response= await fetch("/projet1/api/modifierRecette",{
                 method:"POST",
                 headers:{
@@ -94,7 +135,7 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
             if(response.ok)
             {
                 confirm("Votre recette est enregistrée.");
-                //window.location.href = 'pageUtilisateur.html';
+                window.location.href = 'pageUtilisateur.html';
             }
             else{
                 alert("Erreur lors de l'enregistrement");
@@ -122,4 +163,4 @@ document.querySelector("#btnDelete").addEventListener("click", async()=>{
             alert("Erreur lors de la suppression");
         }
     }
-})
+})}

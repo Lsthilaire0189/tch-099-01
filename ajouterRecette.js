@@ -28,6 +28,13 @@ document.querySelector("#btnAdd").addEventListener("click", async()=>{
         list.appendChild(li);
       });
 
+document.querySelector("#btnRemove").addEventListener("click", async()=>{
+    const list = document.getElementById("list");
+    if(list.children.length>0){
+        list.removeChild(list.lastChild);
+    }
+  });
+
 document.querySelector("#btnSend").addEventListener("click", async()=>{
     if (confirm("Voulez-vous sauvegarder votre recette?")) {
         const nom = document.getElementById("nom").value;
@@ -45,13 +52,13 @@ document.querySelector("#btnSend").addEventListener("click", async()=>{
         const listItems = document.querySelectorAll("#list li textarea.ingredient");
         const ingredients = [];
         listItems.forEach((item) => {
-          ingredients.push(item.value);
+          ingredients.push(item.value.toLowerCase());
         });
         console.log("Data in each item:", ingredients);
         const listItems2 = document.querySelectorAll("#list li textarea.quantite");
         const quantite= [];
         listItems2.forEach((item) => {
-          quantite.push(item.value);
+          quantite.push(item.value.toLowerCase());
         });
         console.log("Data in each item:", quantite);
     

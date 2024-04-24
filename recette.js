@@ -110,11 +110,11 @@ function addInfo(data) {
   description.textContent = data.description;
 
   const ingredients = document.querySelector('#ingredients');
-  data.ingredients.forEach(ingredient => {
+  for(let i=0; i<data.ingredients.length; i++){
     const li = document.createElement('li');
-    li.textContent = ingredient;
+    li.textContent = data.quantite[i]+" "+ data.ingredients[i]
     ingredients.appendChild(li);
-  });
+  };
 
   const instruction = document.querySelector('#instructions');
   instruction.innerHTML = data.etape.replace(/\n/g, '<br>');
