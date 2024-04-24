@@ -499,7 +499,7 @@ get('/projet1/api/infosRecette/$idrecette', function ($idrecette){
   echo json_encode($recetteIngredients);
 });
 
-put('/projet1/api/modifRecete', function() {
+post('/projet1/api/modifRecete', function() {
   global $pdo;
   $data = json_decode(file_get_contents('php://input'), true);
   $id = $data['id']; // Assuming you send the ID of the Avis to update
