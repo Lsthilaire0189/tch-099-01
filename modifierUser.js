@@ -57,10 +57,18 @@ document.getElementById('modifyAccount').addEventListener("click", async()=>{
                 },
                 body:JSON.stringify(compte)
             })
-            confirm("Votre modification est enregistrée.");
-            sessionStorage.setItem("email", docMail)
-            sessionStorage.setItem("username", docUsername)
-            window.location.href = 'pageUtilisateur.html'; 
+            const data = await rep.json();
+            if(data.message == "Compte modifié avec succès")
+            {
+                confirm("Votre modification est enregistrée.");
+                sessionStorage.setItem("email", docMail)
+                sessionStorage.setItem("username", docUsername)
+                //window.location.href = 'pageUtilisateur.html'; 
+            }
+            else{
+                confirm("Erreur lors de la modification."+data.message);
+            }
+            
         }
     }
 })

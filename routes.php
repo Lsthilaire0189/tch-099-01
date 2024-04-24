@@ -110,10 +110,11 @@ post('/projet1/api/ajouterRecette', function () {
   $img = $data['img'] ?? null;
   $email = $data['email'] ?? null;
   $ingredients = $data['ingredients'] ?? null;
+  $quantite = $data['quantite'] ?? null;
   $preparation = $data['tempsPreparation'] ?? null;
   $cuisson = $data['tempsCuisson'] ?? null;
   $portion = $data['portion'] ?? null;
-  if (empty ($nom) || empty ($description) || empty ($recette) || empty ($img) || empty ($email) || empty ($ingredients) || empty ($preparation) || empty ($cuisson) || empty ($portion)) {
+  if (empty ($nom) || empty ($description) || empty ($recette) || empty ($img) || empty ($email) || empty ($ingredients) || empty($quantite) || empty ($preparation) || empty ($cuisson) || empty ($portion)) {
     echo json_encode(["message" => "Missing required fields"]);
     return;
   }
@@ -124,13 +125,11 @@ post('/projet1/api/ajouterRecette', function () {
 
     $id = $pdo->lastInsertId();
 
-    // Insert ingredients
-    foreach ($ingredients as $ingredient) {
-      ajoutIngredient($ingredient);
-      $requete2 = $pdo->prepare("INSERT INTO EQ1_Recette_Ingredient(ingredient, recette) VALUES (?, ?)");
-      $requete2->execute([$ingredient, $id]);
+    for($i=0; $i<count($ingredients); $i++){
+      ajoutIngredient($ingredients[$i]);
+      $requete2 = $pdo->prepare("INSERT INTO EQ1_Recette_Ingredient(ingredient, recette, quantite) VALUES (?, ?, ?)");
+      $requete2->execute([$ingredients[$i], $id, $quantite[$i]]);
     }
-
     echo json_encode(["message" => "Success"]);
   } catch (PDOException $e) {
     echo json_encode(["error" => $e->getMessage()]);
@@ -371,8 +370,25 @@ post('/projet1/api/pushModification', function () {
   $prenom = $data['docPrenom'];
   $nomDeFamille = $data['docNomFamille'];
   $dateDeNaissance = $data['docDateNaissance'];
-  $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ? WHERE email = ?');
-  $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
+  if (empty ($email) || empty ($username) || empty ($password) || empty ($prenom) || empty ($nomDeFamille) || empty ($dateDeNaissance)) {
+    echo json_encode(["message" => "Veuillez remplir tous les champs"]);
+  } else if (usernameExist($pdo, $username)) {
+    echo json_encode(["message" => "Le nom d'utilisateur est déjà utilisé."]);
+  } else if (usernameValide($username)) {
+    echo json_encode(["message" => "Le nom d'utilisateur est trop grand"]);
+  }
+  else{
+    $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ? WHERE email = ?');
+    $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
+    if($stmt)
+    {
+      echo json_encode(["message" => "Compte modifié avec succès"]);
+    }
+    else
+    {
+      echo json_encode(["message" => "Erreur lors de la modification du compte"]);
+    }
+  }
 });
 
 post("/projet1/api/deleteAccount", function () {
