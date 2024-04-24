@@ -501,12 +501,13 @@ get('/projet1/api/infosRecette/$idrecette', function ($idrecette){
 
 post('/projet1/api/modifRecete', function() {
   global $pdo;
-  $data = json_decode(file_get_contents('php://input'), true);
+  $json = file_get_contents('php://input');
+  $data = json_decode($json, true);
   $id = $data['id']; // Assuming you send the ID of the Avis to update
   $rating = $data['rating'];
   $commentaire = $data['commentaire'];
 
-  $stmt = $pdo->prepare('UPDATE EQ1_Avis SET rating = ?, commentaire = ? WHERE id = ?');
+  $stmt = $pdo->prepare("UPDATE EQ1_Avis SET `rating` = ?, `commentaire` = ? WHERE `id` = ?");
   $stmt->execute([$rating, $commentaire, $id]);
 
   echo json_encode(["message" => "Avis updated successfully"]);
