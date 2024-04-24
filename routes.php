@@ -508,7 +508,7 @@ post('/projet1/api/modifRecete', function() {
   $id = $data['id'];
 
   $requete = $pdo->prepare("UPDATE EQ1_Avis SET `rating` =?, `commentaire` =? WHERE `id` =?");
-  $result = $requete->execute([$rating, $commentaire. $id]);
+  $result = $requete->execute([$rating, $commentaire, $id]);
   echo json_encode($result);
 });
 
