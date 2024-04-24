@@ -46,7 +46,7 @@ post('/projet1/api/ajouterCompte', function () {
         prenom, nomDeFamille, dateDeNaissance) values (?,?,?,?,?,?)");
     $requete->execute([$email, $username, $password, $prenom, $nomDeFamille, $dateDeNaissance]);
 
-    echo json_encode(["message" => "Compte crée avec succès"]);
+    echo json_encode(["message" => "Compte créé avec succès"]);
   }
 });
 
@@ -343,6 +343,7 @@ post("/projet1/api/deleteAccount", function () {
   $stmt = $pdo->prepare('DELETE FROM EQ1_Compte WHERE EQ1_Compte.email = ?');
   $stmt->execute([$email]);
   header('Content-type: application/json');
+  echo json_encode(["message" => "Compte supprimé avec succès"]);
 });
 
 get('/projet1/api/ratings/$recetteId', function ($recetteId) {
@@ -490,10 +491,10 @@ get('/projet1/api/AVGRatings/$mail', function ($mail) {
   echo json_encode($rating);
 });
 
-get('/projet1/api/infosRecette/:idRecette', function($idRecette){
+get('/projet1/api/infosRecette/$idrecette', function ($idrecette){
   global $pdo;
   $stmt = $pdo->prepare('SELECT * FROM EQ1_Recette_Ingredient WHERE recette = ?');
-  $stmt->execute([$idRecette]);
+  $stmt->execute([$idrecette]);
   $recetteIngredients = $stmt->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($recetteIngredients);
 });

@@ -792,7 +792,9 @@
   }
 
   .recetteProfil{
+    display: flex;
     text-align: center;
+    justify-content: center;
     margin: 0 auto;
     padding: 20px;
     border: 3px solid black;
@@ -800,6 +802,14 @@
     overflow-wrap: break-word;
     margin-bottom: 40px;
     border-radius: 5px;
+    width: 600px;
+    min-width: 600px;
+    
+}
+.recetteProfil li{
+    display: flex;              
+    justify-content: center; 
+    align-items: center;
 }
 /* favoris */
 #fav h1{

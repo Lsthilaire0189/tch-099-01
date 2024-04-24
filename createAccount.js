@@ -8,8 +8,7 @@ document.querySelector("#createSubmit").addEventListener("click", async ()=>{
   const password = document.getElementById("password").value;
   const username = document.getElementById("username").value;
   if (!nom || !prenom || !dateNaissance || !email || !password || !username) {
-    mesRep.innerHTML = "Erreur dans le formulaire : information manquante"
-    body.appendChild(mesRep)
+    confirm("Erreur dans le formulaire : information manquante");
   }
   else {
     const compte = { nom, prenom, dateNaissance, email, password, username };
@@ -26,12 +25,14 @@ document.querySelector("#createSubmit").addEventListener("click", async ()=>{
         throw new Error("Failed to add account: " + response.status);
       }
       const responseData = await response.json();
-      mesRep.innerHTML = responseData.message;
-      if(responseData == null){
-        body.appendChild("Erreur avec la base de donnée, Veuillez changer certaines informations.")
+      if(responseData.message != "Compte créé avec succès"){
+        confirm("Erreur lors de la création du compte : " + responseData.message);
       }
       else{
-        body.appendChild(mesRep)
+        confirm("Votre compte est enregistré.");
+        sessionStorage.setItem("email", email);
+        sessionStorage.setItem("username", username);
+        window.location.href = 'pageUtilisateur.html';
       }
     }
     catch (error) {

@@ -295,7 +295,7 @@ function showSnackbar(s) {
 function addCommentToPage(commentlist) {
   var commentContainer = document.querySelector(".avis-list_item");
   commentlist.forEach((avis) => {
-    var username = document.createElement("span");
+    var username = document.createElement("a");
     var note = document.createElement("span");
     var commentaire = document.createElement("span");
     var container = document.createElement("div");
@@ -303,6 +303,7 @@ function addCommentToPage(commentlist) {
 
     const starSymbolHtml = '\u2605';
     username.textContent = avis.username;
+    username.href = `/projet1/profil.html?chef=${avis.userId}`;
     note.textContent = 'note : ' + avis.rating + starSymbolHtml;
     commentaire.textContent = avis.commentaire;
 
