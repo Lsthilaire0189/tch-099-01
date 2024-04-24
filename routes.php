@@ -345,6 +345,14 @@ post("/projet1/api/deleteAccount", function () {
   header('Content-type: application/json');
   echo json_encode(["message" => "Compte supprimé avec succès"]);
 });
+post("/projet1/api/deleteAccountAndroid", function () {
+  global $pdo;
+  $json = json_decode(file_get_contents('php://input'), true);
+  $email = $json['email']; // Extract email from the JSON object
+  $stmt = $pdo->prepare('DELETE FROM EQ1_Compte WHERE EQ1_Compte.email = ?');
+  $stmt->execute([$email]);
+  header('Content-type: application/json');
+});
 
 get('/projet1/api/ratings/$recetteId', function ($recetteId) {
   global $pdo;
