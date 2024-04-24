@@ -490,10 +490,10 @@ get('/projet1/api/AVGRatings/$mail', function ($mail) {
   echo json_encode($rating);
 });
 
-get('/projet1/api/infosRecette', function($idRecette){
+get('/projet1/api/infosRecette/$idrecette', function ($idrecette){
   global $pdo;
   $stmt = $pdo->prepare('SELECT * FROM EQ1_Recette_Ingredient WHERE recette = ?');
-  $stmt->execute([$idRecette]);
+  $stmt->execute([$idrecette]);
   $recetteIngredients = $stmt->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($recetteIngredients);
 });

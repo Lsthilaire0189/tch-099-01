@@ -31,7 +31,10 @@ document.querySelector("#createSubmit").addEventListener("click", async ()=>{
         body.appendChild("Erreur avec la base de donnée, Veuillez changer certaines informations.")
       }
       else{
-        body.appendChild(mesRep)
+        confirm("Votre compte est enregistré.");
+        sessionStorage.setItem("email", email);
+        sessionStorage.setItem("username", username);
+        window.location.href = 'pageUtilisateur.html';
       }
     }
     catch (error) {
