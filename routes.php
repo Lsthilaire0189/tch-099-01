@@ -490,14 +490,13 @@ get('/projet1/api/AVGRatings/$mail', function ($mail) {
   echo json_encode($rating);
 });
 
-get('/projet1/api/infosRecette', function($idRecette){
+get('/projet1/api/infosRecette/:idRecette', function($idRecette){
   global $pdo;
   $stmt = $pdo->prepare('SELECT * FROM EQ1_Recette_Ingredient WHERE recette = ?');
   $stmt->execute([$idRecette]);
   $recetteIngredients = $stmt->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($recetteIngredients);
 });
-
 
 any('/404', '/index.php');
 
