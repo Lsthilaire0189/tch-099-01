@@ -548,10 +548,9 @@ post('/projet1/api/pushModificationAndroid', function () {
 });
 
 function usernameExistForAnotherEmail($pdo, $username, $currentEmail) {
-  $stmt = $pdo->prepare('SELECT email FROM EQ1_Compte WHERE username=? AND email != ?');
+  $stmt = $pdo->prepare("SELECT email FROM EQ1_Compte WHERE username=? AND email !=?");
   $stmt->execute([$username, $currentEmail]);
-  $userEmail = $stmt->fetchColumn();
-  return $userEmail !== false;
+  return (bool) $stmt->fetchAll();
 }
 
 
