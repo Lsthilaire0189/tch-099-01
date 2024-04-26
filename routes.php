@@ -536,12 +536,16 @@ post('/projet1/api/pushModificationAndroid', function () {
     echo json_encode(["message" => "Le nom d'utilisateur est déjà utilisé par un autre compte."]);
   } else if (usernameValide($username)) {
     echo json_encode(["message" => "Le nom d'utilisateur est trop grand"]);
-  } else {
+  }
+  else{
     $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ? WHERE email = ?');
     $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
-    if ($stmt) {
+    if($stmt)
+    {
       echo json_encode(["message" => "Compte modifié avec succès"]);
-    } else {
+    }
+    else
+    {
       echo json_encode(["message" => "Erreur lors de la modification du compte"]);
     }
   }
