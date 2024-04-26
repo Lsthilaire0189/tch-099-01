@@ -520,5 +520,40 @@ post('/projet1/api/modifRecete', function() {
   echo json_encode($result);
 });
 
+post('/projet1/api/pushModificationAndroid', function () {
+  global $pdo;
+  $data = json_decode(file_get_contents('php://input'), true);
+  $email = $data['docMail'];
+  $username = $data['docUsername'];
+  $password = $data['docPassword'];
+  $prenom = $data['docPrenom'];
+  $nomDeFamille = $data['docNomFamille'];
+  $dateDeNaissance = $data['docDateNaissance'];
+
+  if (empty($email) || empty($username) || empty($password) || empty($prenom) || empty($nomDeFamille) || empty($dateDeNaissance)) {
+    echo json_encode(["message" => "Veuillez remplir tous les champs"]);
+  } else if (usernameExistForAnotherEmail($pdo, $username, $email)) {
+    echo json_encode(["message" => "Le nom d'utilisateur est déjà utilisé par un autre compte."]);
+  } else if (usernameValide($username)) {
+    echo json_encode(["message" => "Le nom d'utilisateur est trop grand"]);
+  } else {
+    $stmt = $pdo->prepare('UPDATE EQ1_Compte SET username = ?, password = ?, prenom = ?, nomDeFamille = ?, dateDeNaissance = ? WHERE email = ?');
+    $stmt->execute([$username, $password, $prenom, $nomDeFamille, $dateDeNaissance, $email]);
+    if ($stmt) {
+      echo json_encode(["message" => "Compte modifié avec succès"]);
+    } else {
+      echo json_encode(["message" => "Erreur lors de la modification du compte"]);
+    }
+  }
+});
+
+function usernameExistForAnotherEmail($pdo, $username, $currentEmail) {
+  $stmt = $pdo->prepare('SELECT email FROM EQ1_Compte WHERE username=? AND email != ?');
+  $stmt->execute([$username, $currentEmail]);
+  $userEmail = $stmt->fetchColumn();
+  return $userEmail !== false;
+}
+
+
 any('/404', '/index.php');
 
